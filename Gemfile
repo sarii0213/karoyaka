@@ -80,7 +80,12 @@ end
 group :development do
   gem "erb_lint", require: false
   gem "rubocop"
+  # Performance optimization analysis
+  gem "rubocop-performance", require: false
+  # focused on enforcing Rails best practices and coding conventions
   gem "rubocop-rails", require: false
+  # RSpec-specific analysis
+  gem "rubocop-rspec", require: false
 
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
