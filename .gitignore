@@ -34,3 +34,5 @@
 
 # RubyMine
 .idea/
+
+/vendor/bundle
