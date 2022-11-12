@@ -63,7 +63,7 @@ gem "config"
 gem "sidekiq"
 
 # SEO
-gem "meta-tag"
+gem "meta-tags"
 
 group :development, :test do
   gem "annotate"

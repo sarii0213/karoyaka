@@ -1,0 +1,16 @@
+current directory: /Users/sarii/rails/karoyaka/vendor/bundle/ruby/3.1.0/gems/bootsnap-1.13.0/ext/bootsnap
+/Users/sarii/.anyenv/envs/rbenv/versions/3.1.2/bin/ruby -I /Users/sarii/.anyenv/envs/rbenv/versions/3.1.2/lib/ruby/site_ruby/3.1.0 extconf.rb
+creating Makefile
+
+current directory: /Users/sarii/rails/karoyaka/vendor/bundle/ruby/3.1.0/gems/bootsnap-1.13.0/ext/bootsnap
+make DESTDIR\= sitearchdir\=./.gem.20221112-22198-fjt0p7 sitelibdir\=./.gem.20221112-22198-fjt0p7 clean
+
+current directory: /Users/sarii/rails/karoyaka/vendor/bundle/ruby/3.1.0/gems/bootsnap-1.13.0/ext/bootsnap
+make DESTDIR\= sitearchdir\=./.gem.20221112-22198-fjt0p7 sitelibdir\=./.gem.20221112-22198-fjt0p7
+compiling bootsnap.c
+linking shared-object bootsnap/bootsnap.bundle
+ld: warning: -undefined dynamic_lookup may not work with chained fixups
+
+current directory: /Users/sarii/rails/karoyaka/vendor/bundle/ruby/3.1.0/gems/bootsnap-1.13.0/ext/bootsnap
+make DESTDIR\= sitearchdir\=./.gem.20221112-22198-fjt0p7 sitelibdir\=./.gem.20221112-22198-fjt0p7 install
+/usr/bin/install -c -m 0755 bootsnap.bundle ./.gem.20221112-22198-fjt0p7/bootsnap
