@@ -2,7 +2,7 @@ name: Test
 on: push
 jobs:
   rspec:
-      runs-on: ubuntu-18.04
+    runs-on: ubuntu-18.04
     services:
       db:
         image: mysql:8.0.31
