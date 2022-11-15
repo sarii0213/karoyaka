@@ -40,10 +40,10 @@ jobs:
         run: cp -v config/database.ci.yml config/database.yml
       - name: create test db
         run: |
-          printf '#!/bin/sh\nexit 0' > /usr/sbin/policy-rc.d
+          printf '#!/bin/sh\nexit 0' > /usr/sbin/policy-rc.dq
           apt update && apt upgrade -y
           apt install sudo
-          sudo systemctl start mysql.service
+          sudo service mysql start 
       - name: setup db schema
         run: |
           bundle exec rails db:create db:schema:load --trace
