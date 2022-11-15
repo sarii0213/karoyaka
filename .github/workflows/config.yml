@@ -2,14 +2,15 @@ name: Test
 on: push
 jobs:
   rspec:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     services:
       db:
         image: mysql:8.0.31
         env:
           TZ: "Asia/Tokyo"
+          MYSQL_USER: root
           MYSQL_ROOT_PASSWORD: password
-        options: --health-cmd="mysqladmin ping -ppassword" --health-interval=5s --health-timeout=2s --health-retries=3
+        options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=2s --health-retries=3
     container:
       image: ruby:3.1.2
     env:
@@ -36,6 +37,9 @@ jobs:
         if: steps.cache-gems.outputs.cache-hit != 'true'
         run: |
           bundle install --jobs 4 --retry 3
+      - name: create test db
+        run: |
+          sudo service mysql start
       - name: setup db schema
         run: |
           bundle exec rails db:create db:schema:load --trace
