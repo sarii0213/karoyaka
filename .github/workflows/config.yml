@@ -10,7 +10,7 @@ jobs:
           - 3306:3306
         env:
           TZ: "Asia/Tokyo"
-          MYSQL_ROOT_PASSWORD: password
+          MYSQL_ROOT_PASSWORD: root
         options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=2s --health-retries=3
     container:
       image: ruby:3.1.2
@@ -32,17 +32,17 @@ jobs:
         with:
           path: vendor/bundle
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gems-
       - name: setup bundle
         if: steps.cache-gems.outputs.cache-hit != 'true'
         run: |
           bundle install --jobs 4 --retry 3
+      - name: set database.yml
+        run: cp -v config/database.ci.yml config/database.yml
       - name: create test db
         run: |
           apt update && apt upgrade -y
           apt install sudo
-          sudo /etc/init.d/mysql start
+          sudo systemctl start mysql.service
       - name: setup db schema
         run: |
           bundle exec rails db:create db:schema:load --trace
