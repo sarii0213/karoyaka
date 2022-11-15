@@ -7,9 +7,21 @@ require:
 AllCops:
   # RuboCopのバージョンがあがった際に追加されたCopを自動で有効に
   NewCops: enable
+  DisplayCopNames: true
+  DisplayStyleGuide: true
+  StyleGuideBaseURL: https://github.com/fortissimo1997/ruby-style-guide/blob/japanese/README.ja.md
   Exclude:
     - 'vendor/**/*'
-    - 'spec/fixtures/**/*'
+    - 'spec/**/*'
     - 'tmp/**/*'
     - '.git/**/*'
     - 'bin/*'
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'lib/tasks/auto_annotate_models.rake'
+
+Rails:
+  Enabled: true
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
