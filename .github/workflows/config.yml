@@ -38,7 +38,7 @@ jobs:
           bundle install --jobs 4 --retry 3
       - name: create test db
         run: |
-          apt update && apt upgrade
+          apt update && apt upgrade -y
           apt install sudo
           sudo systemctl start mysql
       - name: setup db schema
