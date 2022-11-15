@@ -6,6 +6,8 @@ jobs:
     services:
       db:
         image: mysql:8.0.31
+        ports:
+          - 3306:3306
         env:
           TZ: "Asia/Tokyo"
           MYSQL_ROOT_PASSWORD: password
