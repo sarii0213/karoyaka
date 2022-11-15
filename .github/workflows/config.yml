@@ -40,6 +40,7 @@ jobs:
         run: cp -v config/database.ci.yml config/database.yml
       - name: create test db
         run: |
+          #!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d
           apt update && apt upgrade -y
           apt install sudo
           sudo systemctl start mysql.service
