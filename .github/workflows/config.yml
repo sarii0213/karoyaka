@@ -8,8 +8,8 @@ jobs:
         image: mysql:8.0.31
         env:
           TZ: "Asia/Tokyo"
-          MYSQL_ROOT_PASSWORD: mysql
-        options: --health-cmd="mysqladmin ping -pmysql" --health-interval=5s --health-timeout=2s --health-retries=3
+          MYSQL_ROOT_PASSWORD: password
+        options: --health-cmd="mysqladmin ping -ppassword" --health-interval=5s --health-timeout=2s --health-retries=3
     container:
       image: ruby:3.1.2
     env:
