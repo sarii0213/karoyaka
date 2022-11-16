@@ -1,21 +1,28 @@
 name: Test
+
 on: push
+
 jobs:
   rspec:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      RAILS_ENV: test
+      DB_HOST: 127.0.0.1 # mysqlの仕様でlocalhostだとソケット通信しようとしてしまう
+      DB_PORT: 33060
     services:
       mysql:
         image: mysql:8.0.31
         ports:
-          - 3306:3306
+          - 33060:3306
         env:
           TZ: "Asia/Tokyo"
-          MYSQL_ROOT_PASSWORD: root
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          BIND-ADDRESS: 0.0.0.0 # 設定しないとホストサーバーから接続できない
         options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=2s --health-retries=3
     container:
       image: ruby:3.1.2
-    env:
-      RAILS_ENV: test
+
     steps:
       - uses: actions/checkout@v2
       - name: Install chrome
