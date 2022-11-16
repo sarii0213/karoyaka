@@ -34,6 +34,8 @@ jobs:
 
       - name: setup mysql
         run: |
+          apt update && apt upgrade -y
+          apt install sudo
           sudo /etc/init.d/mysql start
           mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
       - name: setup db schema
