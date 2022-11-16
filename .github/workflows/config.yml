@@ -2,7 +2,7 @@ name: Test
 on: push
 jobs:
   rspec:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04 
     services:
       db:
         image: mysql:8.0.31
@@ -38,12 +38,7 @@ jobs:
           bundle install --jobs 4 --retry 3
       - name: set database.yml
         run: cp -v config/database.ci.yml config/database.yml
-      - name: create test db
-        run: |
-          printf '#!/bin/sh\nexit 0' > /usr/sbin/policy-rc.dq
-          apt update && apt upgrade -y
-          apt install sudo
-          sudo service mysql start 
+
       - name: setup db schema
         run: |
           bundle exec rails db:create db:schema:load --trace
