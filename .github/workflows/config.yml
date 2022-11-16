@@ -3,7 +3,6 @@ on: push
 jobs:
   rspec:
     runs-on: ubuntu-20.04
-
     container:
       image: ruby:3.1.2
     env:
@@ -31,10 +30,9 @@ jobs:
         if: steps.cache-gems.outputs.cache-hit != 'true'
         run: |
           bundle install --jobs 4 --retry 3
-
       - name: setup mysql
         run: |
-          printf '#!/bin/sh\nexit 0' > /usr/sbin/policy-rc.dq
+          printf '#!/bin/sh\nexit 0' > /usr/sbin/policy-rc.d
           apt update && apt upgrade -y
           apt install sudo
           sudo service mysql start
