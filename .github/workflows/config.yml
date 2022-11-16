@@ -42,8 +42,8 @@ jobs:
         run: |
           printf '#!/bin/sh\nexit 0' > /usr/sbin/policy-rc.d
           apt update && apt upgrade -y
-          apt install sudo export
-          sudo export RUNLEVEL=1
+          apt install sudo
+          sudo -i export RUNLEVEL=1
           sudo systemctl start mysql
       - name: setup db schema
         run: |
