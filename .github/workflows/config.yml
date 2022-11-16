@@ -2,20 +2,15 @@ name: Test
 on: push
 jobs:
   rspec:
-    runs-on: ubuntu-18.04 
-    services:
-      db:
-        image: mysql:8.0.31
-        ports:
-          - 3306:3306
-        env:
-          TZ: "Asia/Tokyo"
-          MYSQL_ROOT_PASSWORD: root
-        options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=2s --health-retries=3
+    runs-on: ubuntu-20.04
+
     container:
       image: ruby:3.1.2
     env:
       RAILS_ENV: test
+      DB_DATABASE: test_db
+      DB_USER: root
+      DB_PASSWORD: root
     steps:
       - uses: actions/checkout@v2
       - name: Install chrome
@@ -36,12 +31,14 @@ jobs:
         if: steps.cache-gems.outputs.cache-hit != 'true'
         run: |
           bundle install --jobs 4 --retry 3
-      - name: set database.yml
-        run: cp -v config/database.ci.yml config/database.yml
 
+      - name: setup mysql
+        run: |
+          sudo /etc/init.d/mysql start
+          mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
       - name: setup db schema
         run: |
-          bundle exec rails db:create db:schema:load --trace
+          bundle exec rails db:schema:load --trace
       - name: run spec
         run: bundle exec rspec
       - name: archive rspec result screenshots
