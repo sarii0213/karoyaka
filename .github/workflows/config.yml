@@ -4,7 +4,7 @@ jobs:
   rspec:
     runs-on: ubuntu-latest
     services:
-      db:
+      mysql:
         image: mysql:8.0.31
         ports:
           - 3306:3306
@@ -40,9 +40,9 @@ jobs:
         run: cp -v config/database.ci.yml config/database.yml
       - name: create test db
         run: |
-          printf '#!/bin/sh\nexit 0' > /usr/sbin/policy-rc.dq
+          printf '#!/bin/sh\nexit 0' > /usr/sbin/policy-rc.d
           apt update && apt upgrade -y
-          apt install sudo
+          apt install sudo export
           sudo export RUNLEVEL=1
           sudo systemctl start mysql
       - name: setup db schema
