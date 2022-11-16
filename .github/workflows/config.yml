@@ -44,7 +44,7 @@ jobs:
           apt update && apt upgrade -y
           apt install sudo
           sudo -i export RUNLEVEL=1
-          sudo systemctl start mysql
+          sudo service mysql start
       - name: setup db schema
         run: |
           bundle exec rails db:create db:schema:load --trace
