@@ -1,15 +1,28 @@
 name: Test
+
 on: push
+
 jobs:
   rspec:
-    runs-on: ubuntu-20.04
-    container:
-      image: ruby:3.1.2
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
     env:
       RAILS_ENV: test
-      DB_DATABASE: karoyaka_test
-      DB_USER: root
-      DB_PASSWORD: root
+      DB_HOST: 127.0.0.1 # mysqlの仕様でlocalhostだとソケット通信しようとしてしまう
+      DB_PORT: 33060
+    services:
+      mysql:
+        image: mysql:8.0.31
+        ports:
+          - 33060:3306
+        env:
+          TZ: "Asia/Tokyo"
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          BIND-ADDRESS: 0.0.0.0 # 設定しないとホストサーバーから接続できない
+        options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=2s --health-retries=3
+    container:
+      image: ruby:3.1.2
+
     steps:
       - uses: actions/checkout@v2
       - name: Install chrome
@@ -30,16 +43,11 @@ jobs:
         if: steps.cache-gems.outputs.cache-hit != 'true'
         run: |
           bundle install --jobs 4 --retry 3
-      - name: setup mysql
-        run: |
-          printf '#!/bin/sh\nexit 0' > /usr/sbin/policy-rc.d
-          apt update && apt upgrade -y
-          apt install sudo
-          sudo service mysql start
-          mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
+      - name: set database.yml
+        run: cp -v config/database.ci.yml config/database.yml
       - name: setup db schema
         run: |
-          bundle exec rails db:schema:load --trace
+          bundle exec rails db:create db:schema:load --trace
       - name: run spec
         run: bundle exec rspec
       - name: archive rspec result screenshots
