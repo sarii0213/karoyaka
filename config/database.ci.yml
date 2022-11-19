@@ -7,7 +7,7 @@ default: &default
   host: mysql
   port: 3306
   username: root
-  password: root
+  password: 
 
 test:
   <<: *default
