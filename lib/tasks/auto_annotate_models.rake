@@ -9,7 +9,7 @@ if Rails.env.development?
     Annotate.set_defaults(
       'active_admin'                => 'false',
       'additional_file_patterns'    => [],
-      'routes'                      => 'false',
+      'routes'                      => 'true',
       'models'                      => 'true',
       'position_in_routes'          => 'before',
       'position_in_class'           => 'before',
@@ -35,7 +35,7 @@ if Rails.env.development?
       'exclude_sti_subclasses'      => 'false',
       'ignore_model_sub_dir'        => 'false',
       'ignore_columns'              => nil,
-      'ignore_routes'               => nil,
+      'ignore_routes'               => '(rails|historical)',
       'ignore_unknown_models'       => 'false',
       'hide_limit_column_types'     => 'integer,bigint,boolean',
       'hide_default_column_types'   => 'json,jsonb,hstore',
