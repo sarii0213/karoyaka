@@ -6,11 +6,31 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet">
+
+
     <%= stylesheet_link_tag 'application', 'data-turbo-track': 'reload' %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="theme-light">
+    <div id="preloader"><div class="spinner-border color-highlight" role="status"></div></div>
+    <div id="page">
+
+      <%= render 'layouts/header' %>
+      <%= render 'layouts/footer' %>
+
+      <div class="page-content header-clear-medium">
+
+        <!-- Components and Page Elements Here-->
+        <%= yield %>
+      </div>
+
+      <!-- Off Canvas Elements Here -->
+
+    </div>
   </body>
 </html>
