@@ -10,9 +10,9 @@
   <% elsif message_type == "alert" %>
     <div class="ms-3 me-3 alert alert-small rounded-s shadow-xl bg-red-dark" role="alert">
       <span>
-        <i class="fa fa-times color-white mx-5"></i>
+        <i class="fa fa-times color-white"></i>
       </span>
-      <strong class="color-white"><%= message %></strong>
+      <strong class="color-white mx-5"><%= message %></strong>
       <button type="button" class="close color-white opacity-60 font-16" data-bs-dismiss="alert" aria-label="Close">×</button>
     </div>
   <% end %>
