@@ -1,0 +1,27 @@
+<% flash.each do |message_type, message| %>
+  <% if message_type == "notice" %>
+    <p class="notice alert-primary"><%= message %></p>
+  <% elsif message_type == "alert" %>
+    <p class="alert alert-danger"><%= message %></p>
+  <% end %>
+<% end %>
+
+<%# flash.each do |message_type, message| %>
+  <%# if message_type == "notice" %>
+<!--    <div class="ms-3 me-3 alert alert-small rounded-s shadow-xl bg-green-dark" role="alert">-->
+<!--      <span>-->
+<!--        <i class="fa fa-check color-white"></i>-->
+<!--      </span>-->
+<!--      <strong class="color-white mx-5"><%#= message %></strong>-->
+<!--      <button type="button" class="close color-white opacity-60 font-16" data-bs-dismiss="alert" aria-label="Close">×</button>-->
+<!--   </div>-->
+  <%# elsif message_type == "alert" %>
+<!--    <div class="ms-3 me-3 alert alert-small rounded-s shadow-xl bg-red-dark" role="alert">-->
+<!--      <span>-->
+<!--        <i class="fa fa-times color-white"></i>-->
+<!--      </span>-->
+<!--      <strong class="color-white mx-5"><%#= message %></strong>-->
+<!--      <button type="button" class="close color-white opacity-60 font-16" data-bs-dismiss="alert" aria-label="Close">×</button>-->
+<!--    </div>-->
+  <%# end %>
+<%# end %>
