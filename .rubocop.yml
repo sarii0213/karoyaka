@@ -19,6 +19,7 @@ AllCops:
     - 'db/**/*'
     - 'config/**/*'
     - 'lib/tasks/auto_annotate_models.rake'
+    - 'app/controllers/users/*'
 
 Rails:
   Enabled: true

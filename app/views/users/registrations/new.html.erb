@@ -12,8 +12,8 @@
 
       <div class="field input-style has-borders has-icon validate-field mb-4">
         <i class="fa fa-user"></i>
-        <%= f.text_field :username, autofocus: true, class: "form-control validate-name", placeholder: "username" %>
-        <%= f.label :username, class: "color-highlight" %>
+        <%= f.text_field :username, autofocus: true, class: 'form-control validate-name', placeholder: 'username' %>
+        <%= f.label :username, class: 'color-highlight' %>
         <i class="fa fa-times disabled invalid color-red-dark"></i>
         <i class="fa fa-check disabled valid color-green-dark"></i>
         <em>(required)</em>
@@ -21,8 +21,9 @@
 
       <div class="field input-style has-borders has-icon validate-field mb-4">
         <i class="fa fa-envelope"></i>
-        <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: "form-control validate-text", placeholder: "email" %>
-        <%= f.label :email, class: "color-highlight" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control validate-text',
+                                  placeholder: 'email' %>
+        <%= f.label :email, class: 'color-highlight' %>
         <i class="fa fa-times disabled invalid color-red-dark"></i>
         <i class="fa fa-check disabled valid color-green-dark"></i>
         <em>(required)</em>
@@ -31,8 +32,9 @@
       <div class="field input-style has-borders has-icon validate-field mb-4">
         <i class="fa fa-lock"></i>
 
-        <%= f.password_field :password, autocomplete: 'new-password', class: "form-control validate-text", placeholder: "password" %>
-        <%= f.label :password, class: "color-highlight" %>
+        <%= f.password_field :password, autocomplete: 'new-password', class: 'form-control validate-text',
+                                        placeholder: 'password' %>
+        <%= f.label :password, class: 'color-highlight' %>
         <i class="fa fa-times disabled invalid color-red-dark"></i>
         <i class="fa fa-check disabled valid color-green-dark"></i>
         <em>(required)</em>
@@ -41,15 +43,17 @@
       <div class="field input-style has-borders has-icon validate-field mb-4">
         <i class="fa fa-lock"></i>
 
-        <%= f.password_field :password_confirmation, autocomplete: 'new-password', class: "form-control validate-text", placeholder: "password（確認用）" %>
-        <%= f.label :password_confirmation, class: "color-highlight" %>
+        <%= f.password_field :password_confirmation, autocomplete: 'new-password', class: 'form-control validate-text',
+                                                     placeholder: 'password（確認用）' %>
+        <%= f.label :password_confirmation, class: 'color-highlight' %>
         <i class="fa fa-times disabled invalid color-red-dark"></i>
         <i class="fa fa-check disabled valid color-green-dark"></i>
         <em>(required)</em>
       </div>
 
       <div class="actions">
-        <%= f.submit 'Sign up', class: "btn btn-border btn-m btn-full mb-3 rounded-sm text-uppercase font-700 border-green-dark color-green-dark bg-theme", style: "width: 100%"%>
+        <%= f.submit 'Sign up',
+                     class: 'btn btn-border btn-m btn-full mb-3 rounded-sm text-uppercase font-700 border-green-dark color-green-dark bg-theme', style: 'width: 100%' %>
       </div>
     <% end %>
 
