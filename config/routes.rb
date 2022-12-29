@@ -39,7 +39,10 @@ Rails.application.routes.draw do
     get 'logout', to: 'users/sessions#destroy'
   end
 
-  root to: 'samples#index'
+  root to: 'static_pages#top'
+  get '/about', to: 'static_pages#about'
+  get '/privacy', to: 'static_pages#privacy'
+  get '/term', to: 'static_pages#term'
 
   if Rails.env.development?
     require 'sidekiq/web'
