@@ -1,7 +1,17 @@
-<div id="footer-bar" class="footer-bar-1">
-  <a href="#"><i class="fa fa-home"></i><span>Home</span></a>
-  <a href="#" class="active-nav"><i class="fa fa-star"></i><span>Features</span></a>
-  <a href="#"><i class="fa fa-heart"></i><span>Pages</span></a>
-  <a href="#"><i class="fa fa-search"></i><span>Search</span></a>
-  <a href="#"><i class="fa fa-cog"></i><span>Settings</span></a>
+<div id="footer-bar" class="footer-bar-6">
+  <%= link_to root_path, class: 'active-nav footer-menu' do %>
+    <i class="fas fa-home"></i><span>トップ</span>
+  <% end %>
+  <%= link_to root_path, class: 'footer-menu' do %>
+      <i class="fas fa-lightbulb"></i><span>手放す</span>
+  <% end %>
+  <%= link_to root_path, class: 'footer-menu' do %>
+    <i class="fas fa-dove"></i><span>手放した</span>
+  <% end %>
+  <%= link_to root_path, class: 'footer-menu' do %>
+    <i class="fas fa-quote-right"></i><span>名言集</span>
+  <% end %>
+  <%= link_to root_path, class: 'footer-menu' do %>
+    <i class="fas fa-trophy"></i><span>実績</span>
+  <% end %>
 </div>

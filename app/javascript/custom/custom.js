@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
             var regularField = document.querySelectorAll('.input-style input:not([type="date"])')
             regularField.forEach(el => el.addEventListener('keyup', e => {
                 if(!el.value == ""){
-                    el.parentElement.classList.add('input-style-active');
+                    // el.parentElement.classList.add('input-style-active');
                     el.parentElement.querySelector('em').classList.add('disabled');
                 } else {
                     el.parentElement.querySelectorAll('.valid')[0].classList.add('disabled');
@@ -655,14 +655,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         //Footer Bar Activation
-
         var footerBar6 = document.querySelectorAll('.footer-bar-6')[0];
         if(footerBar6){
             var footerBar6_select = document.querySelectorAll('.footer-bar-6 .active-nav')[0];
-            var footerBar6_circle = document.querySelectorAll('.footer-bar-6 .circle-nav')[0];
             footerBar6_select.insertAdjacentHTML('beforeend', '<em></em>');
-            footerBar6_circle.insertAdjacentHTML('beforeend', '<strong><u></u></strong>');
         }
+        // var footerBar = document.getElementById('footer-bar');
+        // var footerMenus = footerBar.getElementsByClassName('footer-menu');
+        //
+        // for (var i = 0; i < footerMenus.length; i++) {
+        //     footerMenus[i].addEventListener('click', function () {
+        //         var current = document.getElementsByClassName('active-nav');
+        //         current[0].classList.remove('active-nav');
+        //         this.classList.add('active-nav');
+        //     });
+        // }
 
         //Detect Ad Block
 
