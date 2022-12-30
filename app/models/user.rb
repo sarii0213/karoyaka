@@ -24,4 +24,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :username, presence: true
+
+  has_many :to_let_go_lists
 end
