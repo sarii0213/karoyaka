@@ -1,17 +1,17 @@
-<div id="footer-bar" class="footer-bar-6">
-  <%= link_to root_path, class: 'active-nav footer-menu' do %>
+<div id="footer-bar" class="footer-bar-1">
+  <%= active_link_to root_path, class: 'footer-menu', active: :exclusive, class_active: 'active-nav' do %>
     <i class="fas fa-home"></i><span>トップ</span>
   <% end %>
-  <%= link_to root_path, class: 'footer-menu' do %>
+  <%= active_link_to about_path, class: 'footer-menu', active: :exclusive, class_active: 'active-nav' do %>
       <i class="fas fa-lightbulb"></i><span>手放す</span>
   <% end %>
-  <%= link_to root_path, class: 'footer-menu' do %>
+  <%= active_link_to privacy_path, class: 'footer-menu', active: :exclusive, class_active: 'active-nav' do %>
     <i class="fas fa-dove"></i><span>手放した</span>
   <% end %>
-  <%= link_to root_path, class: 'footer-menu' do %>
+  <%= active_link_to term_path, class: 'footer-menu', active: :exclusive, class_active: 'active-nav' do %>
     <i class="fas fa-quote-right"></i><span>名言集</span>
   <% end %>
-  <%= link_to root_path, class: 'footer-menu' do %>
+  <%= active_link_to login_path, class: 'footer-menu', active: :exclusive, class_active: 'active-nav' do %>
     <i class="fas fa-trophy"></i><span>実績</span>
   <% end %>
 </div>

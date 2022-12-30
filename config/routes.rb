@@ -20,7 +20,10 @@
 #                                   signup GET    /signup(.:format)                                                                                 users/registrations#new
 #                                    login GET    /login(.:format)                                                                                  users/sessions#new
 #                                   logout GET    /logout(.:format)                                                                                 users/sessions#destroy
-#                                     root GET    /                                                                                                 samples#index
+#                                     root GET    /                                                                                                 static_pages#top
+#                                    about GET    /about(.:format)                                                                                  static_pages#about
+#                                  privacy GET    /privacy(.:format)                                                                                static_pages#privacy
+#                                     term GET    /term(.:format)                                                                                   static_pages#term
 #                              sidekiq_web        /sidekiq                                                                                          Sidekiq::Web
 
 Rails.application.routes.draw do
