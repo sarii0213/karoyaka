@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_30_111338) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_30_112622) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -55,6 +55,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_30_111338) do
     t.index ["name"], name: "index_reasons_on_name", unique: true
   end
 
+  create_table "to_let_go_lists", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "category_id", null: false
+    t.string "item"
+    t.bigint "reason_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_to_let_go_lists_on_category_id"
+    t.index ["reason_id"], name: "index_to_let_go_lists_on_reason_id"
+    t.index ["user_id"], name: "index_to_let_go_lists_on_user_id"
+  end
+
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "username", null: false
     t.string "email", default: "", null: false
@@ -70,4 +82,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_30_111338) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "to_let_go_lists", "categories"
+  add_foreign_key "to_let_go_lists", "reasons"
+  add_foreign_key "to_let_go_lists", "users"
 end
