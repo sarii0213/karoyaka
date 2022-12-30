@@ -16,4 +16,6 @@ class Category < ApplicationRecord
   validates :name, presence: true
   validates :description, presence: true
   validates :name, uniqueness: true
+
+  has_many :to_let_go_lists, dependent: :destroy
 end
