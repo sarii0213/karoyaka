@@ -17,5 +17,5 @@ class Reason < ApplicationRecord
   validates :description, presence: true
   validates :name, uniqueness: true
 
-  has_many :to_let_go_lists
+  has_many :to_let_go_lists, dependent: :destroy
 end

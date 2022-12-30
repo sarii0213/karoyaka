@@ -25,5 +25,5 @@ class User < ApplicationRecord
 
   validates :username, presence: true
 
-  has_many :to_let_go_lists
+  has_many :to_let_go_lists, dependent: :destroy
 end
