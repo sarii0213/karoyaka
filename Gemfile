@@ -68,6 +68,8 @@ gem 'meta-tags'
 # フッターメニューにactive_navタグを付与
 gem 'active_link_to'
 
+gem 'seed-fu'
+
 group :development, :test do
   gem 'annotate'
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
