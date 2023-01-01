@@ -3,12 +3,17 @@ ja:
   activerecord:
     models:
       user: ユーザー
+      to_let_go_list: 手放したいものリスト
     attributes:
       user:
         username: ユーザー名
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード（確認）
+      to_let_go_list:
+        category_id: カテゴリー
+        reason_id: 手放す理由
+        item: 手放すモノ
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
