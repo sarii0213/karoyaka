@@ -15,7 +15,7 @@
   </div>
 
   <div class="input-style no-borders no-icon mb-4">
-    <%= f.label :category_id, class: 'color-highlight'%>
+    <%= f.label :category_id, class: 'color-highlight' %>
     <%= f.collection_select :category_id, Category.all, :id, :name, prompt: 'カテゴリーを選択する' %>
     <span><i class="fa fa-chevron-down"></i></span>
     <em></em>
@@ -27,13 +27,14 @@
   </div>
 
   <div class="input-style no-borders no-icon mb-4">
-    <%= f.label :reason_id, class: 'color-highlight'%>
+    <%= f.label :reason_id, class: 'color-highlight' %>
     <%= f.collection_select :reason_id, Reason.all, :id, :name, prompt: '手放す理由を選択する' %>
     <span><i class="fa fa-chevron-down"></i></span>
     <em></em>
   </div>
 
   <div class="actions">
-    <%= f.submit class: 'btn btn-border btn-m btn-full mb-3 rounded-sm text-uppercase font-700 border-green-dark color-green-dark bg-theme', style: 'width: 100%' %>
+    <%= f.submit class: 'btn btn-border btn-m btn-full mb-3 rounded-sm text-uppercase font-700 border-green-dark color-green-dark bg-theme',
+                 style: 'width: 100%' %>
   </div>
 <% end %>

@@ -4,22 +4,23 @@
     <div class="d-flex mb-3">
       <div class="ms-auto">
         <% if @to_let_go_list.image.attached? %>
-          <%= image_tag @to_let_go_list.image, size: '100x100', class: 'rounded-m'  %>
+          <%= image_tag @to_let_go_list.image, size: '100x100', class: 'rounded-m' %>
         <% else %>
           <%= image_tag 'dummy-100X100.png', class: 'rounded-m' %>
         <% end %>
       </div>
       <div class="w-100 ps-3">
-        <h5><%= @to_let_go_list.item.present? ? @to_let_go_list.item : @to_let_go_list.category.name %></h5>
+        <h5><%= @to_let_go_list.item.presence || @to_let_go_list.category.name %></h5>
         <span class="font-900">カテゴリー：<%= @to_let_go_list.category.name %></span><br>
         <span>カテゴリーの具体例：<%= @to_let_go_list.category.description %></span><br>
         <br>
         <span class="font-900">手放す理由：<%= @to_let_go_list.reason.name %></span><br>
         <span>手放す理由の詳細：<%= @to_let_go_list.reason.description %></span><br>
         <br>
-        <%= link_to "→ 手放す！", to_let_go_lists_path %><br>
-        <%= link_to "→ 編集する", edit_to_let_go_list_path(@to_let_go_list), class: 'me-3' %>
-        <%= link_to "→ 削除する", to_let_go_list_path(@to_let_go_list), data: { turbo_method: :delete, turbo_confirm: '削除しますか？' } %>
+        <%= link_to '→ 手放す！', to_let_go_lists_path %><br>
+        <%= link_to '→ 編集する', edit_to_let_go_list_path(@to_let_go_list), class: 'me-3' %>
+        <%= link_to '→ 削除する', to_let_go_list_path(@to_let_go_list),
+                    data: { turbo_method: :delete, turbo_confirm: '削除しますか？' } %>
       </div>
     </div>
 

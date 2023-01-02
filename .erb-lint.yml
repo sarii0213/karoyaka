@@ -1,10 +1,14 @@
 exclude:
   - '**/vendor/**/*'
   - '**/node_modules/**/*'
+
   - 'app/views/users/shared/**' # todo: Style/RedundantEach cop was inspecting ?
   - 'app/views/shared/_flash_messages.html.erb' # todo: Style/RedundantEach cop was inspecting ?
+  - 'app/views/to_let_go_lists/index.html.erb' # todo: Style/RedundantEach cop was inspecting at line 1-7.
+
   - 'app/views/users/registrations/new.html.erb' # todo: Line is too long at line 56. スタイルを減らす？
-  - 'app/views/users/sessions/new.html.erb' # todo:  Line is too long at line 38. スタイルを減らす？
+  - 'app/views/users/sessions/new.html.erb' # todo:  Line is too long at line 38.
+  - 'app/views/to_let_go_lists/_form.html.erb' # todo:  Line is too long at line 37.
 
 EnableDefaultLinters: true
 linters:
