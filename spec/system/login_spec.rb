@@ -29,7 +29,7 @@ RSpec.describe 'ログイン', type: :system do
     it 'ログアウトができる' do
       Capybara.raise_server_errors = false
       accept_confirm { click_on 'ログアウト' }
-      expect(page).to have_content 'ログイン'
+      expect(page).to have_content 'ログアウトしました'
     end
   end
 end
