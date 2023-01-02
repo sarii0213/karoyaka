@@ -1,0 +1,40 @@
+<%= form_with model: to_let_go_list do |f| %>
+
+  <% if to_let_go_list.persisted? %>
+    <div class="text-center mb-1">
+      <% if to_let_go_list.image.attached? %>
+        <%= image_tag to_let_go_list.image, size: '100x100', class: 'rounded-m' %>
+      <% else %>
+        <%= image_tag 'dummy-100X100.png', class: 'rounded-m' %>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="file-data pb-5">
+    <%= f.file_field :image, accept: 'image/*', capture: 'camera', class: 'upload-file bg-highlight shadow-s rounded-s' %>
+    <p class="upload-file-text color-white"><i class="fas fa-camera"></i> アップロード </p>
+  </div>
+
+  <div class="input-style no-borders no-icon mb-4">
+    <%= f.label :category_id, class: 'color-highlight' %>
+    <%= f.collection_select :category_id, Category.all, :id, :name, prompt: 'カテゴリーを選択する' %>
+    <span><i class="fa fa-chevron-down"></i></span>
+    <em></em>
+  </div>
+
+  <div class="input-style no-borders no-icon mb-4">
+    <%= f.text_field :item, class: 'form-control', placeholder: 'モノの名前' %>
+    <%= f.label :item, class: 'color-highlight' %>
+  </div>
+
+  <div class="input-style no-borders no-icon mb-4">
+    <%= f.label :reason_id, class: 'color-highlight' %>
+    <%= f.collection_select :reason_id, Reason.all, :id, :name, prompt: '手放す理由を選択する' %>
+    <span><i class="fa fa-chevron-down"></i></span>
+    <em></em>
+  </div>
+
+  <div class="actions">
+    <%= f.submit class: 'btn btn-border btn-m btn-full mb-3 rounded-sm text-uppercase font-700 border-green-dark color-green-dark bg-theme',
+                 style: 'width: 100%' %>
+  </div>
+<% end %>

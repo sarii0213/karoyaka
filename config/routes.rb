@@ -28,7 +28,6 @@
 
 Rails.application.routes.draw do
 
-
   devise_for :users, :controllers => {
     registrations: 'users/registrations',
     sessions: 'users/sessions'
@@ -46,6 +45,8 @@ Rails.application.routes.draw do
   get '/about', to: 'static_pages#about'
   get '/privacy', to: 'static_pages#privacy'
   get '/term', to: 'static_pages#term'
+
+  resources :to_let_go_lists
 
   if Rails.env.development?
     require 'sidekiq/web'
