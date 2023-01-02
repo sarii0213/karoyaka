@@ -3,8 +3,16 @@ class ToLetGoListsController < ApplicationController
     @to_let_go_lists = current_user.to_let_go_lists
   end
 
+  def show
+    @to_let_go_list = current_user.to_let_go_lists.find(params[:id])
+  end
+
   def new
     @to_let_go_list = ToLetGoList.new
+  end
+
+  def edit
+    @to_let_go_list = current_user.to_let_go_lists.find(params[:id])
   end
 
   def create
@@ -16,10 +24,6 @@ class ToLetGoListsController < ApplicationController
     end
   end
 
-  def edit
-    @to_let_go_list = current_user.to_let_go_lists.find(params[:id])
-  end
-
   def update
     @to_let_go_list = current_user.to_let_go_lists.find(params[:id])
     if @to_let_go_list.update(to_let_go_list_params)
@@ -29,14 +33,10 @@ class ToLetGoListsController < ApplicationController
     end
   end
 
-  def show
-    @to_let_go_list = current_user.to_let_go_lists.find(params[:id])
-  end
-
   def destroy
     @to_let_go_list = current_user.to_let_go_lists.find(params[:id])
     @to_let_go_list.destroy!
-    redirect_to to_let_go_lists_path, notice: '手放したいものリストから削除しました', status: 303
+    redirect_to to_let_go_lists_path, notice: '手放したいものリストから削除しました', status: :see_other
   end
 
   private
