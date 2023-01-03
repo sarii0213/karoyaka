@@ -1,7 +1,8 @@
 # :dove: karoyaka
 
 ## DB設計
-![db_20230101](https://user-images.githubusercontent.com/105996822/210162962-9863f0be-f50d-4726-907e-3b1b6c8c6d99.png)
+![db_20230103](https://user-images.githubusercontent.com/105996822/210358682-6371b8ff-ff81-4d49-a6f9-78c260638aa1.png)
+
 
 - [Mermaid script](https://github.com/sarii0213/karoyaka_sketch/blob/main/db_architecture.md)
 
