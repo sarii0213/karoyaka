@@ -47,6 +47,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_04_081735) do
     t.index ["name"], name: "index_categories_on_name", unique: true
   end
 
+  create_table "items", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "category_id", null: false
+    t.string "name"
+    t.bigint "reason_id", null: false
+    t.bigint "letting_go_way_id"
+    t.string "type", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_items_on_category_id"
+    t.index ["letting_go_way_id"], name: "index_items_on_letting_go_way_id"
+    t.index ["reason_id"], name: "index_items_on_reason_id"
+    t.index ["user_id"], name: "index_items_on_user_id"
+  end
+
   create_table "letting_go_ways", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "description", null: false
@@ -78,4 +93,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_04_081735) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "items", "categories"
+  add_foreign_key "items", "letting_go_ways"
+  add_foreign_key "items", "reasons"
+  add_foreign_key "items", "users"
 end
