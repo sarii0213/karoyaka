@@ -32,6 +32,7 @@ FactoryBot.define do
     name { [Faker::Lorem.word, nil].sample }
     reason
     user
+    type { %w[ToLetGoItem DoneLettingGoItem].sample }
 
     trait :to_let_go_item do
       letting_go_way { nil }
