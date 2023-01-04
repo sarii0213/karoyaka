@@ -1,0 +1,29 @@
+<h3 class="mx-3">手放したいものリスト一覧</h3>
+<%= link_to '新規登録', new_to_let_go_item_path, class: 'mx-3' %>
+<div class="card card-style">
+  <div class="content">
+    <% @to_let_go_items.each do |to_let_go_item| %>
+      <%= link_to to_let_go_item_path(to_let_go_item), class: 'text-reset' do %>
+        <div class="d-flex mb-3">
+          <div class="ms-auto">
+            <% if to_let_go_item.image.attached? %>
+              <%= image_tag to_let_go_item.image, size: '100x100', class: 'rounded-m' %>
+            <% else %>
+              <%= image_tag 'dummy-100X100.png', class: 'rounded-m' %>
+            <% end %>
+          </div>
+          <div class="w-100 ps-3">
+            <h5><%= to_let_go_item.item.presence || to_let_go_item.category.name %></h5>
+            <span>カテゴリー：<%= to_let_go_item.category.name %></span><br>
+            <span>手放す理由：<%= to_let_go_item.reason.name %></span><br>
+            <%= link_to '→ 手放す！', to_let_go_items_path %><br>
+            <%= link_to '→ 編集する', edit_to_let_go_item_path(to_let_go_item), class: 'me-3' %>
+            <%= link_to '→ 削除する', to_let_go_item_path(to_let_go_item),
+                        data: { turbo_method: :delete, turbo_confirm: '削除しますか？' } %>
+          </div>
+        </div>
+      <% end %>
+      <div class="divider mb-3"></div>
+    <% end %>
+  </div>
+</div>
