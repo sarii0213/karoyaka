@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: reasons
+# Table name: letting_go_ways
 #
 #  id          :bigint           not null, primary key
 #  description :text(65535)      not null
@@ -10,11 +10,11 @@
 #
 # Indexes
 #
-#  index_reasons_on_name  (name) UNIQUE
+#  index_letting_go_ways_on_name  (name) UNIQUE
 #
-class Reason < ApplicationRecord
-  validates :name, presence: true, uniqueness: true
-  validates :description, presence: true
-
-  has_many :to_let_go_items, dependent: :destroy
+FactoryBot.define do
+  factory :letting_go_way do
+    name { Faker::JapaneseMedia::StudioGhibli.unique.movie }
+    description { Faker::JapaneseMedia::StudioGhibli.quote }
+  end
 end

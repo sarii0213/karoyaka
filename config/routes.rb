@@ -24,6 +24,14 @@
 #                                    about GET    /about(.:format)                                                                                  static_pages#about
 #                                  privacy GET    /privacy(.:format)                                                                                static_pages#privacy
 #                                     term GET    /term(.:format)                                                                                   static_pages#term
+#                          to_let_go_items GET    /to_let_go_items(.:format)                                                                        to_let_go_items#index
+#                                          POST   /to_let_go_items(.:format)                                                                        to_let_go_items#create
+#                       new_to_let_go_item GET    /to_let_go_items/new(.:format)                                                                    to_let_go_items#new
+#                      edit_to_let_go_item GET    /to_let_go_items/:id/edit(.:format)                                                               to_let_go_items#edit
+#                           to_let_go_item GET    /to_let_go_items/:id(.:format)                                                                    to_let_go_items#show
+#                                          PATCH  /to_let_go_items/:id(.:format)                                                                    to_let_go_items#update
+#                                          PUT    /to_let_go_items/:id(.:format)                                                                    to_let_go_items#update
+#                                          DELETE /to_let_go_items/:id(.:format)                                                                    to_let_go_items#destroy
 #                              sidekiq_web        /sidekiq                                                                                          Sidekiq::Web
 
 Rails.application.routes.draw do
@@ -46,7 +54,7 @@ Rails.application.routes.draw do
   get '/privacy', to: 'static_pages#privacy'
   get '/term', to: 'static_pages#term'
 
-  resources :to_let_go_lists
+  resources :to_let_go_items
 
   if Rails.env.development?
     require 'sidekiq/web'
