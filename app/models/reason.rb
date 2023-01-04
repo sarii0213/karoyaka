@@ -13,9 +13,8 @@
 #  index_reasons_on_name  (name) UNIQUE
 #
 class Reason < ApplicationRecord
-  validates :name, presence: true
-  validates :description, presence: true
-  validates :name, uniqueness: true
+  validates :name, presence: true, uniqueness: true
+  validates :description, presence: true, uniqueness: true
 
-  has_many :to_let_go_lists, dependent: :destroy
+  has_many :to_let_go_items, dependent: :destroy
 end

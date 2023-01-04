@@ -27,6 +27,8 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Item < ApplicationRecord
+  validates :type, presence: true
+
   belongs_to :category
   belongs_to :reason
   belongs_to :letting_go_way, optional: true
