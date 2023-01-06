@@ -33,6 +33,5 @@ FactoryBot.define do
     name { [Faker::Lorem.word, nil].sample }
     reason
     user
-    letting_go_way { nil }
   end
 end
