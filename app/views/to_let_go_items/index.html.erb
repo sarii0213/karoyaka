@@ -13,7 +13,7 @@
             <% end %>
           </div>
           <div class="w-100 ps-3">
-            <h5><%= to_let_go_item.item.presence || to_let_go_item.category.name %></h5>
+            <h5><%= to_let_go_item.name.presence || to_let_go_item.category.name %></h5>
             <span>カテゴリー：<%= to_let_go_item.category.name %></span><br>
             <span>手放す理由：<%= to_let_go_item.reason.name %></span><br>
             <%= link_to '→ 手放す！', to_let_go_items_path %><br>
