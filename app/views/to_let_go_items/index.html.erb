@@ -6,11 +6,7 @@
       <%= link_to to_let_go_item_path(to_let_go_item), class: 'text-reset' do %>
         <div class="d-flex mb-3">
           <div class="ms-auto">
-            <% if to_let_go_item.image.attached? %>
-              <%= image_tag to_let_go_item.image, size: '100x100', class: 'rounded-m' %>
-            <% else %>
-              <%= image_tag 'dummy-100X100.png', class: 'rounded-m' %>
-            <% end %>
+            <%= image_tag to_let_go_item.decorate.img(:thumb), size: '100x100', class: 'rounded-m' %>
           </div>
           <div class="w-100 ps-3">
             <h5><%= to_let_go_item.name.presence || to_let_go_item.category.name %></h5>
