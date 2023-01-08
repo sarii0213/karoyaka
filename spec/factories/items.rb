@@ -35,7 +35,6 @@ FactoryBot.define do
     type { %w[ToLetGoItem DoneLettingGoItem].sample }
 
     trait :to_let_go_item do
-      letting_go_way { nil }
       type { 'ToLetGoItem' }
     end
 
