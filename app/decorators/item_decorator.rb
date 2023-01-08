@@ -14,4 +14,8 @@ class ItemDecorator < Draper::Decorator
     image_url = command ? image.variant(command).processed : image
     h.rails_storage_proxy_url(image_url, only_path: true)
   end
+
+  def item_name
+    name.presence || category.name
+  end
 end
