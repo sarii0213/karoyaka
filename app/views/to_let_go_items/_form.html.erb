@@ -1,4 +1,5 @@
 <%= form_with model: to_let_go_item do |f| %>
+  <%= render 'shared/error_messages', object: to_let_go_item %>
 
   <% if to_let_go_item.persisted? %>
     <div class="text-center mb-1">
