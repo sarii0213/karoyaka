@@ -11,9 +11,12 @@
     <p class="upload-file-text color-white"><i class="fas fa-camera"></i> アップロード </p>
   </div>
 
+  <% if to_let_go_item.persisted? && !to_let_go_item.category.selectable? %>
+    <span class="color-red-dark">『<%= to_let_go_item.category.name %>』以外のカテゴリーを選んでください。</span>
+  <% end %>
   <div class="input-style no-borders no-icon mb-4">
     <%= f.label :category_id, class: 'color-highlight' %>
-    <%= f.collection_select :category_id, Category.all, :id, :name, prompt: 'カテゴリーを選択する' %>
+    <%= f.collection_select :category_id, Category.selectable, :id, :name, prompt: 'カテゴリーを選択する' %>
     <span><i class="fa fa-chevron-down"></i></span>
     <em></em>
   </div>
