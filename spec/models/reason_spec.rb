@@ -18,4 +18,12 @@ require 'rails_helper'
 RSpec.describe Reason, type: :model do
   subject { build(:reason) }
   it { is_expected.to be_valid }
+
+  describe '#selectable' do
+    let!(:reason_1) { create(:reason) }
+    let!(:reason_2) { create(:reason, selectable: false) }
+    it '選択可能なもののみ取得できること' do
+      expect(Reason.selectable).not_to include(reason_2)
+    end
+  end
 end
