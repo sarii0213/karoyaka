@@ -20,7 +20,7 @@ RSpec.describe Category, type: :model do
   it { is_expected.to be_valid }
 
   describe '#selectable' do
-    let!(:category_1) { create(:category) }
+    let!(:category_1) { create(:category, selectable: true) }
     let!(:category_2) { create(:category, selectable: false) }
     it '選択可能なもののみ取得できること' do
       expect(Category.selectable).not_to include(category_2)

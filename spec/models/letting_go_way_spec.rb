@@ -20,7 +20,7 @@ RSpec.describe LettingGoWay, type: :model do
   it { is_expected.to be_valid }
 
   describe '#selectable' do
-    let!(:letting_go_way_1) { create(:letting_go_way) }
+    let!(:letting_go_way_1) { create(:letting_go_way, selectable: true) }
     let!(:letting_go_way_2) { create(:letting_go_way, selectable: false) }
     it '選択可能なもののみ取得できること' do
       expect(LettingGoWay.selectable).not_to include(letting_go_way_2)
