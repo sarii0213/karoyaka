@@ -1,4 +1,4 @@
-Reason.seed(:name, [
+Reason.seed(:name,
   {
     id: 1,
     name: '使ってない',
@@ -39,4 +39,4 @@ Reason.seed(:name, [
     name: '合わない',
     description: '自分のライフスタイル（体型・体質・好み）に合わなくなった'
   }
-])
+)

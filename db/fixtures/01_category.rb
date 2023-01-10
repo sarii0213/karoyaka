@@ -1,4 +1,4 @@
-Category.seed(:name, [
+Category.seed(:name,
   {
     id: 1,
     name: '生活雑貨',
@@ -50,4 +50,4 @@ Category.seed(:name, [
     description: 'スマホアプリ、メール、連絡先、写真',
     selectable: false
   },
-])
+)

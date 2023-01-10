@@ -1,4 +1,4 @@
-LettingGoWay.seed(:name, [
+LettingGoWay.seed(:name,
   {
     id: 1,
     name: 'ゴミに出す',
@@ -19,4 +19,4 @@ LettingGoWay.seed(:name, [
     name: '業者に回収依頼',
     description: '大物の電子機器、インテリア、大量の書籍などは業者に回収してもらうと便利。'
   }
-])
+)
