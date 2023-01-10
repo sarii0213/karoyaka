@@ -14,10 +14,10 @@
 #  index_reasons_on_name  (name) UNIQUE
 #
 class Reason < ApplicationRecord
+  include Selectable
+
   validates :name, presence: true, uniqueness: true
   validates :description, presence: true
 
   has_many :to_let_go_items, dependent: :destroy
-
-  scope :selectable, -> { where(selectable: true) }
 end

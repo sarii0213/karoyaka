@@ -14,8 +14,8 @@
 #  index_letting_go_ways_on_name  (name) UNIQUE
 #
 class LettingGoWay < ApplicationRecord
+  include Selectable
+
   validates :name, presence: true, uniqueness: true
   validates :description, presence: true
-
-  scope :selectable, -> { where(selectable: true) }
 end
