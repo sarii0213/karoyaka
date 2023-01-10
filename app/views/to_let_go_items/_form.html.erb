@@ -1,4 +1,5 @@
 <%= form_with model: to_let_go_item do |f| %>
+  <%= render 'shared/error_messages', object: to_let_go_item %>
 
   <% if to_let_go_item.persisted? %>
     <div class="text-center mb-1">
@@ -10,9 +11,12 @@
     <p class="upload-file-text color-white"><i class="fas fa-camera"></i> アップロード </p>
   </div>
 
+  <% if to_let_go_item.persisted? && !to_let_go_item.category.selectable? %>
+    <span class="color-red-dark">『<%= to_let_go_item.category.name %>』以外のカテゴリーを選んでください。</span>
+  <% end %>
   <div class="input-style no-borders no-icon mb-4">
     <%= f.label :category_id, class: 'color-highlight' %>
-    <%= f.collection_select :category_id, Category.all, :id, :name, prompt: 'カテゴリーを選択する' %>
+    <%= f.collection_select :category_id, Category.selectable, :id, :name, prompt: 'カテゴリーを選択する' %>
     <span><i class="fa fa-chevron-down"></i></span>
     <em></em>
   </div>
@@ -22,9 +26,12 @@
     <%= f.label :name, class: 'color-highlight' %>
   </div>
 
+  <% if to_let_go_item.persisted? && !to_let_go_item.reason.selectable? %>
+    <span class="color-red-dark">『<%= to_let_go_item.reason.name %>』以外の理由を選んでください。</span>
+  <% end %>
   <div class="input-style no-borders no-icon mb-4">
     <%= f.label :reason_id, class: 'color-highlight' %>
-    <%= f.collection_select :reason_id, Reason.all, :id, :name, prompt: '手放す理由を選択する' %>
+    <%= f.collection_select :reason_id, Reason.selectable, :id, :name, prompt: '手放す理由を選択する' %>
     <span><i class="fa fa-chevron-down"></i></span>
     <em></em>
   </div>

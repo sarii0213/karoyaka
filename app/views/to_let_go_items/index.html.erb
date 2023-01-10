@@ -2,6 +2,7 @@
 <%= link_to '新規登録', new_to_let_go_item_path, class: 'mx-3' %>
 <div class="card card-style">
   <div class="content">
+    <%= '手放したいものを登録してください。' if @to_let_go_items.blank? %>
     <% @to_let_go_items.each do |to_let_go_item| %>
       <%= link_to to_let_go_item_path(to_let_go_item), class: 'text-reset' do %>
         <div class="d-flex mb-3">

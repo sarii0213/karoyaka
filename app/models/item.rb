@@ -33,4 +33,7 @@ class Item < ApplicationRecord
   belongs_to :reason
   belongs_to :user
   has_one_attached :image
+
+  validates :image, blob: { content_type: %w[image/png image/webp image/jpg image/jpeg],
+                            size_range: 1..(10.megabytes) }
 end
