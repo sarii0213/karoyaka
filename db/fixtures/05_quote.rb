@@ -20,13 +20,13 @@ Quote.seed(:id,
            },
            {
              id: 5,
-             author: 'minimalist takeru',
+             author: 'Minimalist Takeru',
              content: '何かを所有する度に、必ず失うものがある',
              description: '失うもの：購入代金、時間、空間、家賃、サブスク費用、メンテナンス時間、探し物をする時間など。得られるものだけではなく、失うものにも目を向けよう。(https://youtu.be/Ewawu-BoyLU?t=642)'
            },
            {
              id: 6,
-             author: 'minimalist takeru',
+             author: 'Minimalist Takeru',
              content: 'モノの持ちすぎは人生の重荷',
              description: '(https://youtu.be/Ewawu-BoyLU?t=1862)'
            }
