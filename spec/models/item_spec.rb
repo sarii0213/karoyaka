@@ -28,7 +28,8 @@
 #
 require 'rails_helper'
 
-RSpec.describe Item, type: :model do
+RSpec.describe Item do
   subject { build(:item) }
+
   it { is_expected.to be_valid }
 end

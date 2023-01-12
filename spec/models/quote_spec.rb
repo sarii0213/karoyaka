@@ -15,7 +15,8 @@
 #
 require 'rails_helper'
 
-RSpec.describe Quote, type: :model do
+RSpec.describe Quote do
   subject { build(:quote) }
+
   it { is_expected.to be_valid }
 end

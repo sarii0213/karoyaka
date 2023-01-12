@@ -28,7 +28,8 @@
 #
 require 'rails_helper'
 
-RSpec.describe ToLetGoItem, type: :model do
+RSpec.describe ToLetGoItem do
   subject { build(:to_let_go_item) }
+
   it { is_expected.to be_valid }
 end

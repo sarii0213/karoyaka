@@ -1,7 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe 'ログイン', type: :system do
+RSpec.describe 'ログイン' do
   let(:user) { create(:user) }
+
   describe 'ログイン機能' do
     context '入力情報に誤りがある場合' do
       it 'エラーメッセージが表示される' do
@@ -26,6 +27,7 @@ RSpec.describe 'ログイン', type: :system do
 
   describe 'ログアウト機能' do
     before { login_as(user) }
+
     it 'ログアウトができる' do
       Capybara.raise_server_errors = false
       accept_confirm { click_on 'ログアウト' }
