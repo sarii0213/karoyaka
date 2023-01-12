@@ -28,4 +28,18 @@ class User < ApplicationRecord
   has_many :to_let_go_items, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :favorite_quotes, through: :favorites, source: :quote
+
+  def favorite(quote)
+    favorite_quotes << quote
+  rescue ActiveRecord::RecordInvalid
+    false
+  end
+
+  def unfavorite(quote)
+    favorite_quotes.destroy(quote)
+  end
+
+  def favorite?(quote)
+    favorite_quotes.include?(quote)
+  end
 end
