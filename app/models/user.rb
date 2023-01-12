@@ -26,4 +26,6 @@ class User < ApplicationRecord
   validates :username, presence: true
 
   has_many :to_let_go_items, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_quotes, through: :favorites, source: :quote
 end
