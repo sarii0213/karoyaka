@@ -1,0 +1,17 @@
+<%= link_to quote_path(quote), class: 'text-reset flex-grow-1' do %>
+  <div class="card card-style mb-3">
+    <div class="content">
+      <div class="d-flex">
+        <div class="flex-grow-1">
+          <h4 class="font-15 font-600"><%= quote.content %></h4>
+          <p class="text-end"><%= quote.author %></p>
+        </div>
+        <div class="ms-2">
+          <% if user_signed_in? %>
+            <%= render 'quotes/favorites', quote: %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

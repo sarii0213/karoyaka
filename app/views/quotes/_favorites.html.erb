@@ -1,0 +1,9 @@
+<% if current_user.favorite?(quote) %>
+  <%= link_to quote_favorite_path(quote), data: { turbo_method: :delete }, class: 'color-teal-light' do %>
+    <i class="fa-solid fa-heart"></i>
+  <% end %>
+<% else %>
+  <%= link_to quote_favorite_path(quote), data: { turbo_method: :post }, class: 'color-teal-light' do %>
+    <i class="far fa-heart"></i>
+  <% end %>
+<% end %>
