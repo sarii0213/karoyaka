@@ -32,6 +32,8 @@
 #                                          PATCH  /to_let_go_items/:id(.:format)                                                                    to_let_go_items#update
 #                                          PUT    /to_let_go_items/:id(.:format)                                                                    to_let_go_items#update
 #                                          DELETE /to_let_go_items/:id(.:format)                                                                    to_let_go_items#destroy
+#                                   quotes GET    /quotes(.:format)                                                                                 quotes#index
+#                                    quote GET    /quotes/:id(.:format)                                                                             quotes#show
 #                              sidekiq_web        /sidekiq                                                                                          Sidekiq::Web
 
 Rails.application.routes.draw do
@@ -55,6 +57,8 @@ Rails.application.routes.draw do
   get '/term', to: 'static_pages#term'
 
   resources :to_let_go_items
+
+  resources :quotes, only: %w[index show]
 
   if Rails.env.development?
     require 'sidekiq/web'
