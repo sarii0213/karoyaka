@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe('Samples', type: :system) do
+RSpec.describe('Samples') do
   describe 'Capybaraの疎通確認' do
     xit 'ページが開ける' do
       visit '/'

@@ -2,13 +2,14 @@
   <%= active_link_to root_path, class: 'footer-menu', active: :exclusive, class_active: 'active-nav' do %>
     <i class="fas fa-home"></i><span>トップ</span>
   <% end %>
-  <%= active_link_to to_let_go_items_path, class: 'footer-menu', active: :exclusive, class_active: 'active-nav' do %>
+  <%= active_link_to to_let_go_items_path, class: 'footer-menu', active: %r{^/to_let_go_items},
+                                           class_active: 'active-nav' do %>
       <i class="fas fa-lightbulb"></i><span>手放す</span>
   <% end %>
   <%= active_link_to privacy_path, class: 'footer-menu', active: :exclusive, class_active: 'active-nav' do %>
     <i class="fas fa-dove"></i><span>手放した</span>
   <% end %>
-  <%= active_link_to term_path, class: 'footer-menu', active: :exclusive, class_active: 'active-nav' do %>
+  <%= active_link_to quotes_path, class: 'footer-menu', active: %r{^/quotes}, class_active: 'active-nav' do %>
     <i class="fas fa-quote-right"></i><span>名言集</span>
   <% end %>
   <%= active_link_to login_path, class: 'footer-menu', active: :exclusive, class_active: 'active-nav' do %>

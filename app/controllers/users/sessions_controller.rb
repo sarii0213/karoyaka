@@ -33,7 +33,7 @@ module Users
       # support returning empty response on GET request
       respond_to do |format|
         format.all { head :no_content }
-        format.any(*navigational_formats) { redirect_to after_sign_out_path_for(resource_name), status: 303 }
+        format.any(*navigational_formats) { redirect_to after_sign_out_path_for(resource_name), status: :see_other }
       end
     end
   end
