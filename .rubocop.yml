@@ -20,6 +20,8 @@ AllCops:
     - 'config/**/*'
     - 'lib/tasks/auto_annotate_models.rake'
     - 'storage/**/*'
+    - 'spec/**/*'
+    - 'app/controllers/users/**/*' # devise
 
 Rails:
   Enabled: true
