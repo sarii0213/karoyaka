@@ -1,7 +1,8 @@
 <h3 class="mx-3 mb-4">捨て活したくなる名言集</h3>
-<div class="text-center mb-3">
-  <%= active_link_to '全て表示', quotes_path,  active: %r{.*quotes$}, class_active: 'active-nav', class: 'me-3 py-2 border-bottom  text-reset' %>
-  <%= active_link_to 'お気に入りのみ表示', quotes_path(favorites: true), active: %r{^(?=.*favorites).*$}, class_active: 'active-nav', class: 'py-2 border-bottom text-reset' %>
-</div>
-
+<% if user_signed_in? %>
+  <div class="text-center mb-3">
+    <%= active_link_to '全て表示', quotes_path, active: %r{.*quotes$}, class_active: 'active-nav', class: 'me-3 py-2 border-bottom  text-reset' %>
+    <%= active_link_to 'お気に入りのみ表示', quotes_path(favorites: true), active: %r{^(?=.*favorites).*$}, class_active: 'active-nav', class: 'py-2 border-bottom text-reset' %>
+  </div>
+<% end %>
 <%= render @quotes %>
