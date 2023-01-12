@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_09_074935) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_12_010051) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -70,6 +70,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_09_074935) do
     t.datetime "updated_at", null: false
     t.boolean "selectable", default: true
     t.index ["name"], name: "index_letting_go_ways_on_name", unique: true
+  end
+
+  create_table "quotes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "author", default: "不明", null: false
+    t.string "content", null: false
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["content"], name: "index_quotes_on_content", unique: true
   end
 
   create_table "reasons", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
