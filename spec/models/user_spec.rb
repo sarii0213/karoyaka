@@ -23,4 +23,36 @@ RSpec.describe User do
   subject { build(:user) }
 
   it { is_expected.to be_valid }
+
+  describe '#favorite' do
+    let!(:user) { create(:user) }
+    let!(:quote) { create(:quote) }
+    it 'お気に入りに登録できること' do
+      expect { user.favorite(quote) }.to change { Favorite.count }.by(1)
+    end
+  end
+
+  describe '#unfavorite' do
+    let!(:user) { create(:user) }
+    let!(:quote) { create(:quote) }
+    before do
+      user.favorite(quote)
+    end
+    it 'お気に入りを解除できること' do
+      expect { user.unfavorite(quote) }.to change { Favorite.count }.by(-1)
+    end
+  end
+
+  describe '#favorite?' do
+    let!(:user) { create(:user) }
+    let!(:quote_1) { create(:quote) }
+    let!(:quote_2) { create(:quote) }
+    before do
+      user.favorite(quote_1)
+    end
+    it 'お気に入りかどうかを判定できること' do
+      expect(user.favorite?(quote_1)).to be true
+      expect(user.favorite?(quote_2)).to be false
+    end
+  end
 end
