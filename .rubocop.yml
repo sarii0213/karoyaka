@@ -12,14 +12,14 @@ AllCops:
   StyleGuideBaseURL: https://github.com/fortissimo1997/ruby-style-guide/blob/japanese/README.ja.md
   Exclude:
     - 'vendor/**/*'
-    - 'spec/**/*'
+    - 'node_modules/**/*'
     - 'tmp/**/*'
     - '.git/**/*'
     - 'bin/*'
     - 'db/**/*'
     - 'config/**/*'
     - 'lib/tasks/auto_annotate_models.rake'
-    - 'app/controllers/users/*'
+    - 'storage/**/*'
 
 Rails:
   Enabled: true
