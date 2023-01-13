@@ -1,6 +1,12 @@
 class QuotesController < ApplicationController
+  skip_before_action :authenticate_user!
+
   def index
-    @quotes = Quote.all
+    @quotes = if params[:favorites]
+                current_user.favorite_quotes
+              else
+                Quote.all
+              end
   end
 
   def show

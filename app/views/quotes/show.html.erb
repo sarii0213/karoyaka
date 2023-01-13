@@ -1,8 +1,18 @@
 <h3 class="mx-3 mb-3">名言の詳細</h3>
 <div class="card card-style">
   <div class="content">
-    <h4 class="font-16 font-600"><%= @quote.content %></h4>
-    <p class="text-end"><%= @quote.author %></p>
-    <p><%= @quote.description.presence || '詳細情報なし' %></p>
+    <div class="d-flex">
+      <div class="flex-grow-1">
+        <h4 class="font-15 font-600"><%= @quote.content %></h4>
+        <p class="text-end"><%= @quote.author %></p>
+        <p><%= @quote.description.presence || '詳細情報なし' %></p>
+      </div>
+      <div class="ms-2">
+        <% if user_signed_in? %>
+          <%= render 'quotes/favorites', quote: @quote %>
+        <% end %>
+      </div>
+    </div>
+
   </div>
 </div>

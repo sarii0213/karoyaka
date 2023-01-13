@@ -58,7 +58,11 @@ Rails.application.routes.draw do
 
   resources :to_let_go_items
 
-  resources :quotes, only: %w[index show]
+  resources :quotes, only: %i[index show] do
+    resource :favorite, only: %i[create destroy], module: :quotes
+  end
+
+
 
   if Rails.env.development?
     require 'sidekiq/web'

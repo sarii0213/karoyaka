@@ -1,12 +1,10 @@
 <h3 class="mx-3 mb-4">捨て活したくなる名言集</h3>
-
-<% @quotes.each do |quote| %>
-  <%= link_to quote_path(quote), class: 'text-reset' do %>
-    <div class="card card-style mb-3">
-      <div class="content">
-        <h4 class="font-16 font-600"><%= quote.content %></h4>
-        <p class="text-end"><%= quote.author %></p>
-      </div>
-    </div>
-  <% end %>
+<% if user_signed_in? %>
+  <div class="text-center mb-3">
+    <%= active_link_to '全て表示', quotes_path, active: /.*quotes$/, class_active: 'active-nav',
+                                            class: 'me-3 py-2 border-bottom text-reset' %>
+    <%= active_link_to 'お気に入りのみ表示', quotes_path(favorites: true), active: /^(?=.*favorites).*$/,
+                                                                  class_active: 'active-nav', class: 'py-2 border-bottom text-reset' %>
+  </div>
 <% end %>
+<%= render @quotes %>
