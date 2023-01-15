@@ -32,6 +32,8 @@
 #                                          PATCH  /to_let_go_items/:id(.:format)                                                                    to_let_go_items#update
 #                                          PUT    /to_let_go_items/:id(.:format)                                                                    to_let_go_items#update
 #                                          DELETE /to_let_go_items/:id(.:format)                                                                    to_let_go_items#destroy
+#                           quote_favorite DELETE /quotes/:quote_id/favorite(.:format)                                                              quotes/favorites#destroy
+#                                          POST   /quotes/:quote_id/favorite(.:format)                                                              quotes/favorites#create
 #                                   quotes GET    /quotes(.:format)                                                                                 quotes#index
 #                                    quote GET    /quotes/:id(.:format)                                                                             quotes#show
 #                              sidekiq_web        /sidekiq                                                                                          Sidekiq::Web
