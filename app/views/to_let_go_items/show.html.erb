@@ -13,7 +13,7 @@
         <span class="font-900">手放す理由：<%= @to_let_go_item.reason.name %></span><br>
         <span>手放す理由の詳細：<%= @to_let_go_item.reason.description %></span><br>
         <br>
-        <%= link_to '→ 手放す！', to_let_go_items_path %><br>
+        <%= link_to '→ 手放す！', new_done_letting_go_item_path %><br>
         <%= link_to '→ 編集する', edit_to_let_go_item_path(@to_let_go_item), class: 'me-3' %>
         <%= link_to '→ 削除する', to_let_go_item_path(@to_let_go_item),
                     data: { turbo_method: :delete, turbo_confirm: '削除しますか？' } %>
