@@ -7,28 +7,27 @@ class DoneLettingGoItemsController < ApplicationController
     @done_letting_go_item = current_user.done_letting_go_items.find(params[:id])
   end
 
+  # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
   def new
     if params[:item_id]
       item = ToLetGoItem.find(params[:item_id])
 
-
       ActiveRecord::Base.transaction do
         @done_letting_go_item = DoneLettingGoItem.create(user_id: item.user_id,
-                                                      category_id: item.category_id,
-                                                      name: item.name,
-                                                      reason_id: item.reason_id,
-                                                      letting_go_way_id: LettingGoWay.first.id
-        )
+                                                         category_id: item.category_id,
+                                                         name: item.name,
+                                                         reason_id: item.reason_id,
+                                                         letting_go_way_id: LettingGoWay.first.id)
         ActiveStorage::Attachment.create(name: item.image.name,
-                                      record_type: item.image.record_type,
-                                      record_id: @done_letting_go_item.id,
-                                      blob_id: item.image.blob_id
-        )
+                                         record_type: item.image.record_type,
+                                         record_id: @done_letting_go_item.id,
+                                         blob_id: item.image.blob_id)
       end
     else
       @done_letting_go_item = DoneLettingGoItem.new
     end
   end
+  # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
 
   def edit
     @done_letting_go_item = current_user.done_letting_go_items.find(params[:id])
