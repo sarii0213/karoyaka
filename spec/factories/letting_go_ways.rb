@@ -15,7 +15,7 @@
 #
 FactoryBot.define do
   factory :letting_go_way do
-    name { Faker::JapaneseMedia::StudioGhibli.unique.movie }
+    name { Faker::Lorem.word }
     description { Faker::JapaneseMedia::StudioGhibli.quote }
   end
 end

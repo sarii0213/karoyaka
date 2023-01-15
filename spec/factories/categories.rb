@@ -15,7 +15,7 @@
 #
 FactoryBot.define do
   factory :category do
-    name { Faker::JapaneseMedia::StudioGhibli.unique.movie }
+    name { Faker::Lorem.word }
     description { Faker::JapaneseMedia::StudioGhibli.quote }
   end
 end
