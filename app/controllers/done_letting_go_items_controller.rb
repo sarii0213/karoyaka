@@ -23,8 +23,9 @@ class DoneLettingGoItemsController < ApplicationController
     if params[:done_letting_go_item][:item_id] && done_letting_go_item_params[:image].blank?
       carried_item = ToLetGoItem.find(params[:done_letting_go_item][:item_id])
       if carried_item.image.attached?
-        # TODO: 画像をcarried_itemからダウンロードし、@done_letting_go_itemにアタッチする処理を書く
-        # image_file = carried_item.image.download
+        carried_item.image.blob.open do |tmp|
+          @done_letting_go_item.image.attach(io: File.open(tmp.path), filename: carried_item.image.blob.filename)
+        end
       end
     end
     if @done_letting_go_item.save
