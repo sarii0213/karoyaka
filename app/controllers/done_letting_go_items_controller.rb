@@ -29,7 +29,7 @@ class DoneLettingGoItemsController < ApplicationController
       end
     end
     if @done_letting_go_item.save
-      # TODO: carried_itemのレコード削除
+      carried_item.destroy!
       redirect_to done_letting_go_item_path(@done_letting_go_item), notice: '手放し済みリストに登録しました'
     elsif params[:done_letting_go_item][:item_id]
       redirect_to new_done_letting_go_item_path(item_id: params[:done_letting_go_item][:item_id]), flash: { error: @done_letting_go_item.errors.full_messages }
