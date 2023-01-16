@@ -15,7 +15,7 @@ RSpec.describe '手放し済みリスト' do
       fill_in 'done_letting_go_item[name]', with: 'セーター'
       find_by_id('done_letting_go_item_reason_id').find("option[value='2']").select_option
       find_by_id('done_letting_go_item_letting_go_way_id').find("option[value='2']").select_option
-      within('form') { click_on '手放す' }
+      click_on '登録する'
       expect(page).to have_content '登録しました'
     end
   end
@@ -27,7 +27,7 @@ RSpec.describe '手放し済みリスト' do
       visit done_letting_go_item_path(done_letting_go_item)
       click_on '編集する'
       fill_in 'done_letting_go_item[name]', with: 'スウェット'
-      within('form') { click_on '手放す' }
+      click_on '更新する'
       expect(page).to have_content '更新しました'
       expect(page).to have_content 'スウェット'
     end
