@@ -21,18 +21,17 @@ class DoneLettingGoItemsController < ApplicationController
   def create
     @done_letting_go_item = current_user.done_letting_go_items.build(done_letting_go_item_params)
     if params[:done_letting_go_item][:item_id] && done_letting_go_item_params[:image].blank?
-      carried_item = ToLetGoItem.find(params[:item_id])
+      carried_item = ToLetGoItem.find(params[:done_letting_go_item][:item_id])
       if carried_item.image.attached?
         # TODO: 画像をcarried_itemからダウンロードし、@done_letting_go_itemにアタッチする処理を書く
         # image_file = carried_item.image.download
       end
     end
-    binding.pry
     if @done_letting_go_item.save
       # TODO: carried_itemのレコード削除
       redirect_to done_letting_go_item_path(@done_letting_go_item), notice: '手放し済みリストに登録しました'
     elsif params[:done_letting_go_item][:item_id]
-      redirect_to new_done_letting_go_item_path(item_id: done_letting_go_item_params[:item_id]), flash: { error: @done_letting_go_item.errors.full_messages }
+      redirect_to new_done_letting_go_item_path(item_id: params[:done_letting_go_item][:item_id]), flash: { error: @done_letting_go_item.errors.full_messages }
     else
       render :new, status: :unprocessable_entity
     end
