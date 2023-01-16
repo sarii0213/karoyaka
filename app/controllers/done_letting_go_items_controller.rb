@@ -7,27 +7,12 @@ class DoneLettingGoItemsController < ApplicationController
     @done_letting_go_item = current_user.done_letting_go_items.find(params[:id])
   end
 
-  # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
   def new
     if params[:item_id]
-      item = ToLetGoItem.find(params[:item_id])
-
-      ActiveRecord::Base.transaction do
-        @done_letting_go_item = DoneLettingGoItem.create(user_id: item.user_id,
-                                                         category_id: item.category_id,
-                                                         name: item.name,
-                                                         reason_id: item.reason_id,
-                                                         letting_go_way_id: LettingGoWay.first.id)
-        ActiveStorage::Attachment.create(name: item.image.name,
-                                         record_type: item.image.record_type,
-                                         record_id: @done_letting_go_item.id,
-                                         blob_id: item.image.blob_id)
-      end
-    else
-      @done_letting_go_item = DoneLettingGoItem.new
+      @to_let_go_item = ToLetGoItem.find(params[:item_id])
     end
+    @done_letting_go_item = DoneLettingGoItem.new
   end
-  # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
 
   def edit
     @done_letting_go_item = current_user.done_letting_go_items.find(params[:id])
@@ -35,8 +20,19 @@ class DoneLettingGoItemsController < ApplicationController
 
   def create
     @done_letting_go_item = current_user.done_letting_go_items.build(done_letting_go_item_params)
+    if params[:done_letting_go_item][:item_id] && done_letting_go_item_params[:image].blank?
+      carried_item = ToLetGoItem.find(params[:item_id])
+      if carried_item.image.attached?
+        # TODO: 画像をcarried_itemからダウンロードし、@done_letting_go_itemにアタッチする処理を書く
+        # image_file = carried_item.image.download
+      end
+    end
+    binding.pry
     if @done_letting_go_item.save
+      # TODO: carried_itemのレコード削除
       redirect_to done_letting_go_item_path(@done_letting_go_item), notice: '手放し済みリストに登録しました'
+    elsif params[:done_letting_go_item][:item_id]
+      redirect_to new_done_letting_go_item_path(item_id: done_letting_go_item_params[:item_id]), flash: { error: @done_letting_go_item.errors.full_messages }
     else
       render :new, status: :unprocessable_entity
     end

@@ -1,43 +1,66 @@
 <%= form_with model: done_letting_go_item do |f| %>
   <%= render 'shared/error_messages', object: done_letting_go_item %>
 
-  <% if done_letting_go_item.persisted? %>
+  <% binding.pry %>
+  <% if @to_let_go_item %>
+    <div class="text-center mb-1">
+      <%= image_tag @to_let_go_item.decorate.img(:lg), size: '200x200', class: 'rounded-m' %>
+    </div>
+  <% elsif done_letting_go_item.persisted? %>
     <div class="text-center mb-1">
       <%= image_tag done_letting_go_item.decorate.img(:lg), size: '200x200', class: 'rounded-m' %>
     </div>
   <% end %>
+
   <div class="file-data pb-5">
     <%= f.file_field :image, accept: 'image/*', capture: 'camera', class: 'upload-file bg-highlight shadow-s rounded-s' %>
     <p class="upload-file-text color-white"><i class="fas fa-camera"></i> アップロード </p>
   </div>
 
-  <% if done_letting_go_item.persisted? && !done_letting_go_item.category.selectable? %>
+  <% if @to_let_go_item && !@to_let_go_item.category.selectable? %>
+    <span class="color-red-dark">『<%= @to_let_go_item.category.name %>』以外のカテゴリーを選んでください。</span>
+  <% elsif done_letting_go_item.persisted? && !done_letting_go_item.category.selectable? %>
     <span class="color-red-dark">『<%= done_letting_go_item.category.name %>』以外のカテゴリーを選んでください。</span>
   <% end %>
   <div class="input-style no-borders no-icon mb-4">
     <%= f.label :category_id, class: 'color-highlight' %>
-    <%= f.collection_select :category_id, Category.selectable, :id, :name, prompt: 'カテゴリーを選択する' %>
+    <% if @to_let_go_item %>
+      <%= f.collection_select :category_id, Category.selectable, :id, :name, selected: @to_let_go_item.category_id, prompt: 'カテゴリーを選択する' %>
+    <% else %>
+      <%= f.collection_select :category_id, Category.selectable, :id, :name, prompt: 'カテゴリーを選択する' %>
+    <% end %>
     <span><i class="fa fa-chevron-down"></i></span>
     <em></em>
   </div>
 
   <div class="input-style no-borders no-icon mb-4">
-    <%= f.text_field :name, class: 'form-control', placeholder: 'モノの名前' %>
+    <% if @to_let_go_item %>
+      <%= f.text_field :name, class: 'form-control', placeholder: 'モノの名前', value: @to_let_go_item.name %>
+    <% else %>
+      <%= f.text_field :name, class: 'form-control', placeholder: 'モノの名前' %>
+    <% end %>
     <%= f.label :name, class: 'color-highlight' %>
   </div>
 
-  <% if done_letting_go_item.persisted? && !done_letting_go_item.reason.selectable? %>
+  <% if @to_let_go_item && !@to_let_go_item.reason.selectable? %>
+    <span class="color-red-dark">『<%= @to_let_go_item.reason.name %>』以外の理由を選んでください。</span>
+  <% elsif done_letting_go_item.persisted? && !done_letting_go_item.reason.selectable? %>
     <span class="color-red-dark">『<%= done_letting_go_item.reason.name %>』以外の理由を選んでください。</span>
   <% end %>
   <div class="input-style no-borders no-icon mb-4">
     <%= f.label :reason_id, class: 'color-highlight' %>
-    <%= f.collection_select :reason_id, Reason.selectable, :id, :name, prompt: '手放す理由を選択する' %>
+    <% if @to_let_go_item %>
+      <%= f.collection_select :reason_id, Reason.selectable, :id, :name, selected: @to_let_go_item.reason_id, prompt: '手放す理由を選択する' %>
+    <% else %>
+      <%= f.collection_select :reason_id, Reason.selectable, :id, :name, prompt: '手放す理由を選択する' %>
+    <% end %>
     <span><i class="fa fa-chevron-down"></i></span>
     <em></em>
   </div>
 
+
   <% if done_letting_go_item.persisted? && !done_letting_go_item.letting_go_way.selectable? %>
-    <span class="color-red-dark">『<%= done_letting_go_item.letting_go_way.name %>』以外の理由を選んでください。</span>
+    <span class="color-red-dark">『<%= done_letting_go_item.letting_go_way.name %>』以外の方法を選んでください。</span>
   <% end %>
   <div class="input-style no-borders no-icon mb-4">
     <%= f.label :letting_go_way_id, class: 'color-highlight' %>
@@ -46,8 +69,12 @@
     <em></em>
   </div>
 
+  <% if @to_let_go_item %>
+    <%= f.hidden_field :item_id, value: @to_let_go_item.id %>
+  <% end %>
+
   <div class="actions">
-    <%= f.submit '手放す', class: 'btn btn-border btn-m btn-full mb-3 rounded-sm text-uppercase font-700 border-green-dark color-green-dark bg-theme',
-                        style: 'width: 100%' %>
+    <%= f.submit class: 'btn btn-border btn-m btn-full mb-3 rounded-sm font-700 border-green-dark color-green-dark bg-theme',
+                 style: 'width: 100%' %>
   </div>
 <% end %>
