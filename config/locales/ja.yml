@@ -26,6 +26,7 @@ ja:
         category: カテゴリー
         reason: 手放す理由
         name: 手放すもの
+        letting_go_way: 手放す方法
     errors:
       models:
         item:

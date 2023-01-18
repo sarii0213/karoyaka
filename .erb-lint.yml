@@ -6,6 +6,7 @@ exclude:
   - 'app/views/users/sessions/new.html.erb' # todo:  Line is too long at line 38.
   - 'app/views/to_let_go_items/_form.html.erb' # todo:  Line is too long at line 37.
   - 'app/views/quotes/index.html.erb' # todo:  Line is too long at line 7.
+  - 'app/views/done_letting_go_items/_form.html.erb' # todo:  Line is too long at line 50.
 
 EnableDefaultLinters: true
 linters:

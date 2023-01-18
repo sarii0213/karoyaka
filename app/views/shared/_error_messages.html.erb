@@ -5,3 +5,10 @@
     <% end %>
   </ul>
 <% end %>
+<% if flash[:error].present? %>
+  <ul class="color-red-dark">
+    <% flash[:error].each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>

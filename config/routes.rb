@@ -32,6 +32,16 @@
 #                                          PATCH  /to_let_go_items/:id(.:format)                                                                    to_let_go_items#update
 #                                          PUT    /to_let_go_items/:id(.:format)                                                                    to_let_go_items#update
 #                                          DELETE /to_let_go_items/:id(.:format)                                                                    to_let_go_items#destroy
+#                    done_letting_go_items GET    /done_letting_go_items(.:format)                                                                  done_letting_go_items#index
+#                                          POST   /done_letting_go_items(.:format)                                                                  done_letting_go_items#create
+#                 new_done_letting_go_item GET    /done_letting_go_items/new(.:format)                                                              done_letting_go_items#new
+#                edit_done_letting_go_item GET    /done_letting_go_items/:id/edit(.:format)                                                         done_letting_go_items#edit
+#                     done_letting_go_item GET    /done_letting_go_items/:id(.:format)                                                              done_letting_go_items#show
+#                                          PATCH  /done_letting_go_items/:id(.:format)                                                              done_letting_go_items#update
+#                                          PUT    /done_letting_go_items/:id(.:format)                                                              done_letting_go_items#update
+#                                          DELETE /done_letting_go_items/:id(.:format)                                                              done_letting_go_items#destroy
+#                           quote_favorite DELETE /quotes/:quote_id/favorite(.:format)                                                              quotes/favorites#destroy
+#                                          POST   /quotes/:quote_id/favorite(.:format)                                                              quotes/favorites#create
 #                                   quotes GET    /quotes(.:format)                                                                                 quotes#index
 #                                    quote GET    /quotes/:id(.:format)                                                                             quotes#show
 #                              sidekiq_web        /sidekiq                                                                                          Sidekiq::Web
@@ -57,6 +67,7 @@ Rails.application.routes.draw do
   get '/term', to: 'static_pages#term'
 
   resources :to_let_go_items
+  resources :done_letting_go_items
 
   resources :quotes, only: %i[index show] do
     resource :favorite, only: %i[create destroy], module: :quotes
