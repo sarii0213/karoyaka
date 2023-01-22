@@ -2,9 +2,7 @@ class ItemDecorator < Draper::Decorator
   delegate_all
 
   def img(size)
-    unless image.attached?
-      return "category_#{category.id}.svg"
-    end
+    return "category_#{category.id}.svg" unless image.attached?
 
     command = case size
               when :thumb
