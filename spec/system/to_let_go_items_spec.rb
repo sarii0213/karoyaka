@@ -11,9 +11,9 @@ RSpec.describe '手放したいものリスト' do
     it '手放したいものを新規登録できること' do
       visit new_to_let_go_item_path
       attach_file 'to_let_go_item[image]', Rails.root.join('spec', 'fixtures', 'dummy.png')
-      find_by_id('to_let_go_item_category_id').find("option[value='2']").select_option
+      select '生活雑貨', from: 'to_let_go_item[category_id]'
       fill_in 'to_let_go_item[name]', with: 'セーター'
-      find_by_id('to_let_go_item_reason_id').find("option[value='2']").select_option
+      select '使ってない', from: 'to_let_go_item[reason_id]'
       click_on '登録する'
       expect(page).to have_content '登録しました'
     end

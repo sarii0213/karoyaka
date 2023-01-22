@@ -8,14 +8,14 @@ RSpec.describe '手放し済みリスト' do
   end
 
   describe '新規登録' do
-    context '手放したいアイテムを新たに登録する場合' do
-      it '手放したものを新規登録できること' do
+    context '手放したアイテムをゼロから登録する場合' do
+      it '手放し済みアイテムを新規登録できること' do
         visit new_done_letting_go_item_path
         attach_file 'done_letting_go_item[image]', Rails.root.join('spec', 'fixtures', 'dummy.png')
-        find_by_id('done_letting_go_item_category_id').find("option[value='2']").select_option
+        select '生活雑貨', from: 'done_letting_go_item[category_id]'
         fill_in 'done_letting_go_item[name]', with: 'セーター'
-        find_by_id('done_letting_go_item_reason_id').find("option[value='2']").select_option
-        find_by_id('done_letting_go_item_letting_go_way_id').find("option[value='2']").select_option
+        select '使ってない', from: 'done_letting_go_item[reason_id]'
+        select 'ゴミに出す', from: 'done_letting_go_item[letting_go_way_id]'
         click_on '登録する'
         expect(page).to have_content '登録しました'
       end
@@ -27,7 +27,7 @@ RSpec.describe '手放し済みリスト' do
       it '手放し済みアイテム登録後に引き継ぎ元の手放したいアイテムは削除されること' do
         visit to_let_go_item_path(to_let_go_item)
         click_on '→ 手放す！'
-        find_by_id('done_letting_go_item_letting_go_way_id').find("option[value='2']").select_option
+        select 'ゴミに出す', from: 'done_letting_go_item[letting_go_way_id]'
         click_on '登録する'
         expect(page).to have_content '登録しました'
         expect{ ToLetGoItem.find(to_let_go_item.id) }.to raise_exception(ActiveRecord::RecordNotFound)
