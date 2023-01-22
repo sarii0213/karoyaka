@@ -3,11 +3,11 @@
 
   <% if @to_let_go_item %>
     <div class="text-center mb-1">
-      <%= image_tag @to_let_go_item.decorate.img(:lg), size: '200x200', class: 'rounded-m' %>
+      <%= image_tag @to_let_go_item.decorate.img(:lg), size: '200x200', class: 'rounded-m bg-gray-light' %>
     </div>
   <% elsif done_letting_go_item.persisted? %>
     <div class="text-center mb-1">
-      <%= image_tag done_letting_go_item.decorate.img(:lg), size: '200x200', class: 'rounded-m' %>
+      <%= image_tag done_letting_go_item.decorate.img(:lg), size: '200x200', class: 'rounded-m bg-gray-light' %>
     </div>
   <% end %>
 

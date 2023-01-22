@@ -36,7 +36,7 @@ RSpec.describe '手放し済みリスト' do
   end
 
   describe '編集' do
-    let!(:done_letting_go_item) { create(:done_letting_go_item, user:) }
+    let!(:done_letting_go_item) { create(:done_letting_go_item, user:, category_id: 2) }
 
     it '編集ができること' do
       visit done_letting_go_item_path(done_letting_go_item)
@@ -49,7 +49,7 @@ RSpec.describe '手放し済みリスト' do
   end
 
   describe '削除' do
-    let!(:done_letting_go_item) { create(:done_letting_go_item, user:) }
+    let!(:done_letting_go_item) { create(:done_letting_go_item, user:, category_id: 2) }
 
     it '削除ができること' do
       visit done_letting_go_item_path(done_letting_go_item)
