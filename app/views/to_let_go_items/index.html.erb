@@ -1,5 +1,11 @@
-<h3 class="mx-3">手放したいものリスト一覧</h3>
-<%= link_to '新規登録', new_to_let_go_item_path, class: 'mx-3' %>
+<% content_for :title do %>
+  <div class="header-title">
+    <%= link_to new_to_let_go_item_path, class: 'text-reset' do %>
+      <nobr>手放したいものリスト<i class="far fa-plus-square ms-2 font-18 btn-group-vertical"></i></nobr>
+    <% end %>
+  </div>
+<% end %>
+
 <div class="card card-style">
   <div class="content">
     <%= '手放したいものを登録してください。' if @to_let_go_items.blank? %>
