@@ -13,11 +13,17 @@
         <br>
         <span class="font-900">手放す理由：<%= @to_let_go_item.reason.name %></span><br>
         <span>手放す理由の詳細：<%= @to_let_go_item.reason.description %></span><br>
-        <br>
-        <%= link_to '→ 手放す！', new_done_letting_go_item_path(item_id: @to_let_go_item.id) %><br>
-        <%= link_to '→ 編集する', edit_to_let_go_item_path(@to_let_go_item), class: 'me-3' %>
-        <%= link_to '→ 削除する', to_let_go_item_path(@to_let_go_item),
-                    data: { turbo_method: :delete, turbo_confirm: '削除しますか？' } %>
+        <%= link_to '手放す！', new_done_letting_go_item_path(item_id: @to_let_go_item.id),
+                    class: 'btn btn-border btn-s btn-full font-700 border-green-dark color-green-dark bg-theme mt-1' %>
+      </div>
+      <div class="text-end">
+        <%= link_to edit_to_let_go_item_path(@to_let_go_item), class: 'color-brown-dark edit-link' do %>
+          <i class="fas fa-edit"></i>
+        <% end %>
+        <%= link_to to_let_go_item_path(@to_let_go_item),
+                    data: { turbo_method: :delete, turbo_confirm: '削除しますか？' }, class: 'color-red-light delete-link' do %>
+          <i class="far fa-times-circle mt-4"></i>
+        <% end %>
       </div>
     </div>
 

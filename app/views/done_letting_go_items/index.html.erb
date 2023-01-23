@@ -1,14 +1,14 @@
 <% content_for :title do %>
-    <%= link_to new_done_letting_go_item_path, class: 'text-reset' do %>
-      <nobr>手放し済みリスト<i class="far fa-plus-square ms-2 font-18 btn-group-vertical"></i></nobr>
-    <% end %>
+  <%= link_to new_done_letting_go_item_path, class: 'text-reset' do %>
+    <nobr>手放し済みリスト<i class="far fa-plus-square ms-2 font-18 btn-group-vertical color-blue-light"></i></nobr>
+  <% end %>
 <% end %>
 
 <div class="card card-style">
   <div class="content">
     <%= '手放したものを登録してください。' if @done_letting_go_items.blank? %>
     <% @done_letting_go_items.each do |done_letting_go_item| %>
-      <%= link_to done_letting_go_item_path(done_letting_go_item), class: 'text-reset' do %>
+      <%= link_to done_letting_go_item_path(done_letting_go_item), class: 'text-reset d-flex' do %>
         <div class="d-flex mb-3">
           <div class="ms-auto">
             <%= image_tag done_letting_go_item.decorate.img(:thumb), size: '100x100', class: 'rounded-m bg-gray-light' %>
@@ -17,10 +17,16 @@
             <h5><%= done_letting_go_item.decorate.item_name %></h5>
             <span>カテゴリー：<%= done_letting_go_item.category.name %></span><br>
             <span>手放す理由：<%= done_letting_go_item.reason.name %></span><br>
-            <span>手放す方法：<%= done_letting_go_item.letting_go_way.name %></span><br>
-            <%= link_to '→ 編集する', edit_done_letting_go_item_path(done_letting_go_item), class: 'me-3' %>
-            <%= link_to '→ 削除する', done_letting_go_item_path(done_letting_go_item),
-                        data: { turbo_method: :delete, turbo_confirm: '削除しますか？' } %>
+            <span>手放す方法：<%= done_letting_go_item.letting_go_way.name %></span>
+          </div>
+          <div class="my-auto text-end">
+            <%= link_to edit_done_letting_go_item_path(done_letting_go_item), class: 'color-brown-dark edit-link' do %>
+              <i class="fas fa-edit"></i>
+            <% end %>
+            <%= link_to done_letting_go_item_path(done_letting_go_item),
+                        data: { turbo_method: :delete, turbo_confirm: '削除しますか？' }, class: 'color-red-light delete-link' do %>
+              <i class="far fa-times-circle mt-5"></i>
+            <% end %>
           </div>
         </div>
       <% end %>

@@ -16,10 +16,15 @@
         <br>
         <span class="font-900">手放す方法：<%= @done_letting_go_item.letting_go_way.name %></span><br>
         <span>手放す理由の詳細：<%= @done_letting_go_item.letting_go_way.description %></span><br>
-        <br>
-        <%= link_to '→ 編集する', edit_done_letting_go_item_path(@done_letting_go_item), class: 'me-3' %>
-        <%= link_to '→ 削除する', done_letting_go_item_path(@done_letting_go_item),
-                    data: { turbo_method: :delete, turbo_confirm: '削除しますか？' } %>
+      </div>
+      <div class="ms-1 text-end">
+        <%= link_to edit_done_letting_go_item_path(@done_letting_go_item), class: 'color-brown-dark edit-link' do %>
+          <i class="fas fa-edit"></i>
+        <% end %>
+        <%= link_to done_letting_go_item_path(@done_letting_go_item),
+                    data: { turbo_method: :delete, turbo_confirm: '削除しますか？' }, class: 'color-red-light delete-link' do %>
+          <i class="far fa-times-circle mt-4"></i>
+        <% end %>
       </div>
     </div>
 
