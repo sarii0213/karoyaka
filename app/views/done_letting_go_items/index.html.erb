@@ -1,22 +1,38 @@
-<h3 class="mx-3">手放し済みリスト一覧</h3>
-<%= link_to '新規登録', new_done_letting_go_item_path, class: 'mx-3' %>
+<% content_for :title do %>
+  <%= link_to new_done_letting_go_item_path, class: 'text-reset' do %>
+    <nobr>手放し済み リスト<i class="far fa-plus-square ms-2 font-18 btn-group-vertical color-sunny-light"></i></nobr>
+  <% end %>
+<% end %>
+
+<div class="text-center mb-3">
+  <span class="badge color-white bg-teal-dark me-3">カテゴリー<i class="fas fa-chevron-down font-8 ms-2"></i></span>
+  <span class="badge color-white bg-blue-light me-3">手放す理由<i class="fas fa-chevron-down font-8 ms-2"></i></span>
+  <span class="badge color-white bg-highlight-dark">手放す方法<i class="fas fa-chevron-down font-8 ms-2"></i></span>
+</div>
+
 <div class="card card-style">
   <div class="content">
     <%= '手放したものを登録してください。' if @done_letting_go_items.blank? %>
     <% @done_letting_go_items.each do |done_letting_go_item| %>
-      <%= link_to done_letting_go_item_path(done_letting_go_item), class: 'text-reset' do %>
+      <%= link_to done_letting_go_item_path(done_letting_go_item), class: 'text-reset d-flex' do %>
         <div class="d-flex mb-3">
           <div class="ms-auto">
-            <%= image_tag done_letting_go_item.decorate.img(:thumb), size: '100x100', class: 'rounded-m bg-gray-light' %>
+            <%= image_tag done_letting_go_item.decorate.img(:thumb), size: '90x90', class: 'rounded-m bg-gray-light' %>
           </div>
-          <div class="w-100 ps-3">
+          <div class="w-100 px-2">
             <h5><%= done_letting_go_item.decorate.item_name %></h5>
-            <span>カテゴリー：<%= done_letting_go_item.category.name %></span><br>
-            <span>手放す理由：<%= done_letting_go_item.reason.name %></span><br>
-            <span>手放す方法：<%= done_letting_go_item.letting_go_way.name %></span><br>
-            <%= link_to '→ 編集する', edit_done_letting_go_item_path(done_letting_go_item), class: 'me-3' %>
-            <%= link_to '→ 削除する', done_letting_go_item_path(done_letting_go_item),
-                        data: { turbo_method: :delete, turbo_confirm: '削除しますか？' } %>
+            <span class="badge color-white bg-teal-dark"><%= done_letting_go_item.category.name %></span>
+            <span class="badge color-white bg-blue-light"><%= done_letting_go_item.reason.name %></span><br>
+            <span class="badge color-white bg-highlight-dark"><%= done_letting_go_item.letting_go_way.name %></span><br>
+          </div>
+          <div class="ms-auto text-end">
+            <%= link_to edit_done_letting_go_item_path(done_letting_go_item), class: 'text-reset edit-link' do %>
+              <i class="fas fa-edit"></i>
+            <% end %><br>
+            <%= link_to done_letting_go_item_path(done_letting_go_item),
+                        data: { turbo_method: :delete, turbo_confirm: '削除しますか？' }, class: 'text-reset delete-link' do %>
+              <i class="far fa-times-circle mt-5"></i>
+            <% end %>
           </div>
         </div>
       <% end %>

@@ -1,24 +1,28 @@
-<h3 class="mx-3 mb-3">手放し済みリスト詳細</h3>
+<% content_for :title, '手放し済み 詳細' %>
+
 <div class="card card-style">
   <div class="content">
     <div class="d-flex mb-3">
       <div class="ms-auto">
-        <%= image_tag @done_letting_go_item.decorate.img(:thumb), size: '100x100', class: 'rounded-m bg-gray-light' %>
+        <%= image_tag @done_letting_go_item.decorate.img(:thumb), size: '90x90', class: 'rounded-m bg-gray-light' %>
       </div>
       <div class="w-100 ps-3">
         <h5><%= @done_letting_go_item.decorate.item_name %></h5>
-        <span class="font-900">カテゴリー：<%= @done_letting_go_item.category.name %></span><br>
-        <span>カテゴリーの具体例：<%= @done_letting_go_item.category.description %></span><br>
-        <br>
-        <span class="font-900">手放す理由：<%= @done_letting_go_item.reason.name %></span><br>
-        <span>手放す理由の詳細：<%= @done_letting_go_item.reason.description %></span><br>
-        <br>
-        <span class="font-900">手放す方法：<%= @done_letting_go_item.letting_go_way.name %></span><br>
-        <span>手放す理由の詳細：<%= @done_letting_go_item.letting_go_way.description %></span><br>
-        <br>
-        <%= link_to '→ 編集する', edit_done_letting_go_item_path(@done_letting_go_item), class: 'me-3' %>
-        <%= link_to '→ 削除する', done_letting_go_item_path(@done_letting_go_item),
-                    data: { turbo_method: :delete, turbo_confirm: '削除しますか？' } %>
+        <span class="badge color-white bg-teal-dark"><%= @done_letting_go_item.category.name %></span><br>
+        <p class="mb-3">具体例：<br><%= @done_letting_go_item.category.description %></p>
+        <span class="badge color-white bg-blue-light"><%= @done_letting_go_item.reason.name %></span><br>
+        <p class="mb-4">詳細：<br><%= @done_letting_go_item.reason.description %></p>
+        <span class="badge color-white bg-highlight-dark"><%= @done_letting_go_item.letting_go_way.name %></span><br>
+        <p class="mb-4">詳細：<br><%= @done_letting_go_item.letting_go_way.description %></p>
+      </div>
+      <div class="ms-1 text-end">
+        <%= link_to edit_done_letting_go_item_path(@done_letting_go_item), class: 'color-brown-dark edit-link' do %>
+          <i class="fas fa-edit"></i>
+        <% end %>
+        <%= link_to done_letting_go_item_path(@done_letting_go_item),
+                    data: { turbo_method: :delete, turbo_confirm: '削除しますか？' }, class: 'color-red-light delete-link' do %>
+          <i class="far fa-times-circle mt-4"></i>
+        <% end %>
       </div>
     </div>
 

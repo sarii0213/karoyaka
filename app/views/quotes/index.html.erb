@@ -1,4 +1,5 @@
-<h3 class="mx-3 mb-4">捨て活したくなる名言集</h3>
+<% content_for :title, '捨て活モチベ⤴︎ 名言集' %>
+
 <% if user_signed_in? %>
   <div class="text-center mb-3">
     <%= active_link_to '全て表示', quotes_path, active: /.*quotes$/, class_active: 'active-nav',

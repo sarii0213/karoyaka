@@ -24,7 +24,7 @@ RSpec.describe '手放したいものリスト' do
 
     it '編集ができること' do
       visit to_let_go_item_path(to_let_go_item)
-      click_on '編集する'
+      find('.edit-link').click
       fill_in 'to_let_go_item[name]', with: 'スウェット'
       click_on '更新する'
       expect(page).to have_content '更新しました'
@@ -37,7 +37,7 @@ RSpec.describe '手放したいものリスト' do
 
     it '削除ができること' do
       visit to_let_go_item_path(to_let_go_item)
-      accept_confirm { click_on '削除' }
+      accept_confirm { find('.delete-link').click }
       expect(page).to have_content '削除しました'
       expect(page).not_to have_content to_let_go_item.category.name
     end

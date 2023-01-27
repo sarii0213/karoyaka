@@ -22,11 +22,11 @@ RSpec.describe '手放し済みリスト' do
     end
 
     context '手放したいアイテムから手放すものを選ぶ場合' do
-      let!(:to_let_go_item) { create(:to_let_go_item, user: user) }
+      let!(:to_let_go_item) { create(:to_let_go_item, user: user, category_id: 2) }
 
       it '手放し済みアイテム登録後に引き継ぎ元の手放したいアイテムは削除されること' do
         visit to_let_go_item_path(to_let_go_item)
-        click_on '→ 手放す！'
+        click_on '手放す！'
         select 'ゴミに出す', from: 'done_letting_go_item[letting_go_way_id]'
         click_on '登録する'
         expect(page).to have_content '登録しました'
@@ -40,7 +40,7 @@ RSpec.describe '手放し済みリスト' do
 
     it '編集ができること' do
       visit done_letting_go_item_path(done_letting_go_item)
-      click_on '編集する'
+      find('.edit-link').click
       fill_in 'done_letting_go_item[name]', with: 'スウェット'
       click_on '更新する'
       expect(page).to have_content '更新しました'
@@ -53,7 +53,7 @@ RSpec.describe '手放し済みリスト' do
 
     it '削除ができること' do
       visit done_letting_go_item_path(done_letting_go_item)
-      accept_confirm { click_on '削除' }
+      accept_confirm { find('.delete-link').click }
       expect(page).to have_content '削除しました'
       expect(page).not_to have_content done_letting_go_item.category.name
     end
