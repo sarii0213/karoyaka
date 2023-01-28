@@ -1,0 +1,9 @@
+<table class="mx-auto mb-5">
+  <% rank_items.each_with_index do |(rank_item, count), i| %>
+    <tr>
+      <td><span class="font-14 font-600 me-1"><%= i + 1 %></span>位</td>
+      <td class="px-2"><span class="font-14 font-600"><%= rank_item %></span></td>
+      <td><%= count %>個</td>
+    </tr>
+  <% end %>
+</table>
