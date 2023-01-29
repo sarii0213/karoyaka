@@ -36,4 +36,8 @@ class Item < ApplicationRecord
 
   validates :image, blob: { content_type: %w[image/png image/webp image/jpg image/jpeg],
                             size_range: 1..(10.megabytes) }
+
+  def self.distinct_days
+    pluck(Arel.sql('distinct date(created_at)')).count
+  end
 end

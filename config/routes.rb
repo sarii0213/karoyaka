@@ -73,7 +73,7 @@ Rails.application.routes.draw do
     resource :favorite, only: %i[create destroy], module: :quotes
   end
 
-
+  resource :achievement, only: :show
 
   if Rails.env.development?
     require 'sidekiq/web'
