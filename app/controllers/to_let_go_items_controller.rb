@@ -1,6 +1,6 @@
 class ToLetGoItemsController < ApplicationController
   def index
-    @to_let_go_items = current_user.to_let_go_items
+    @to_let_go_items = current_user.to_let_go_items.order(created_at: :desc)
   end
 
   def show
