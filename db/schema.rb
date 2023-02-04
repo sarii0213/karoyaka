@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_12_042915) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_04_024145) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -46,6 +46,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_12_042915) do
     t.datetime "updated_at", null: false
     t.boolean "selectable", default: true
     t.index ["name"], name: "index_categories_on_name", unique: true
+  end
+
+  create_table "category_way_optimalities", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "category_id", null: false
+    t.bigint "letting_go_way_id", null: false
+    t.decimal "score", precision: 3, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id", "letting_go_way_id"], name: "category_way_id_uniqueness", unique: true
+    t.index ["category_id"], name: "index_category_way_optimalities_on_category_id"
+    t.index ["letting_go_way_id"], name: "index_category_way_optimalities_on_letting_go_way_id"
   end
 
   create_table "favorites", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -115,6 +126,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_12_042915) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "category_way_optimalities", "categories"
+  add_foreign_key "category_way_optimalities", "letting_go_ways"
   add_foreign_key "favorites", "quotes"
   add_foreign_key "favorites", "users"
   add_foreign_key "items", "categories"
