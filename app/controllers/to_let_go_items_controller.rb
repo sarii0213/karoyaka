@@ -39,6 +39,18 @@ class ToLetGoItemsController < ApplicationController
     redirect_to to_let_go_items_path, notice: '手放したいものリストから削除しました', status: :see_other
   end
 
+  def show_hint
+    @category = if params[:category_id]
+                  Category.find(params[:category_id])
+                end
+    @reason = if params[:reason_id]
+                Reason.find(params[:reason_id])
+              end
+    respond_to do |format|
+      format.turbo_stream
+    end
+  end
+
   private
 
   def to_let_go_item_params

@@ -66,7 +66,12 @@ Rails.application.routes.draw do
   get '/privacy', to: 'static_pages#privacy'
   get '/term', to: 'static_pages#term'
 
-  resources :to_let_go_items
+  resources :to_let_go_items do
+    collection do
+      get :show_hint
+    end
+  end
+
   resources :done_letting_go_items
 
   resources :quotes, only: %i[index show] do
