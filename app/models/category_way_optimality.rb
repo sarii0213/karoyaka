@@ -21,6 +21,7 @@
 #  fk_rails_...  (letting_go_way_id => letting_go_ways.id)
 #
 class CategoryWayOptimality < ApplicationRecord
+  validates :category_id, uniqueness: { scope: :letting_go_way_id }
   belongs_to :category
   belongs_to :letting_go_way
 end
