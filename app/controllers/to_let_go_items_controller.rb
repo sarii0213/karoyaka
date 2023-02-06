@@ -39,6 +39,7 @@ class ToLetGoItemsController < ApplicationController
     redirect_to to_let_go_items_path, notice: '手放したいものリストから削除しました', status: :see_other
   end
 
+  # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
   def show_hint
     if params[:category_id] && params[:reason_id]
       optimal_ways_with_category_reason
@@ -53,6 +54,7 @@ class ToLetGoItemsController < ApplicationController
       format.turbo_stream
     end
   end
+  # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
 
   private
 
@@ -60,15 +62,17 @@ class ToLetGoItemsController < ApplicationController
     params.require(:to_let_go_item).permit(:image, :category_id, :name, :reason_id)
   end
 
+  # rubocop:disable Metrics/AbcSize
   def optimal_ways_with_category_reason
     category_scores = CategoryWayOptimality.where(category_id: params[:category_id]).map(&:score)
     reason_scores = ReasonWayOptimality.where(reason_id: params[:reason_id]).map(&:score)
     scores = [category_scores, reason_scores].transpose.map { |ary| ary.inject(:*) }
-    @way_ids = Array.new()
+    @way_ids = []
     3.times do |_|
       @way_ids.push(scores.index(scores.max) + 1)
       scores[scores.index(scores.max)] = 0
     end
-    return @way_ids
+    @way_ids
   end
+  # rubocop:enable Metrics/AbcSize
 end
