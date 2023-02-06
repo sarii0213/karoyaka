@@ -40,12 +40,15 @@ class ToLetGoItemsController < ApplicationController
   end
 
   def show_hint
-    @category = if params[:category_id]
-                  Category.find(params[:category_id])
-                end
-    @reason = if params[:reason_id]
-                Reason.find(params[:reason_id])
-              end
+    if params[:category_id] && params[:reason_id]
+      optimal_ways_with_category_reason
+    elsif params[:category_id]
+      @way_ids = CategoryWayOptimality.where(category_id: params[:category_id]).order(score: :desc)
+                                      .limit(3).map(&:letting_go_way_id)
+    else
+      @way_ids = ReasonWayOptimality.where(reason_id: params[:reason_id]).order(score: :desc)
+                                    .limit(3).map(&:letting_go_way_id)
+    end
     respond_to do |format|
       format.turbo_stream
     end
@@ -55,5 +58,17 @@ class ToLetGoItemsController < ApplicationController
 
   def to_let_go_item_params
     params.require(:to_let_go_item).permit(:image, :category_id, :name, :reason_id)
+  end
+
+  def optimal_ways_with_category_reason
+    category_scores = CategoryWayOptimality.where(category_id: params[:category_id]).map(&:score)
+    reason_scores = ReasonWayOptimality.where(reason_id: params[:reason_id]).map(&:score)
+    scores = [category_scores, reason_scores].transpose.map { |ary| ary.inject(:*) }
+    @way_ids = Array.new()
+    3.times do |_|
+      @way_ids.push(scores.index(scores.max) + 1)
+      scores[scores.index(scores.max)] = 0
+    end
+    return @way_ids
   end
 end
