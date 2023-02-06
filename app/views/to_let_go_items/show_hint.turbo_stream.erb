@@ -1,4 +1,7 @@
 <%= turbo_stream.update 'letting_go_way_hint' do %>
-  <li><%= @category ? @category.name : 'カテゴリー 未選択' %></li>
-  <li><%= @reason ? @reason.name : '理由 未選択' %></li>
+  <ul>
+    <% @way_ids.each do |way_id| %>
+      <li><%= LettingGoWay.find(way_id).name %></li>
+    <% end %>
+  </ul>
 <% end %>
