@@ -1,0 +1,7 @@
+<%= turbo_stream.update 'letting_go_way_hint' do %>
+  <ol>
+    <% @way_ids.each do |way_id| %>
+      <li><%= LettingGoWay.find(way_id).name %></li>
+    <% end %>
+  </ol>
+<% end %>

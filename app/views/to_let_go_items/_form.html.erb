@@ -1,43 +1,60 @@
 <%= form_with model: to_let_go_item do |f| %>
   <%= render 'shared/error_messages', object: to_let_go_item %>
 
-  <% if to_let_go_item.persisted? %>
-    <div class="text-center mb-1">
-      <%= image_tag to_let_go_item.decorate.img(:lg), size: '200x200', class: 'rounded-m bg-gray-light' %>
+  <div data-controller="hint">
+    <% if to_let_go_item.persisted? %>
+      <div class="text-center mb-1">
+        <%= image_tag to_let_go_item.decorate.img(:lg), size: '200x200', class: 'rounded-m bg-gray-light' %>
+      </div>
+    <% end %>
+    <div class="file-data pb-5">
+      <%= f.file_field :image, accept: 'image/*', capture: 'camera', class: 'upload-file bg-highlight shadow-s rounded-s' %>
+      <p class="upload-file-text color-white"><i class="fas fa-camera"></i> アップロード </p>
     </div>
-  <% end %>
-  <div class="file-data pb-5">
-    <%= f.file_field :image, accept: 'image/*', capture: 'camera', class: 'upload-file bg-highlight shadow-s rounded-s' %>
-    <p class="upload-file-text color-white"><i class="fas fa-camera"></i> アップロード </p>
-  </div>
 
-  <% if to_let_go_item.persisted? && !to_let_go_item.category.selectable? %>
-    <span class="color-red-dark">『<%= to_let_go_item.category.name %>』以外のカテゴリーを選んでください。</span>
-  <% end %>
-  <div class="input-style no-borders no-icon mb-4">
-    <%= f.label :category_id, class: 'color-highlight' %>
-    <%= f.collection_select :category_id, Category.selectable, :id, :name, prompt: 'カテゴリーを選択する' %>
-    <span><i class="fa fa-chevron-down"></i></span>
-    <em></em>
-  </div>
+    <% if to_let_go_item.persisted? && !to_let_go_item.category.selectable? %>
+      <span class="color-red-dark">『<%= to_let_go_item.category.name %>』以外のカテゴリーを選んでください。</span>
+    <% end %>
 
-  <div class="input-style no-borders no-icon mb-4">
-    <%= f.text_field :name, class: 'form-control', placeholder: 'モノの名前' %>
-    <%= f.label :name, class: 'color-highlight' %>
-  </div>
+    <div class="input-style no-borders no-icon mb-4">
+      <%= f.label :category_id, class: 'color-highlight' %>
+      <%= f.collection_select :category_id, Category.selectable, :id, :name,
+                              { prompt: 'カテゴリーを選択する' },
+                              { data: { action: "hint#showHint",
+                                        hint_target: "category" } } %>
+      <span><i class="fa fa-chevron-down"></i></span>
+      <em></em>
+    </div>
 
-  <% if to_let_go_item.persisted? && !to_let_go_item.reason.selectable? %>
-    <span class="color-red-dark">『<%= to_let_go_item.reason.name %>』以外の理由を選んでください。</span>
-  <% end %>
-  <div class="input-style no-borders no-icon mb-4">
-    <%= f.label :reason_id, class: 'color-highlight' %>
-    <%= f.collection_select :reason_id, Reason.selectable, :id, :name, prompt: '手放す理由を選択する' %>
-    <span><i class="fa fa-chevron-down"></i></span>
-    <em></em>
-  </div>
 
-  <div class="actions">
-    <%= f.submit class: 'btn btn-border btn-m btn-full mb-3 rounded-sm text-uppercase font-700 border-green-dark color-green-dark bg-theme',
-                 style: 'width: 100%' %>
+    <div class="input-style no-borders no-icon mb-4">
+      <%= f.text_field :name, class: 'form-control', placeholder: 'モノの名前' %>
+      <%= f.label :name, class: 'color-highlight' %>
+    </div>
+
+    <% if to_let_go_item.persisted? && !to_let_go_item.reason.selectable? %>
+      <span class="color-red-dark">『<%= to_let_go_item.reason.name %>』以外の理由を選んでください。</span>
+    <% end %>
+    <div class="input-style no-borders no-icon mb-4">
+      <%= f.label :reason_id, class: 'color-highlight' %>
+      <%= f.collection_select :reason_id, Reason.selectable, :id, :name,
+                              { prompt: '手放す理由を選択する' },
+                              { data: { action: "hint#showHint",
+                                        hint_target: "reason" } } %>
+      <span><i class="fa fa-chevron-down"></i></span>
+      <em></em>
+    </div>
+
+    <div class="mt-4">
+      <span>手放す方法のヒント</span>
+      <div id="letting_go_way_hint">
+        <p class="color-gray-dark mb-4 ms-2">手放すモノのカテゴリーと理由を選択すると、<br>こちらにおすすめの手放す方法が表示されます。</p>
+      </div>
+    </div>
+
+    <div class="actions">
+      <%= f.submit class: 'btn btn-border btn-m btn-full mb-3 rounded-sm text-uppercase font-700 border-green-dark color-green-dark bg-theme',
+                   style: 'width: 100%' %>
+    </div>
   </div>
 <% end %>

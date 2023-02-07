@@ -70,6 +70,8 @@ gem 'active_link_to'
 
 gem 'seed-fu'
 
+gem 'requestjs-rails'
+
 group :development, :test do
   gem 'annotate'
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
