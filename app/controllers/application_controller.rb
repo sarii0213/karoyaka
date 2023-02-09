@@ -13,6 +13,6 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(_resource)
-    user_path(id: current_user.id)
+    mypage_account_path
   end
 end

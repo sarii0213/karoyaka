@@ -1,0 +1,42 @@
+<% content_for :title do %>
+  <div class="header-title">マイページ</div>
+<% end %>
+
+<div class="card card-style">
+  <div class="content">
+    <div class="text-end">
+      <%= link_to edit_user_registration_path, class: 'text-reset edit-link font-16' do %>
+        <i class="fas fa-edit"></i>
+      <% end %>
+    </div>
+    <div class="text-center">
+      <%= image_tag @user.decorate.img(:lg), size: '60x60', class: 'rounded-xl' %>
+      <p class="mt-2"><%= @user.username %></p>
+    </div>
+  </div>
+</div>
+
+<div class="card card-style">
+  <div class="content text-center">
+    <h3 class="font-18">捨て活 <span class="font-24"><%= @day_what %></span>日目</h3>
+    <p class="font-10 line-height-xs color-green-dark my-3">
+      <%= render 'achievements/chart', days: @days %>
+    </p>
+    <p class="font-12 mb-2">捨て活 とは、<br>手放したいものを見つけたり 実際に手放すこと。<br>コツコツ手放して 軽やかな生活を。</p>
+    <%= link_to '記録をもっと見る', achievement_path,
+                class: 'btn btn-3d btn-xxs rounded-xs font-700 shadow-s border-green-dark bg-green-light' %>
+  </div>
+</div>
+
+<% if @user.favorite_quotes.present? %>
+  <h3 class="mx-4 mb-2 font-18">お気に入りの名言をランダムに表示</h3>
+  <%= render 'quotes/quote', quote: @quote %>
+<% end %>
+
+<div class="mx-3 mt-5 text-center">
+  <%= link_to 'ログアウト', destroy_user_session_path, class: 'text-reset px-3',
+                                                  data: { turbo_method: :delete, turbo_confirm: '本当にログアウトしますか？' } %>
+  |
+  <%= link_to '退会する', user_registration_path, class: 'text-reset px-3',
+                                              data: { turbo_method: :delete, turbo_confirm: '本当に退会しますか？' } %>
+</div>

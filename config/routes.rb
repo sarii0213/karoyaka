@@ -16,7 +16,7 @@
 #                                          PUT    /users(.:format)                                                                                  users/registrations#update
 #                                          DELETE /users(.:format)                                                                                  users/registrations#destroy
 #                                          POST   /users(.:format)                                                                                  users/registrations#create
-#                                     user GET    /users/:id(.:format)                                                                              users#show
+#                           mypage_account GET    /mypage/account(.:format)                                                                         mypage/accounts#show
 #                                   signup GET    /signup(.:format)                                                                                 users/registrations#new
 #                                    login GET    /login(.:format)                                                                                  users/sessions#new
 #                                   logout GET    /logout(.:format)                                                                                 users/sessions#destroy
@@ -55,7 +55,9 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
 
-  resources :users, only: [:show]
+  namespace :mypage do
+    resource :account, only: :show
+  end
 
   devise_scope :user do
     get 'signup', to: 'users/registrations#new'
