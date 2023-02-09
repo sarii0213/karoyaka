@@ -1,7 +1,6 @@
 class AchievementsController < ApplicationController
   def show
     set_days
-    day_what
     set_items_num
     set_category_ranking
     set_reason_ranking

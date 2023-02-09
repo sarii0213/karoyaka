@@ -4,16 +4,15 @@
 
 <div class="card card-style">
   <div class="content">
-    <h1>Users#show</h1>
-    <ul class="">
-      <li>username: <%= @user.username %></li>
-      <li>email: <%= @user.email %></li>
-    </ul>
-
-    <%= link_to '→ 編集する', edit_user_registration_path %><br>
-    <%= link_to '→ ログアウト', destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: '本当にログアウトしますか？' } %>
-    <br>
-    <%= link_to '→ 退会する', user_registration_path, data: { turbo_method: :delete, turbo_confirm: '本当に退会しますか？' } %>
+    <div class="text-end">
+      <%= link_to edit_user_registration_path, class: 'text-reset edit-link font-16' do %>
+        <i class="fas fa-edit"></i>
+      <% end %>
+    </div>
+    <div class="text-center">
+      <%= image_tag @user.decorate.img(:lg), size: '60x60', class: 'rounded-xl' %>
+      <p class="mt-2"><%= @user.username %></p>
+    </div>
   </div>
 </div>
 
@@ -33,3 +32,11 @@
   <h3 class="mx-4 mb-2 font-18">お気に入りの名言をランダムに表示</h3>
   <%= render 'quotes/quote', quote: @quote %>
 <% end %>
+
+<div class="mx-3 mt-5 text-center">
+  <%= link_to 'ログアウト', destroy_user_session_path, class: 'text-reset px-3',
+              data: { turbo_method: :delete, turbo_confirm: '本当にログアウトしますか？' } %>
+  |
+  <%= link_to '退会する', user_registration_path, class: 'text-reset px-3',
+              data: { turbo_method: :delete, turbo_confirm: '本当に退会しますか？' } %>
+</div>
