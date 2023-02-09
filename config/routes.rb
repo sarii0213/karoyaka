@@ -55,7 +55,9 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
 
-  resources :users, only: [:show]
+  namespace :mypage do
+    resource :account, only: :show
+  end
 
   devise_scope :user do
     get 'signup', to: 'users/registrations#new'

@@ -64,7 +64,7 @@ module Users
     protected
 
     def after_update_path_for(_resource)
-      user_path(id: current_user.id)
+      mypage_account_path
     end
 
     # The path used after sign up for inactive accounts.
