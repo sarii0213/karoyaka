@@ -6,7 +6,7 @@ class ItemDecorator < Draper::Decorator
 
     command = case size
               when :thumb
-                { resize_to_fill: [100, 100] }
+                { resize_to_fill: [90, 90] }
               when :lg
                 { resize_to_fill: [200, 200] }
               end
