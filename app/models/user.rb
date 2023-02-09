@@ -24,6 +24,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :username, presence: true
+  validates :avatar, blob: { content_type: %w[image/png image/jpg image/jpeg image/webp], size_range: 1..(5.megabytes) }
 
   has_many :items, dependent: :destroy
   has_many :to_let_go_items, dependent: :destroy
@@ -31,6 +32,8 @@ class User < ApplicationRecord
 
   has_many :favorites, dependent: :destroy
   has_many :favorite_quotes, through: :favorites, source: :quote
+
+  has_one_attached :avatar
 
   def favorite(quote)
     favorite_quotes << quote
