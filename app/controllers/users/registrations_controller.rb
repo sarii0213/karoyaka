@@ -16,6 +16,10 @@ module Users
 
       resource.save
       yield resource if block_given?
+
+      if sign_up_params[:avatar].present?
+        resource.avatar.attach(sign_up_params[:avatar])
+      end
       if resource.persisted?
         if resource.active_for_authentication?
           set_flash_message! :notice, :signed_up
@@ -39,9 +43,12 @@ module Users
     # end
 
     # PUT /resource
-    # def update
-    #   super
-    # end
+    def update
+      super
+      if account_update_params[:avatar].present?
+        resource.avatar.attach(account_update_params[:avatar])
+      end
+    end
 
     # DELETE /resource
     def destroy

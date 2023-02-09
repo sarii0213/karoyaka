@@ -1,49 +1,82 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<% content_for :title, 'ユーザー情報 編集' %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render 'users/shared/error_messages', resource: %>
+<div class="card card-style">
+  <div class="content">
+    <p>
+      アイコン、ユーザー名、メールアドレス、パスワードを変更できます。
+    </p>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render 'users/shared/error_messages', resource: %>
 
-  <div class="field">
-    <%= f.label :username %><br>
-    <%= f.text_field :username, autofocus: true %>
-  </div>
+      <% if resource.avatar.present? %>
+        <div class="text-center mb-2">
+          <%= image_tag resource.decorate.img(:xl), class: 'rounded-xl' %>
+        </div>
+      <% end %>
+      <div class="file-data pb-5">
+        <%= f.file_field :avatar, accept: 'image/*', capture: 'camera', class: 'upload-file bg-highlight shadow-s rounded-s' %>
+        <p class="upload-file-text color-white"><i class="fas fa-camera"></i> アップロード </p>
+      </div>
 
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.email_field :email, autofocus: true, autocomplete: 'email' %>
-  </div>
+      <div class="field input-style has-borders has-icon validate-field mb-4">
+        <i class="fa fa-user"></i>
+        <%= f.text_field :username, autofocus: true, class: 'form-control validate-name', placeholder: 'username' %>
+        <%= f.label :username, class: 'color-highlight' %>
+        <i class="fa fa-times disabled invalid color-red-dark"></i>
+        <i class="fa fa-check disabled valid color-green-dark"></i>
+      </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+      <div class="field input-style has-borders has-icon validate-field mb-4">
+        <i class="fa fa-envelope"></i>
+        <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control validate-text',
+                          placeholder: 'email' %>
+        <%= f.label :email, class: 'color-highlight' %>
+        <i class="fa fa-times disabled invalid color-red-dark"></i>
+        <i class="fa fa-check disabled valid color-green-dark"></i>
+      </div>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br>
-    <%= f.password_field :password, autocomplete: 'new-password' %>
-    <% if @minimum_password_length %>
-      <br>
-      <em><%= @minimum_password_length %> characters minimum</em>
+      <div class="divider divider-margins">
+      </div>
+      <h4 class="font-16 font-500">パスワードの変更</h4>
+      <p class="mb-2">パスワードを変更したい場合は、以下に
+        新しいパスワードと現在のパスワードを入力してください。<br>
+        <% if @minimum_password_length %>
+        パスワードは<%= @minimum_password_length %> 文字以上で設定してください。
+      <% end %><br>
+        パスワードを変更しない場合は、空欄のままでOKです。
+      </p>
+
+      <div class="field input-style has-borders has-icon validate-field mb-4">
+        <i class="fa fa-lock"></i>
+        <%= f.password_field :password, autocomplete: 'new-password', class: 'form-control validate-text',
+                             placeholder: 'new password（変更しない場合は入力不要）' %>
+        <%= f.label :password, class: 'color-highlight' %>
+        <i class="fa fa-times disabled invalid color-red-dark"></i>
+        <i class="fa fa-check disabled valid color-green-dark"></i>
+      </div>
+
+      <div class="field input-style has-borders has-icon validate-field mb-4">
+        <i class="fa fa-lock"></i>
+        <%= f.password_field :password_confirmation, autocomplete: 'new-password', class: 'form-control validate-text',
+                             placeholder: 'new password（確認用）' %>
+        <%= f.label :password_confirmation, class: 'color-highlight' %>
+        <i class="fa fa-times disabled invalid color-red-dark"></i>
+        <i class="fa fa-check disabled valid color-green-dark"></i>
+      </div>
+
+      <div class="field input-style has-borders has-icon validate-field mb-4">
+        <i class="fa fa-lock"></i>
+        <%= f.password_field :current_password, autocomplete: 'current-password', class: 'form-control validate-text',
+                             placeholder: 'password（変更する場合、現在のパスワードを入力）' %>
+        <%= f.label :current_password, class: 'color-highlight' %>
+        <i class="fa fa-times disabled invalid color-red-dark"></i>
+        <i class="fa fa-check disabled valid color-green-dark"></i>
+      </div>
+
+      <div class="actions">
+        <%= f.submit 'Update',
+                     class: 'btn btn-border btn-m btn-full mb-3 rounded-sm text-uppercase font-700 border-green-dark color-green-dark bg-theme', style: 'width: 100%' %>
+      </div>
     <% end %>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br>
-    <%= f.password_field :password_confirmation, autocomplete: 'new-password' %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br>
-    <%= f.password_field :current_password, autocomplete: 'current-password' %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit 'Update' %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to 'Cancel my account', registration_path(resource_name), data: { confirm: 'Are you sure?' },
-                                                                                 method: :delete %></p>
-
-<%= link_to 'Back', :back %>
+</div>

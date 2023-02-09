@@ -9,6 +9,8 @@ class UserDecorator < Draper::Decorator
                 { resize_to_fill: [10, 10] }
               when :lg
                 { resize_to_fill: [60, 60] }
+              when :xl
+                { resize_to_fill: [100, 100] }
               end
 
     image_url = command ? avatar.variant(command).processed : avatar
