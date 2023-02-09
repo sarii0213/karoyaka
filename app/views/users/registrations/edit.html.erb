@@ -8,7 +8,7 @@
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <%= render 'users/shared/error_messages', resource: %>
 
-      <% if resource.avatar.present? %>
+      <% if resource.avatar.attached? %>
         <div class="text-center mb-2">
           <%= image_tag resource.decorate.img(:xl), class: 'rounded-xl' %>
         </div>
