@@ -1,6 +1,7 @@
 class AchievementsController < ApplicationController
   def show
     set_days
+    day_what
     set_items_num
     set_category_ranking
     set_reason_ranking
@@ -11,6 +12,11 @@ class AchievementsController < ApplicationController
 
   def set_days
     @days = current_user.items.distinct_days
+    @day_what = if current_user.items.last.created_at.day == Time.now.day
+                  @days
+                else
+                  @days + 1
+                end
   end
 
   def set_items_num
