@@ -14,7 +14,8 @@
         </div>
       <% end %>
       <div class="file-data pb-5">
-        <%= f.file_field :avatar, accept: 'image/*', capture: 'camera', class: 'upload-file bg-highlight shadow-s rounded-s' %>
+        <%= f.file_field :avatar, accept: 'image/*', capture: 'camera',
+                                  class: 'upload-file bg-highlight shadow-s rounded-s' %>
         <p class="upload-file-text color-white"><i class="fas fa-camera"></i> アップロード </p>
       </div>
 
@@ -29,7 +30,7 @@
       <div class="field input-style has-borders has-icon validate-field mb-4">
         <i class="fa fa-envelope"></i>
         <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control validate-text',
-                          placeholder: 'email' %>
+                                  placeholder: 'email' %>
         <%= f.label :email, class: 'color-highlight' %>
         <i class="fa fa-times disabled invalid color-red-dark"></i>
         <i class="fa fa-check disabled valid color-green-dark"></i>
@@ -38,7 +39,7 @@
       <div class="field input-style has-borders has-icon validate-field mb-4">
         <i class="fa fa-lock"></i>
         <%= f.password_field :current_password, autocomplete: 'current-password', class: 'form-control validate-text',
-                             placeholder: 'password' %>
+                                                placeholder: 'password' %>
         <%= f.label :current_password, class: 'color-highlight' %>
         <i class="fa fa-times disabled invalid color-red-dark"></i>
         <i class="fa fa-check disabled valid color-green-dark"></i>
@@ -58,7 +59,7 @@
       <div class="field input-style has-borders has-icon validate-field mb-4">
         <i class="fa fa-lock"></i>
         <%= f.password_field :password, autocomplete: 'new-password', class: 'form-control validate-text',
-                             placeholder: 'new password（変更しない場合は入力不要）' %>
+                                        placeholder: 'new password（変更しない場合は入力不要）' %>
         <%= f.label :password, class: 'color-highlight' %>
         <i class="fa fa-times disabled invalid color-red-dark"></i>
         <i class="fa fa-check disabled valid color-green-dark"></i>
@@ -67,7 +68,7 @@
       <div class="field input-style has-borders has-icon validate-field mb-4">
         <i class="fa fa-lock"></i>
         <%= f.password_field :password_confirmation, autocomplete: 'new-password', class: 'form-control validate-text',
-                             placeholder: 'new password（確認用）' %>
+                                                     placeholder: 'new password（確認用）' %>
         <%= f.label :password_confirmation, class: 'color-highlight' %>
         <i class="fa fa-times disabled invalid color-red-dark"></i>
         <i class="fa fa-check disabled valid color-green-dark"></i>
