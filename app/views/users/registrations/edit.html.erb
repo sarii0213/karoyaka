@@ -35,11 +35,20 @@
         <i class="fa fa-check disabled valid color-green-dark"></i>
       </div>
 
+      <div class="field input-style has-borders has-icon validate-field mb-4">
+        <i class="fa fa-lock"></i>
+        <%= f.password_field :current_password, autocomplete: 'current-password', class: 'form-control validate-text',
+                             placeholder: 'password' %>
+        <%= f.label :current_password, class: 'color-highlight' %>
+        <i class="fa fa-times disabled invalid color-red-dark"></i>
+        <i class="fa fa-check disabled valid color-green-dark"></i>
+      </div>
+
       <div class="divider divider-margins">
       </div>
       <h4 class="font-16 font-500">パスワードの変更</h4>
       <p class="mb-2">パスワードを変更したい場合は、以下に
-        新しいパスワードと現在のパスワードを入力してください。<br>
+        新しいパスワードを入力してください。<br>
         <% if @minimum_password_length %>
         パスワードは<%= @minimum_password_length %> 文字以上で設定してください。
       <% end %><br>
@@ -64,16 +73,7 @@
         <i class="fa fa-check disabled valid color-green-dark"></i>
       </div>
 
-      <div class="field input-style has-borders has-icon validate-field mb-4">
-        <i class="fa fa-lock"></i>
-        <%= f.password_field :current_password, autocomplete: 'current-password', class: 'form-control validate-text',
-                             placeholder: 'password（変更する場合、現在のパスワードを入力）' %>
-        <%= f.label :current_password, class: 'color-highlight' %>
-        <i class="fa fa-times disabled invalid color-red-dark"></i>
-        <i class="fa fa-check disabled valid color-green-dark"></i>
-      </div>
-
-      <div class="actions">
+      <div class="actions mt-4">
         <%= f.submit 'Update',
                      class: 'btn btn-border btn-m btn-full mb-3 rounded-sm text-uppercase font-700 border-green-dark color-green-dark bg-theme', style: 'width: 100%' %>
       </div>
