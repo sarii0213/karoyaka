@@ -10,18 +10,18 @@ RSpec.describe '手放したいものリスト' do
   describe '新規登録' do
     it '手放したいものを新規登録できること' do
       visit new_to_let_go_item_path
-      attach_file 'to_let_go_item[image]', Rails.root.join('spec', 'fixtures', 'dummy.png')
-      select '生活雑貨', from: 'to_let_go_item[category_id]'
-      fill_in 'to_let_go_item[name]', with: 'セーター'
-      select '使ってない', from: 'to_let_go_item[reason_id]'
+      attach_file '画像', Rails.root.join('spec', 'fixtures', 'dummy.png')
+      select '生活雑貨', from: 'カテゴリー'
+      fill_in '手放すもの', with: 'セーター'
+      select '使ってない', from: '手放す理由'
       click_on '登録する'
       expect(page).to have_content '登録しました'
     end
 
     it '手放したいもののカテゴリー・理由を選択すると手放す方法のヒントが表示されること' do
       visit new_to_let_go_item_path
-      select '生活雑貨', from: 'to_let_go_item[category_id]'
-      select '使ってない', from: 'to_let_go_item[reason_id]'
+      select '生活雑貨', from: 'カテゴリー'
+      select '使ってない', from: '手放す理由'
       # 手放す方法：「ゴミ」, 「お店」, 「ゆずる」, 「回収依頼」
       # カテゴリー「生活雑貨」の最適値： 1, 0.3, 0.5, 0.4
       # 理由「使ってない」の最適値：0.7, 0.7, 0.7, 0.5

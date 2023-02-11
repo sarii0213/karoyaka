@@ -4,12 +4,13 @@
     <i class="fas fa-chevron-left"></i>
   <% end %>
   <% if user_signed_in? %>
-    <%= active_link_to mypage_account_path, active: %r{^/mypage}, class_active: 'active-nav',
+    <%= active_link_to mypage_account_path, active: %r{^/mypage|users}, class_active: 'active-nav',
                                             class: 'header-icon header-icon-4' do %>
       <i class="fas fa-user-circle font-20"></i>
 <% end %>
   <% else %>
-    <%= active_link_to login_path, active: :exclusive, class_active: 'active-nav', class: 'header-icon header-icon-4' do %>
+    <%= active_link_to login_path, active: %r{^/users|login}, class_active: 'active-nav',
+                                   class: 'header-icon header-icon-4' do %>
       <i class="fas fa-sign-in-alt font-20"></i>
     <% end %>
   <% end %>

@@ -8,6 +8,7 @@
       </div>
     <% end %>
     <div class="file-data pb-5">
+      <%= f.label :image, class: 'sr-only' %>
       <%= f.file_field :image, accept: 'image/*', capture: 'camera', class: 'upload-file bg-highlight shadow-s rounded-s' %>
       <p class="upload-file-text color-white"><i class="fas fa-camera"></i> アップロード </p>
     </div>

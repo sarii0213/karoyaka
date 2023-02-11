@@ -4,14 +4,13 @@ class UserDecorator < Draper::Decorator
   def img(size)
     return 'person-circle.svg' unless avatar.attached?
 
-    command = case size
-              when :thumb
-                { resize_to_fill: [10, 10] }
-              when :lg
-                { resize_to_fill: [60, 60] }
-              end
+    command = {
+      thumb: { resize_to_fill: [10, 10] },
+      lg: { resize_to_fill: [60, 60] },
+      xl: { resize_to_fill: [100, 100] }
+    }
 
-    image_url = command ? avatar.variant(command).processed : avatar
+    image_url = avatar.variant(command[size]).processed
     h.rails_storage_proxy_url(image_url, only_path: true)
   end
 end

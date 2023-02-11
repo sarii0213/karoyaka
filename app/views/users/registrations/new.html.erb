@@ -1,8 +1,9 @@
+<% content_for :title, 'ユーザー 登録' %>
+
 <div class="card card-style">
   <div class="content">
-    <h3>ユーザー登録画面</h3>
     <p>
-      ユーザーネーム、メールアドレス、パスワードを入力してください。<br>
+      アイコン、ユーザー名、メールアドレス、パスワードを入力してください。<br>
       <% if @minimum_password_length %>
         パスワードは<%= @minimum_password_length %> 文字以上で設定してください。
       <% end %>
@@ -10,6 +11,11 @@
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render 'users/shared/error_messages', resource: %>
 
+      <div class="file-data pb-5">
+        <%= f.label :avatar, class: 'sr-only' %>
+        <%= f.file_field :avatar, accept: 'image/*', capture: 'camera', class: 'upload-file bg-highlight shadow-s rounded-s' %>
+        <p class="upload-file-text color-white"><i class="fas fa-camera"></i> アップロード </p>
+      </div>
       <div class="field input-style has-borders has-icon validate-field mb-4">
         <i class="fa fa-user"></i>
         <%= f.text_field :username, autofocus: true, class: 'form-control validate-name', placeholder: 'username' %>
