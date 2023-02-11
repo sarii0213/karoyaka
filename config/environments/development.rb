@@ -64,7 +64,8 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
-  # ngrokでスマホからアクセスできるようにするため（DNSバインディング攻撃対策のためにはデプロイまでに修正した方がよさそう？）
+  # ngrokでスマホからアクセスできるようにするため
+  # 参考：https://weseek.co.jp/tech/680/
   config.hosts.clear
 
   # Raises error for missing translations.
