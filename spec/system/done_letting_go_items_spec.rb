@@ -11,11 +11,11 @@ RSpec.describe '手放し済みリスト' do
     context '手放したアイテムをゼロから登録する場合' do
       it '手放し済みアイテムを新規登録できること' do
         visit new_done_letting_go_item_path
-        attach_file 'done_letting_go_item[image]', Rails.root.join('spec', 'fixtures', 'dummy.png')
-        select '生活雑貨', from: 'done_letting_go_item[category_id]'
-        fill_in 'done_letting_go_item[name]', with: 'セーター'
-        select '使ってない', from: 'done_letting_go_item[reason_id]'
-        select 'ゴミに出す', from: 'done_letting_go_item[letting_go_way_id]'
+        attach_file '画像', Rails.root.join('spec', 'fixtures', 'dummy.png')
+        select '生活雑貨', from: 'カテゴリー'
+        fill_in '手放すもの', with: 'セーター'
+        select '使ってない', from: '理由'
+        select 'ゴミに出す', from: '手放す方法'
         click_on '登録する'
         expect(page).to have_content '登録しました'
       end
@@ -27,7 +27,7 @@ RSpec.describe '手放し済みリスト' do
       it '手放し済みアイテム登録後に引き継ぎ元の手放したいアイテムは削除されること' do
         visit to_let_go_item_path(to_let_go_item)
         click_on '手放す！'
-        select 'ゴミに出す', from: 'done_letting_go_item[letting_go_way_id]'
+        select 'ゴミに出す', from: '手放す方法'
         click_on '登録する'
         expect(page).to have_content '登録しました'
         expect{ ToLetGoItem.find(to_let_go_item.id) }.to raise_exception(ActiveRecord::RecordNotFound)
@@ -41,7 +41,7 @@ RSpec.describe '手放し済みリスト' do
     it '編集ができること' do
       visit done_letting_go_item_path(done_letting_go_item)
       find('.edit-link').click
-      fill_in 'done_letting_go_item[name]', with: 'スウェット'
+      fill_in '手放すもの', with: 'スウェット'
       click_on '更新する'
       expect(page).to have_content '更新しました'
       expect(page).to have_content 'スウェット'
