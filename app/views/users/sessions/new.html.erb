@@ -1,6 +1,8 @@
+<% set_meta_tags title: 'ログインページ' %>
+<% content_for :title, 'ログイン画面' %>
+
 <div class="card card-style">
   <div class="content">
-    <h3>ログイン画面</h3>
     <p>メールアドレス、パスワードを入力してください。</p>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: false }) do |f| %>
