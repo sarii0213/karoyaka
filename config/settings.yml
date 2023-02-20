@@ -1,0 +1,15 @@
+meta:
+  site: karoyaka
+  title: karoyaka - 捨て活をサポートするアプリ
+  description: ものを手放す活動 ー 捨て活をサポートするサービスです。毎日少しずつモノを手放して、身も心も かろやかに。
+  keywords:
+    - 捨て活
+    - ミニマリズム
+    - 断捨離
+    - 手放す
+    - 片付け
+    - ミニマリスト
+    - シンプリスト
+  og:
+    type: website
+    image_path: ogp.png
