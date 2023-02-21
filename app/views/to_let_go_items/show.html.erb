@@ -1,3 +1,6 @@
+<% set_meta_tags title: '手放したいもの詳細ページ',
+                 description: "#{@to_let_go_item.decorate.item_name} x #{@to_let_go_item.reason.name}",
+                 og: { image: @to_let_go_item.decorate.img(:thumb) } %>
 <% content_for :title, '手放したいもの詳細' %>
 
 <div class="card card-style">
