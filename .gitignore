@@ -36,3 +36,4 @@
 .idea/
 
 /vendor/bundle
+/config/credentials/production.key
