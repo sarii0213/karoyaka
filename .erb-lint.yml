@@ -9,6 +9,7 @@ exclude:
   - 'app/views/done_letting_go_items/_form.html.erb' # todo:  Line is too long at line 50.
   - 'app/views/users/registrations/edit.html.erb' # Line is too long
   - 'app/views/done_letting_go_items/show.html.erb' # Line is too long at line 2
+  - 'app/views/kaminari/*'
 
 EnableDefaultLinters: true
 linters:
