@@ -88,4 +88,6 @@ Rails.application.routes.draw do
     require 'sidekiq/web'
     mount Sidekiq::Web, at: '/sidekiq'
   end
+
+  get 'sitemap', to: redirect('https://s3-ap-northeast-1.amazonaws.com/karoyaka-storage/sitemaps/sitemap.xml.gz')
 end
