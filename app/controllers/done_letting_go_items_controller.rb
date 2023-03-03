@@ -1,6 +1,6 @@
 class DoneLettingGoItemsController < ApplicationController
   def index
-    @done_letting_go_items = current_user.done_letting_go_items.order(created_at: :desc)
+    @done_letting_go_items = current_user.done_letting_go_items.order(created_at: :desc).page(params[:page])
   end
 
   def show
