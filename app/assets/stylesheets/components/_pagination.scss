@@ -1,16 +1,27 @@
 /*Pagination*/
 .pagination {
-	margin-bottom: $globalMargin;
-	.page-link {
-		padding: 10px 14px;
-	}
-	.page-item {
-		margin-right: 5px;
-		margin-left: 5px;
-	}
+  justify-content: center;
+  margin: 30px 0 20px;
+
+  .page-link {
+    padding: 7px 14px;
+    border: none;
+    color: $font-main-color;
+    background-color: $theme-light-background;
+  }
+
+  .page-item {
+    margin-right: 5px;
+    margin-left: 5px;
+
+    &:first-child .page-link {
+
+    }
+  }
 }
-.page-item.active {
-	a {
-		color: $color_white !important;
-	}
+
+.page-item.active .page-link {
+  color: $color_white !important;
+  background: $colorHighlightDark;
+  border-radius: 30px;
 }
