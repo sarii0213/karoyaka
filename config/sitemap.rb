@@ -2,7 +2,7 @@
 SitemapGenerator::Sitemap.default_host = "https://karoyaka.site"
 SitemapGenerator::Sitemap.sitemaps_host = "https://s3-ap-northeast-1.amazonaws.com/#{Rails.application.credentials.dig(:aws, :s3, :bucket)}"
 SitemapGenerator::Sitemap.adapter = SitemapGenerator::AwsSdkAdapter.new(
-  Rails.application.credentials.dig(:aws, :s3, bucket),
+  Rails.application.credentials.dig(:aws, :s3, :bucket),
   aws_access_key_id: Rails.application.credentials.dig(:aws, :access_key_id),
   aws_secret_access_key: Rails.application.credentials.dig(:aws, :secret_access_key),
   aws_region: 'ap-northeast-1',
