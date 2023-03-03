@@ -6,6 +6,11 @@
 
 - [Mermaid script](https://github.com/sarii0213/karoyaka_sketch/blob/main/db_architecture.md)
 
+
+## エンドポイント設計
+[karoyaka エンドポイント - Googleスプレッドシート](https://docs.google.com/spreadsheets/d/1zr-zw30afOB7XARiWX79aH-iVoj1HBa22X23bARWLJY/edit?usp=sharing)
+
+
 ---
 This README would normally document whatever steps are necessary to get the
 application up and running.
