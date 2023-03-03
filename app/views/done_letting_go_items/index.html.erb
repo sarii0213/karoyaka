@@ -14,7 +14,7 @@
 <div class="card card-style">
   <div class="content">
     <%= '手放したものを登録してください。' if @done_letting_go_items.blank? %>
-    <% @done_letting_go_items.each do |done_letting_go_item| %>
+    <% @done_letting_go_items.each_with_index do |done_letting_go_item, index| %>
       <%= link_to done_letting_go_item_path(done_letting_go_item), class: 'text-reset d-flex' do %>
         <div class="d-flex mb-3">
           <div class="ms-auto">
@@ -37,7 +37,10 @@
           </div>
         </div>
       <% end %>
-      <div class="divider mb-3"></div>
+      <% if index < @done_letting_go_items.size - 1 %>
+        <div class="divider mb-3"></div>
+      <% end %>
     <% end %>
   </div>
 </div>
+<%= paginate @done_letting_go_items %>

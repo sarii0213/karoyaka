@@ -3,9 +3,9 @@ class QuotesController < ApplicationController
 
   def index
     @quotes = if params[:favorites]
-                current_user.favorite_quotes
+                current_user.favorite_quotes.page(params[:page])
               else
-                Quote.all
+                Quote.all.page(params[:page])
               end
   end
 

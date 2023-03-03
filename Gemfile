@@ -80,6 +80,8 @@ gem 'rack-rewrite'
 # サイトマップを設置
 gem 'sitemap_generator'
 
+gem 'kaminari'
+
 group :development, :test do
   gem 'annotate'
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
