@@ -39,5 +39,5 @@ SitemapGenerator::Sitemap.create do
   add to_let_go_items_path
   add done_letting_go_items_path
   add quotes_path
-  add acheivement_path
+  add achievement_path
 end
