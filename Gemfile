@@ -72,10 +72,13 @@ gem 'seed-fu'
 
 gem 'requestjs-rails'
 
-gem 'aws-sdk-s3', require: false
+gem 'aws-sdk-s3'
 
 # サブドメインをルートドメインにリダイレクト
 gem 'rack-rewrite'
+
+# サイトマップを設置
+gem 'sitemap_generator'
 
 group :development, :test do
   gem 'annotate'
