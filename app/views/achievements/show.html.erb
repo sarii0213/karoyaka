@@ -21,17 +21,22 @@
   </div>
 </div>
 
-<div class="card card-style">
-  <div class="content text-center">
-    <h3 class="mb-5 font-18">手放せたものランキング</h3>
-    <div class="divider-icon bg-yellow-dark my-4 mx-4"><i class="fas fa-crown font-17 color-yellow-dark bg-white"></i></div>
-    <h4 class="mb-3 font-16">カテゴリー 部門</h4>
-    <%= render 'ranking', rank_items: @category_ranking %>
-    <div class="divider-icon bg-yellow-dark my-4 mx-4"><i class="fas fa-crown font-17 color-yellow-dark bg-white"></i></div>
-    <h4 class="mb-3 font-16">手放した理由 部門</h4>
-    <%= render 'ranking', rank_items: @reason_ranking %>
-    <div class="divider-icon bg-yellow-dark my-4 mx-4"><i class="fas fa-crown font-17 color-yellow-dark bg-white"></i></div>
-    <h4 class="mb-3 font-16">手放した方法 部門</h4>
-    <%= render 'ranking', rank_items: @way_ranking %>
+<% if @done_letting_go_items_num > 0 %>
+  <div class="card card-style">
+    <div class="content text-center">
+      <h3 class="mb-5 font-18">手放せたものランキング</h3>
+      <div class="divider-icon bg-yellow-dark my-4 mx-4"><i class="fas fa-crown font-17 color-yellow-dark bg-white"></i>
+      </div>
+      <h4 class="mb-3 font-16">カテゴリー 部門</h4>
+      <%= render 'ranking', rank_items: @category_ranking %>
+      <div class="divider-icon bg-yellow-dark my-4 mx-4"><i class="fas fa-crown font-17 color-yellow-dark bg-white"></i>
+      </div>
+      <h4 class="mb-3 font-16">手放した理由 部門</h4>
+      <%= render 'ranking', rank_items: @reason_ranking %>
+      <div class="divider-icon bg-yellow-dark my-4 mx-4"><i class="fas fa-crown font-17 color-yellow-dark bg-white"></i>
+      </div>
+      <h4 class="mb-3 font-16">手放した方法 部門</h4>
+      <%= render 'ranking', rank_items: @way_ranking %>
+    </div>
   </div>
-</div>
+<% end %>
