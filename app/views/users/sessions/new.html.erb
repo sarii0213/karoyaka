@@ -26,15 +26,6 @@
         <em>(required)</em>
       </div>
 
-      <% if devise_mapping.rememberable? %>
-        <div class="form-check icon-check mb-2">
-          <%= f.check_box :remember_me, class: 'form-check-input' %>
-          <%= f.label :remember_me, class: 'form-check-label' %>
-          <i class="icon-check-1 far fa-square color-gray-dark font-16"></i>
-          <i class="icon-check-2 far fa-check-square font-16 color-highlight"></i>
-        </div>
-      <% end %>
-
       <div class="actions">
         <%= f.submit 'Log in',
                      class: 'btn btn-border btn-m btn-full mb-3 rounded-sm text-uppercase font-700 border-green-dark color-green-dark bg-theme',
