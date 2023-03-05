@@ -10,6 +10,7 @@ $card-under-bg-zindex:1;
 	max-height: 150000px;
     margin-bottom:$globalMargin;
 	background-position: center center !important;
+	max-width: 500px;
 }
 
 .cover-slider .card{margin-bottom:0px!important;}
@@ -22,6 +23,11 @@ $card-under-bg-zindex:1;
 	box-shadow: $globalShadow;
 	.card-body {
 		padding: 15px;
+	}
+}
+@media (min-width: 500px + $globalMargin*2) {
+	.card-style {
+		margin: 0px auto $globalMargin auto;
 	}
 }
 .card-style .card-overlay{
