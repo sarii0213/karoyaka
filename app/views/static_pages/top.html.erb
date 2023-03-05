@@ -2,16 +2,43 @@
 <% content_for :title, 'トップページ' %>
 
 <div class="card card-style">
-  <div class="content">
-    <p>１日に１つ、モノを手放そう</p>
+  <div class="content py-4">
+    <h1 class="text-center font-22">１日１捨</h1>
+    <p class="text-center color-gray-dark">ー one item per day ー</p>
+    <h1 class="text-center mb-5 font-22">１日に１つ、モノを手放そう</h1>
 
-    <h2>簡単２ステップ</h2>
-    <p>①手放せるモノを見つける</p>
-    <%= link_to '手放せるモノ見つけた！', about_path %>
-    <p>②手放す（捨てる、譲る）</p>
-    <%= link_to '手放せた！', root_path %>
+    <div class="mx-4 text-center">
+      <h2 class="text-center color-orange-light mb-4">\\ 簡単 ２ステップ //</h2>
+      <h3 class="font-20 font-600">① 手放せるモノを見つける</h3>
+      <%= link_to new_to_let_go_item_path,
+                  class: 'btn btn-border btn-xl btn-3d shadow-s border-green-dark font-700 bg-green-light my-3 btn-full' do %>
+        <i class="fas fa-lightbulb font-18 me-2"></i> 手放せるモノ見つけた！
+      <% end %>
+      <h3 class="font-20 font-600 mt-5">② 手放す（捨てる or 譲る）</h3>
+      <%= link_to new_done_letting_go_item_path,
+                  class: 'btn btn-border btn-xl btn-3d shadow-s border-mint-dark font-700 bg-mint-light my-3 btn-full' do %>
+        <i class="fas fa-dove font-18 me-2"></i> 手放せた！
+      <% end %>
 
-    <%= link_to '捨て活やる気になれない', root_path %>
+      <p class="font-30 color-gray-dark my-4">. . .</p>
 
+      <h2 class="text-center color-dark-light mt-5">捨て活？やる気にならん🙄</h2>
+      <%= link_to quotes_path,
+                  class: 'btn btn-border btn-xl btn-3d shadow-s border-aqua-dark font-700 bg-aqua-light my-3 btn-full' do %>
+        <i class="fas fa-quote-right font-18 me-2"></i> とりあえず開く
+      <% end %>
+    </div>
   </div>
+</div>
+
+<div class="mx-5">
+  <h2 class="color-dark-light font-18">Links</h2>
+  <ul class="d-flex align-content-start flex-wrap list-unstyled">
+    <li class="mx-3"><i class="fas fa-chevron-right font-10"></i> <%= link_to 'karoyakaについて', about_path,
+                                                                              class: 'color-dark-light' %></li>
+    <li class="mx-3"><i class="fas fa-chevron-right font-10"></i> <%= link_to '利用規約', term_path,
+                                                                              class: 'color-dark-light' %><br></li>
+    <li class="mx-3"><i class="fas fa-chevron-right font-10"></i> <%= link_to 'プライバシーポリシー', privacy_path,
+                                                                              class: 'color-dark-light' %></li>
+  </ul>
 </div>
