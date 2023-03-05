@@ -22,7 +22,8 @@
       <%= f.collection_select :category_id, Category.selectable, :id, :name,
                               { prompt: 'カテゴリーを選択する' },
                               { data: { action: "hint#showHint",
-                                        hint_target: "category" } } %>
+                                        hint_target: "category" },
+                                class: 'form-control'} %>
       <span><i class="fa fa-chevron-down"></i></span>
       <em></em>
     </div>
@@ -41,13 +42,14 @@
       <%= f.collection_select :reason_id, Reason.selectable, :id, :name,
                               { prompt: '手放す理由を選択する' },
                               { data: { action: "hint#showHint",
-                                        hint_target: "reason" } } %>
+                                        hint_target: "reason" },
+                                class: 'form-control'} %>
       <span><i class="fa fa-chevron-down"></i></span>
       <em></em>
     </div>
 
     <div class="mt-4">
-      <span>手放す方法のヒント</span>
+      <span class="font-600"><i class="fas fa-info-circle"></i> 手放す方法のヒント</span>
       <div id="letting_go_way_hint">
         <p class="color-gray-dark mb-4 ms-2">手放すモノのカテゴリーと理由を選択すると、<br>こちらにおすすめの手放す方法が表示されます。</p>
       </div>
