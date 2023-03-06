@@ -10,7 +10,7 @@ RSpec.describe '手放したいものリスト' do
   describe '新規登録' do
     it '手放したいものを新規登録できること' do
       visit new_to_let_go_item_path
-      attach_file '画像', Rails.root.join('spec', 'fixtures', 'dummy.png')
+      attach_file 'アップロード', Rails.root.join('spec', 'fixtures', 'dummy.png'), make_visible: true
       select '生活雑貨', from: 'カテゴリー'
       fill_in '手放すもの', with: 'セーター'
       select '使ってない', from: '手放す理由'

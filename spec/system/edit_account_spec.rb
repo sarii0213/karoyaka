@@ -10,7 +10,7 @@ RSpec.describe 'アカウント', type: :system do
       visit mypage_account_path
       expect(current_path).to eq '/mypage/account'
       find('.edit-link').click
-      attach_file 'アバター画像', "#{Rails.root}/spec/fixtures/dummy.png"
+      attach_file 'アップロード', "#{Rails.root}/spec/fixtures/dummy.png", make_visible: true
       fill_in 'ユーザー名', with: 'test'
       fill_in 'メールアドレス', with: 'test@example.com'
       fill_in 'パスワード', with: 'new_password'
