@@ -11,7 +11,7 @@ RSpec.describe '手放し済みリスト' do
     context '手放したアイテムをゼロから登録する場合' do
       it '手放し済みアイテムを新規登録できること' do
         visit new_done_letting_go_item_path
-        attach_file '画像', Rails.root.join('spec', 'fixtures', 'dummy.png')
+        attach_file 'アップロード', Rails.root.join('spec', 'fixtures', 'dummy.png'), make_visible: true
         select '生活雑貨', from: 'カテゴリー'
         fill_in '手放すもの', with: 'セーター'
         select '使ってない', from: '理由'
