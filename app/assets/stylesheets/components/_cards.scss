@@ -28,6 +28,7 @@ $card-under-bg-zindex:1;
 @media (min-width: 500px + $globalMargin*2) {
 	.card-style {
 		margin: 0px auto $globalMargin auto;
+		padding: 10px 30px;
 	}
 }
 .card-style .card-overlay{

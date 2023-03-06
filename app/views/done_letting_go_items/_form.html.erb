@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="file-data pb-4">
-    <%= f.label :image, class: 'bg-highlight shadow-s rounded-s btn btn-l btn-full mx-4' do %>
+    <%= f.label :image, class: 'bg-highlight shadow-s rounded-s btn btn-l btn-full' do %>
       <p class="color-white font-600"><i class="fas fa-camera"></i> アップロード</p>
     <% end %>
     <%= f.file_field :image, accept: 'image/*', capture: 'environment', class: 'upload-file' %>
@@ -28,7 +28,7 @@
     <% if @to_let_go_item %>
       <%= f.collection_select :category_id, Category.selectable, :id, :name, selected: @to_let_go_item.category_id, prompt: 'カテゴリーを選択する' %>
     <% else %>
-      <%= f.collection_select :category_id, Category.selectable, :id, :name, prompt: 'カテゴリーを選択する' %>
+      <%= f.collection_select :category_id, Category.selectable, :id, :name, { prompt: 'カテゴリーを選択する' }, { class: 'form-control' } %>
     <% end %>
     <span><i class="fa fa-chevron-down"></i></span>
     <em></em>
@@ -51,7 +51,7 @@
   <div class="input-style no-borders no-icon mb-4">
     <%= f.label :reason_id, class: 'color-highlight' %>
     <% if @to_let_go_item %>
-      <%= f.collection_select :reason_id, Reason.selectable, :id, :name, selected: @to_let_go_item.reason_id, prompt: '手放す理由を選択する' %>
+      <%= f.collection_select :reason_id, Reason.selectable, :id, :name, { selected: @to_let_go_item.reason_id, prompt: '手放す理由を選択する' }, { class: 'form-control' } %>
     <% else %>
       <%= f.collection_select :reason_id, Reason.selectable, :id, :name, prompt: '手放す理由を選択する' %>
     <% end %>
@@ -65,7 +65,7 @@
   <% end %>
   <div class="input-style no-borders no-icon mb-4">
     <%= f.label :letting_go_way_id, class: 'color-highlight' %>
-    <%= f.collection_select :letting_go_way_id, LettingGoWay.selectable, :id, :name, prompt: '手放す方法を選択する' %>
+    <%= f.collection_select :letting_go_way_id, LettingGoWay.selectable, :id, :name, { prompt: '手放す方法を選択する' }, { class: 'form-control' } %>
     <span><i class="fa fa-chevron-down"></i></span>
     <em></em>
   </div>
@@ -74,7 +74,7 @@
     <%= f.hidden_field :item_id, value: @to_let_go_item.id %>
   <% end %>
 
-  <div class="actions">
+  <div class="actions mt-4">
     <%= f.submit class: 'btn btn-border btn-m btn-full mb-3 rounded-sm font-700 border-green-dark color-green-dark bg-theme',
                  style: 'width: 100%' %>
   </div>
