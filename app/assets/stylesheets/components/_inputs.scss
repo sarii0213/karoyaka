@@ -31,6 +31,7 @@ input[type="range"] {
 	width: 100%;
 	height: 45px;
 	color: $color_transparent !important;
+    display: none;
 }
 .upload-file-text {
 	pointer-events: none;
