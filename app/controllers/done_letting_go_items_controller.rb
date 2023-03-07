@@ -1,6 +1,20 @@
 class DoneLettingGoItemsController < ApplicationController
   def index
     @done_letting_go_items = current_user.done_letting_go_items.order(created_at: :desc).page(params[:page])
+    # rubocop:disable Layout/LineLength
+    # query = ''
+    # [:category_id, :reason_id, :letting_go_way_id].each do |selected|
+    #   if params[selected].present?
+    #     query += "#{selected}: #{params[selected]}, "
+    #   end
+    # end
+    # query.sub!(/, $/, '')
+    # @done_letting_go_items = if query.present?
+    #                            current_user.done_letting_go_items.order(created_at: :desc).where(query).page(params[:page])
+    #                          else
+    #                            current_user.done_letting_go_items.order(created_at: :desc).page(params[:page])
+    #                          end
+    # rubocop:enable Layout/LineLength
   end
 
   def show
@@ -33,6 +47,7 @@ class DoneLettingGoItemsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
   # rubocop:enable  Metrics/MethodLength, Metrics/AbcSize
 
   def update
