@@ -1,6 +1,18 @@
 class ToLetGoItemsController < ApplicationController
   def index
     @to_let_go_items = current_user.to_let_go_items.order(created_at: :desc).page(params[:page])
+    # @to_let_go_items = if params[:category_id].present? && params[:reason_id].present?
+    #                      current_user.to_let_go_items.order(created_at: :desc).where(category_id: params[:category_id]).where(reason_id: params[:reason_id]).page(params[:page])
+    #
+    #                    elsif params[:category_id].present?
+    #                      current_user.to_let_go_items.order(created_at: :desc).where(category_id: params[:category_id]).page(params[:page])
+    #
+    #                    elsif params[:reason_id].present?
+    #                      current_user.to_let_go_items.order(created_at: :desc).where(reason_id: params[:reason_id]).page(params[:page])
+    #
+    #                    else
+    #                      current_user.to_let_go_items.order(created_at: :desc).page(params[:page])
+    #                    end
   end
 
   def show
@@ -54,6 +66,7 @@ class ToLetGoItemsController < ApplicationController
       format.turbo_stream
     end
   end
+
   # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
 
   private
@@ -74,5 +87,6 @@ class ToLetGoItemsController < ApplicationController
     end
     @way_ids
   end
+
   # rubocop:enable Metrics/AbcSize
 end
