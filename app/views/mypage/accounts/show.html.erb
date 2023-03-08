@@ -28,7 +28,7 @@
 </div>
 
 <% if @user.favorite_quotes.present? %>
-  <h3 class="mx-4 mb-2 font-18">お気に入りの名言をランダムに表示</h3>
+  <h3 class="text-center mb-2 font-18">お気に入りの名言をランダムに表示</h3>
   <%= render 'quotes/quote', quote: @quote %>
 <% end %>
 
