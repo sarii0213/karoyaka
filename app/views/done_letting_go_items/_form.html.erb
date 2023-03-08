@@ -54,9 +54,9 @@
   <div class="input-style no-borders no-icon mb-4">
     <%= f.label :reason_id, class: 'color-highlight' %>
     <% if @to_let_go_item %>
-      <%= f.collection_select :reason_id, Reason.selectable, :id, :name, { selected: @to_let_go_item.reason_id, prompt: '手放す理由を選択する' }, { class: 'form-control' } %>
+      <%= f.collection_select :reason_id, Reason.selectable, :id, :name, { selected: @to_let_go_item.reason_id, prompt: '手放す理由を選択する'}, { class: 'form-control' } %>
     <% else %>
-      <%= f.collection_select :reason_id, Reason.selectable, :id, :name, prompt: '手放す理由を選択する' %>
+      <%= f.collection_select :reason_id, Reason.selectable, :id, :name, { prompt: '手放す理由を選択する'}, { class: 'form-control' } %>
     <% end %>
     <span><i class="fa fa-chevron-down"></i></span>
     <em></em>
