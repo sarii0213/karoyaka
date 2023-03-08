@@ -2,10 +2,11 @@
 <% content_for :title, '手放し済み 編集' %>
 
 <div class="card card-style">
-<div class="content">
-  <p>
-    手放したモノの画像、カテゴリー、名前、手放す理由、手放す方法を入力してください。
-  </p>
-  <%= render 'form', done_letting_go_item: @done_letting_go_item %>
-</div>
+  <div class="content">
+    <p>
+      手放したモノの画像、カテゴリー、名前、手放す理由、手放す方法を入力してください。<br>
+      ※ <b>画像のアップロード</b>と<b>モノの名前</b>の入力はスキップできます。
+    </p>
+    <%= render 'form', done_letting_go_item: @done_letting_go_item %>
+  </div>
 </div>
