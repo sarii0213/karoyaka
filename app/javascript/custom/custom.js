@@ -1,4 +1,3 @@
-console.log("loaded custom.js")
 //Removing Preloader
 setTimeout(function () {
     var preloader = document.getElementById('preloader')
@@ -8,7 +7,6 @@ setTimeout(function () {
 }, 150);
 
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("document.addEventListener('DOMContentLoaded'...の中")
     'use strict'
 
     //Global Variables
@@ -24,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //Place all your custom Javascript functions and plugin calls below this line
     function init_template() {
-        console.log("init_template()の中")
         //Caching Global Variables
         var i, e, el; //https://www.w3schools.com/js/js_performance.asp
 
