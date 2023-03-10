@@ -38,7 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     img.src = URL.createObjectURL(this.files[0]);
                 }
                 document.getElementsByClassName('upload-file-data')[0].classList.remove('disabled');
-                document.getElementsByClassName('attached-image')[0].classList.add('disabled');
+                if (document.getElementsByClassName('attached-image') != null) {
+                    document.getElementsByClassName('attached-image')[0].classList.add('disabled');
+                }
             }
         }
     }
@@ -62,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //         document.addEventListener('swup:pageView',(e) => { init_template(); })
     //     }
     // }
-    
+
     init_template();
 });
 
