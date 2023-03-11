@@ -27,7 +27,7 @@ class DoneLettingGoItemsController < ApplicationController
     @to_let_go_item = ToLetGoItem.find(params[:item_id]) if params[:item_id]
     @done_letting_go_item = DoneLettingGoItem.new
   rescue ActiveRecord::RecordNotFound
-    redirect_to action: :index
+    redirect_to controller: :to_let_go_items, action: :index
   end
 
   def edit
