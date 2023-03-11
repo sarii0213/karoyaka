@@ -80,10 +80,9 @@ class ToLetGoItemsController < ApplicationController
     params.require(:to_let_go_item).permit(:image, :category_id, :name, :reason_id)
   end
 
-  # rubocop:disable Metrics/AbcSize
   def optimal_ways_with_category_reason(category_id, reason_id)
-    category_scores = CategoryWayOptimality.where(category_id: category_id).map(&:score)
-    reason_scores = ReasonWayOptimality.where(reason_id: reason_id).map(&:score)
+    category_scores = CategoryWayOptimality.where(category_id:).map(&:score)
+    reason_scores = ReasonWayOptimality.where(reason_id:).map(&:score)
     scores = [category_scores, reason_scores].transpose.map { |ary| ary.inject(:*) }
     @way_ids = []
     3.times do |_|
@@ -92,6 +91,4 @@ class ToLetGoItemsController < ApplicationController
     end
     @way_ids
   end
-
-  # rubocop:enable Metrics/AbcSize
 end
