@@ -12,11 +12,11 @@
       <div class="w-100 ps-3">
         <h5><%= @done_letting_go_item.decorate.item_name %></h5>
         <span class="badge color-white bg-teal-dark"><%= @done_letting_go_item.category.name %></span><br>
-        <p class="mb-3">具体例：<br><%= @done_letting_go_item.category.description %></p>
+        <p class="mb-3">（ 具体例 ）<br><%= @done_letting_go_item.category.description %></p>
         <span class="badge color-white bg-blue-light"><%= @done_letting_go_item.reason.name %></span><br>
-        <p class="mb-4">詳細：<br><%= @done_letting_go_item.reason.description %></p>
+        <p class="mb-4">（ 詳細 ）<br><%= @done_letting_go_item.reason.description %></p>
         <span class="badge color-white bg-highlight-dark"><%= @done_letting_go_item.letting_go_way.name %></span><br>
-        <p class="mb-4">詳細：<br><%= @done_letting_go_item.letting_go_way.description %></p>
+        <p class="mb-4">（ 詳細 ）<br><%= @done_letting_go_item.letting_go_way.description %></p>
       </div>
       <div class="ms-1 text-end">
         <%= link_to edit_done_letting_go_item_path(@done_letting_go_item), class: 'color-brown-dark edit-link' do %>

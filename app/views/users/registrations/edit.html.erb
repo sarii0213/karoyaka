@@ -11,7 +11,7 @@
 
       <% if resource.avatar.attached? %>
         <div class="text-center mb-2">
-          <%= image_tag resource.decorate.img(:xl), { class: 'rounded-xl attached-image', id: 'attached-image' } %>
+          <%= image_tag resource.decorate.img(:xl), { class: 'rounded-xl attached-image' } %>
         </div>
       <% end %>
       <div class="list-group upload-file-data disabled my-4 mb-2">
