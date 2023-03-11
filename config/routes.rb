@@ -1,6 +1,9 @@
 # == Route Map
 #
 #                                   Prefix Verb   URI Pattern                                                                                       Controller#Action
+#                                   signup GET    /signup(.:format)                                                                                 users/registrations#new
+#                                    login GET    /login(.:format)                                                                                  users/sessions#new
+#                                   logout DELETE /logout(.:format)                                                                                 users/sessions#destroy
 #                         new_user_session GET    /users/sign_in(.:format)                                                                          users/sessions#new
 #                             user_session POST   /users/sign_in(.:format)                                                                          users/sessions#create
 #                     destroy_user_session DELETE /users/sign_out(.:format)                                                                         users/sessions#destroy
@@ -17,9 +20,6 @@
 #                                          DELETE /users(.:format)                                                                                  users/registrations#destroy
 #                                          POST   /users(.:format)                                                                                  users/registrations#create
 #                           mypage_account GET    /mypage/account(.:format)                                                                         mypage/accounts#show
-#                                   signup GET    /signup(.:format)                                                                                 users/registrations#new
-#                                    login GET    /login(.:format)                                                                                  users/sessions#new
-#                                   logout GET    /logout(.:format)                                                                                 users/sessions#destroy
 #                                     root GET    /                                                                                                 static_pages#top
 #                                    about GET    /about(.:format)                                                                                  static_pages#about
 #                                  privacy GET    /privacy(.:format)                                                                                static_pages#privacy
@@ -47,8 +47,15 @@
 #                                    quote GET    /quotes/:id(.:format)                                                                             quotes#show
 #                              achievement GET    /achievement(.:format)                                                                            achievements#show
 #                              sidekiq_web        /sidekiq                                                                                          Sidekiq::Web
+#                                  sitemap GET    /sitemap(.:format)                                                                                redirect(301, https://s3-ap-northeast-1.amazonaws.com/karoyaka-storage/sitemaps/sitemap.xml.gz)
 
 Rails.application.routes.draw do
+
+  devise_scope :user do
+    get 'signup', to: 'users/registrations#new'
+    get 'login', to: 'users/sessions#new'
+    delete 'logout', to: 'users/sessions#destroy'
+  end
 
   devise_for :users, :controllers => {
     registrations: 'users/registrations',
@@ -57,12 +64,6 @@ Rails.application.routes.draw do
 
   namespace :mypage do
     resource :account, only: :show
-  end
-
-  devise_scope :user do
-    get 'signup', to: 'users/registrations#new'
-    get 'login', to: 'users/sessions#new'
-    get 'logout', to: 'users/sessions#destroy'
   end
 
   root to: 'static_pages#top'

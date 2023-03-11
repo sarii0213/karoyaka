@@ -13,7 +13,7 @@ RSpec.describe '手放したいものリスト' do
       attach_file 'アップロード', Rails.root.join('spec', 'fixtures', 'dummy.png'), make_visible: true
       select '生活雑貨', from: 'カテゴリー'
       fill_in '手放すもの', with: 'セーター'
-      select '使ってない', from: '手放す理由'
+      select '手に取ってない', from: '手放す理由'
       click_on '登録する'
       expect(page).to have_content '登録しました'
     end
@@ -21,7 +21,7 @@ RSpec.describe '手放したいものリスト' do
     it '手放したいもののカテゴリー・理由を選択すると手放す方法のヒントが表示されること' do
       visit new_to_let_go_item_path
       select '生活雑貨', from: 'カテゴリー'
-      select '使ってない', from: '手放す理由'
+      select '手に取ってない', from: '手放す理由'
       # 手放す方法：「ゴミ」, 「お店」, 「ゆずる」, 「回収依頼」
       # カテゴリー「生活雑貨」の最適値： 1, 0.3, 0.5, 0.4
       # 理由「使ってない」の最適値：0.7, 0.7, 0.7, 0.5
@@ -36,7 +36,7 @@ RSpec.describe '手放したいものリスト' do
 
 
   describe '編集' do
-    let!(:to_let_go_item) { create(:to_let_go_item, user:, category_id: 2) }
+    let!(:to_let_go_item) { create(:to_let_go_item, user:, category_id: 2, reason_id: 1) }
 
     it '編集ができること' do
       visit to_let_go_item_path(to_let_go_item)
@@ -49,7 +49,7 @@ RSpec.describe '手放したいものリスト' do
   end
 
   describe '削除' do
-    let!(:to_let_go_item) { create(:to_let_go_item, user:, category_id: 2) }
+    let!(:to_let_go_item) { create(:to_let_go_item, user:, category_id: 2, reason_id: 1) }
 
     it '削除ができること' do
       visit to_let_go_item_path(to_let_go_item)

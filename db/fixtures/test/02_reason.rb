@@ -1,7 +1,7 @@
 Reason.seed(:name,
             {
               id: 1,
-              name: '使ってない',
+              name: '手に取ってない',
               description: '1年以内に手に取っていない、明確な使う予定がない'
             },
             {

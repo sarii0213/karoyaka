@@ -19,6 +19,9 @@ class ToLetGoItemsController < ApplicationController
 
   def show
     @to_let_go_item = current_user.to_let_go_items.find(params[:id])
+    optimal_ways_with_category_reason(@to_let_go_item.category_id, @to_let_go_item.reason_id)
+  rescue ActiveRecord::RecordNotFound
+    redirect_to action: :index
   end
 
   def new
@@ -56,7 +59,7 @@ class ToLetGoItemsController < ApplicationController
   # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
   def show_hint
     if params[:category_id] && params[:reason_id]
-      optimal_ways_with_category_reason
+      optimal_ways_with_category_reason(params[:category_id], params[:reason_id])
     elsif params[:category_id]
       @way_ids = CategoryWayOptimality.where(category_id: params[:category_id]).order(score: :desc)
                                       .limit(3).map(&:letting_go_way_id)
@@ -77,10 +80,9 @@ class ToLetGoItemsController < ApplicationController
     params.require(:to_let_go_item).permit(:image, :category_id, :name, :reason_id)
   end
 
-  # rubocop:disable Metrics/AbcSize
-  def optimal_ways_with_category_reason
-    category_scores = CategoryWayOptimality.where(category_id: params[:category_id]).map(&:score)
-    reason_scores = ReasonWayOptimality.where(reason_id: params[:reason_id]).map(&:score)
+  def optimal_ways_with_category_reason(category_id, reason_id)
+    category_scores = CategoryWayOptimality.where(category_id:).map(&:score)
+    reason_scores = ReasonWayOptimality.where(reason_id:).map(&:score)
     scores = [category_scores, reason_scores].transpose.map { |ary| ary.inject(:*) }
     @way_ids = []
     3.times do |_|
@@ -89,6 +91,4 @@ class ToLetGoItemsController < ApplicationController
     end
     @way_ids
   end
-
-  # rubocop:enable Metrics/AbcSize
 end
