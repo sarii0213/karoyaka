@@ -19,6 +19,8 @@ class ToLetGoItemsController < ApplicationController
 
   def show
     @to_let_go_item = current_user.to_let_go_items.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to action: :index
   end
 
   def new

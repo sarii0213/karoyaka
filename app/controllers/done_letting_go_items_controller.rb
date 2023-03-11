@@ -19,11 +19,15 @@ class DoneLettingGoItemsController < ApplicationController
 
   def show
     @done_letting_go_item = current_user.done_letting_go_items.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to action: :index
   end
 
   def new
     @to_let_go_item = ToLetGoItem.find(params[:item_id]) if params[:item_id]
     @done_letting_go_item = DoneLettingGoItem.new
+  rescue ActiveRecord::RecordNotFound
+    redirect_to action: :index
   end
 
   def edit
