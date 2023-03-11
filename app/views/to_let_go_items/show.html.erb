@@ -12,11 +12,17 @@
       <div class="w-100 ps-3">
         <h5><%= @to_let_go_item.decorate.item_name %></h5>
         <span class="badge color-white bg-teal-dark"><%= @to_let_go_item.category.name %></span><br>
-        <p class="mb-3">具体例：<br><%= @to_let_go_item.category.description %></p>
+        <p class="mb-3">（ 具体例 ）<br><%= @to_let_go_item.category.description %></p>
         <span class="badge color-white bg-blue-light"><%= @to_let_go_item.reason.name %></span><br>
-        <p class="mb-4">詳細：<br><%= @to_let_go_item.reason.description %></p>
+        <p class="mb-4">（ 詳細 ）<br><%= @to_let_go_item.reason.description %></p>
+        <span class="font-600"><i class="fas fa-info-circle"></i> 手放す方法のヒント</span>
+        <ol>
+          <% @way_ids.each do |way_id| %>
+            <li><%= LettingGoWay.find(way_id).name %></li>
+          <% end %>
+        </ol>
         <%= link_to '手放す！', new_done_letting_go_item_path(item_id: @to_let_go_item.id),
-                    class: 'btn btn-border btn-s btn-full font-700 border-green-dark color-green-dark bg-theme mt-1' %>
+                    class: 'btn btn-border btn-s btn-full font-700 border-green-dark color-green-dark bg-theme mt-4' %>
       </div>
       <div class="text-end">
         <%= link_to edit_to_let_go_item_path(@to_let_go_item), class: 'color-brown-dark edit-link' do %>
