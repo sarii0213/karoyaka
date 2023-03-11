@@ -1,3 +1,4 @@
+<% days = 35 %>
 <% column_num = 20 %>
 <% last_row_days = days.remainder(column_num) %>
 <% rows = last_row_days.zero? ? days.div(column_num) : days.div(column_num) + 1 %>
@@ -10,7 +11,7 @@
     □
   <% end %>
 <% else %>
-  <% rows.times do |row| %>
+  <% (rows-1).times do |row| %>
     <% column_num.times do |i| %>
       ■
     <% end %>
