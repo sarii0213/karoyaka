@@ -153,7 +153,7 @@ $ docker-compose run --rm web bin/rails db:create
 
 - テーブル作成
 ```sh
-$ docker-composes run --rm web bin/rails db:migrate
+$ docker-compose run --rm web bin/rails db:migrate
 ```
 
 - シードデータを反映
