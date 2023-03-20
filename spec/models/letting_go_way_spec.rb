@@ -28,4 +28,22 @@ RSpec.describe LettingGoWay do
       expect(described_class.selectable).not_to include(letting_go_way_2)
     end
   end
+
+  describe '::optimal' do
+    fit '該当のカテゴリー・理由における最適な手放す方法が格納されること' do
+      expect(described_class.optimal(1, 1)).to match([LettingGoWay.find(1), LettingGoWay.find(2), LettingGoWay.find(3)])
+    end
+  end
+
+  describe '::category_optimal' do
+    fit '該当のカテゴリーにおける最適な手放す方法が格納されること' do
+      expect(described_class.category_optimal(1)).to match([LettingGoWay.find(1), LettingGoWay.find(3), LettingGoWay.find(4)])
+    end
+  end
+
+  describe '::reason_optimal' do
+    fit '該当の理由における最適な手放す方法が格納されること' do
+      expect(described_class.reason_optimal(1)).to match([LettingGoWay.find(1), LettingGoWay.find(2), LettingGoWay.find(3)])
+    end
+  end
 end

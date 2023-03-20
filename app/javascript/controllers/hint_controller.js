@@ -17,7 +17,7 @@ export default class extends Controller {
             params.append("reason_id", this.reasonTarget.value)
         }
         console.log(params)
-        get(`/to_let_go_items/show_hint?${params}`, {
+        get(`/to_let_go_items/hint?${params}`, {
             responseKind: "turbo-stream"
         })
     }

@@ -24,4 +24,8 @@ class CategoryWayOptimality < ApplicationRecord
   validates :category_id, uniqueness: { scope: :letting_go_way_id }
   belongs_to :category
   belongs_to :letting_go_way
+
+  def self.scores(category_id)
+    where(category_id:).map(&:score)
+  end
 end

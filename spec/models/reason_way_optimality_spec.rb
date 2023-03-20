@@ -25,4 +25,10 @@ require 'rails_helper'
 RSpec.describe ReasonWayOptimality, type: :model do
   subject { build(:reason_way_optimality) }
   it { is_expected.to be_valid }
+
+  describe '::scores' do
+    it '該当の理由の手放す方法のスコアが格納されること' do
+      expect(described_class.scores(1)).to eq([0.7, 0.7, 0.7, 0.5])
+    end
+  end
 end

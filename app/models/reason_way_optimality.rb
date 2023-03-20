@@ -25,4 +25,8 @@ class ReasonWayOptimality < ApplicationRecord
 
   belongs_to :reason
   belongs_to :letting_go_way
+
+  def self.scores(reason_id)
+    where(reason_id:).map(&:score)
+  end
 end
