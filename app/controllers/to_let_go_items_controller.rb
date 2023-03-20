@@ -61,6 +61,4 @@ class ToLetGoItemsController < ApplicationController
   def to_let_go_item_params
     params.require(:to_let_go_item).permit(:image, :category_id, :name, :reason_id)
   end
-
-
 end

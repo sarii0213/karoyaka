@@ -19,8 +19,8 @@ class LettingGoWay < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates :description, presence: true
 
-  has_many :category_way_optimalities
-  has_many :reason_way_optimalities
+  has_many :category_way_optimalities, dependent: :destroy
+  has_many :reason_way_optimalities, dependent: :destroy
 
   def self.optimal(category_id, reason_id)
     category_scores = CategoryWayOptimality.scores(category_id)
