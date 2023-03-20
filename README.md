@@ -151,6 +151,11 @@ $ docker-compose run --rm web bundle
 $ docker-compose run --rm web bin/rails db:create
 ```
 
+- テーブル作成
+```sh
+$ docker-composes run --rm web bin/rails db:migrate
+```
+
 - シードデータを反映
 ```sh
 $ docker-compose run --rm web bin/rails db:seed_fu
