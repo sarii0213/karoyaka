@@ -24,7 +24,7 @@
 #                                    about GET    /about(.:format)                                                                                  static_pages#about
 #                                  privacy GET    /privacy(.:format)                                                                                static_pages#privacy
 #                                     term GET    /term(.:format)                                                                                   static_pages#term
-#                show_hint_to_let_go_items GET    /to_let_go_items/show_hint(.:format)                                                              to_let_go_items#show_hint
+#                     to_let_go_items_hint GET    /to_let_go_items/hint(.:format)                                                                   to_let_go_items/hints#show
 #                          to_let_go_items GET    /to_let_go_items(.:format)                                                                        to_let_go_items#index
 #                                          POST   /to_let_go_items(.:format)                                                                        to_let_go_items#create
 #                       new_to_let_go_item GET    /to_let_go_items/new(.:format)                                                                    to_let_go_items#new
@@ -71,13 +71,11 @@ Rails.application.routes.draw do
   get '/privacy', to: 'static_pages#privacy'
   get '/term', to: 'static_pages#term'
 
-  resources :to_let_go_items do
-    collection do
-      get :show_hint
-    end
+  namespace :to_let_go_items do
+    resource :hint, only: :show
   end
 
-  resources :done_letting_go_items
+  resources :to_let_go_items, :done_letting_go_items
 
   resources :quotes, only: %i[index show] do
     resource :favorite, only: %i[create destroy], module: :quotes

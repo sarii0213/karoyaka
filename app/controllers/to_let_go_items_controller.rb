@@ -56,20 +56,6 @@ class ToLetGoItemsController < ApplicationController
     redirect_to to_let_go_items_path, notice: '手放したいものリストから削除しました', status: :see_other
   end
 
-  def show_hint
-    @ways =
-      if params[:category_id] && params[:reason_id]
-        LettingGoWay.optimal(params[:category_id], params[:reason_id])
-      elsif params[:category_id]
-        LettingGoWay.category_optimal(params[:category_id])
-      else
-        LettingGoWay.reason_optimal(params[:reason_id])
-      end
-    respond_to do |format|
-      format.turbo_stream
-    end
-  end
-
   private
 
   def to_let_go_item_params
