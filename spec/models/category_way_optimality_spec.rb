@@ -25,4 +25,10 @@ require 'rails_helper'
 RSpec.describe CategoryWayOptimality, type: :model do
   subject { build(:category_way_optimality) }
   it { is_expected.to be_valid }
+
+  describe '::scores' do
+    it '該当のカテゴリーの手放す方法のスコアが格納されること' do
+      expect(described_class.scores(1)).to eq([1, 0.3, 0.5, 0.4])
+    end
+  end
 end
