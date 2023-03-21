@@ -5,13 +5,13 @@
   <% end %>
   <% if user_signed_in? %>
     <%= active_link_to mypage_account_path, active: %r{^/mypage|users}, class_active: 'active-nav',
-                       class: 'header-icon header-icon-4 me-2 d-flex flex-column align-items-center justify-content-center' do %>
+                                            class: 'header-icon header-icon-4 me-2 d-flex flex-column align-items-center justify-content-center' do %>
       <i class="fas fa-user-circle font-20 mb-1"></i>
       <span class="font-8 text-nowrap" style="line-height: 1">マイページ</span>
     <% end %>
   <% else %>
     <%= active_link_to login_path, active: %r{^/users|login}, class_active: 'active-nav',
-                       class: 'header-icon header-icon-4 me-2 d-flex flex-column align-items-center justify-content-center' do %>
+                                   class: 'header-icon header-icon-4 me-2 d-flex flex-column align-items-center justify-content-center' do %>
       <i class="fas fa-sign-in-alt font-20 mb-1"></i>
       <span class="font-8 text-nowrap" style="line-height: 1">ログイン</span>
     <% end %>
