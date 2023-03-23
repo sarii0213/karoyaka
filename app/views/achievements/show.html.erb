@@ -3,11 +3,7 @@
 
 <div class="card card-style">
   <div class="content text-center">
-    <h3 class="font-18">捨て活 <span class="font-24"><%= @day_what %></span>日目</h3>
-    <p class="font-10 line-height-xs color-green-dark my-3">
-      <%= render 'chart', days: @days %>
-    </p>
-    <p class="font-12 mb-1">捨て活 とは、<br>手放したいものを見つけたり 実際に手放すこと。<br>コツコツ手放して 軽やかな生活を。</p>
+    <%= render 'digest', user: @user %>
   </div>
 </div>
 
@@ -15,28 +11,28 @@
   <div class="content text-center">
     <h3 class="mb-3 font-18">記録したアイテム数の合計</h3>
     <p class="mb-1"><i class="fas fa-lightbulb"></i>
-      手放す候補：<span class="font-18 font-600"><%= @to_let_go_items_num %></span> 個</p>
+      手放す候補：<span class="font-18 font-600"><%= @user.decorate.to_let_go_items_total %></span> 個</p>
     <p><i class="fas fa-dove"></i>
-      手放し済み：<span class="font-18 font-600"><%= @done_letting_go_items_num %></span> 個</p>
+      手放し済み：<span class="font-18 font-600"><%= @user.decorate.done_letting_go_items_total %></span> 個</p>
   </div>
 </div>
 
-<% if @done_letting_go_items_num > 0 %>
+<% if @user.decorate.done_letting_go_items_total > 0 %>
   <div class="card card-style">
     <div class="content text-center">
       <h3 class="mb-5 font-18">手放せたものランキング</h3>
       <div class="divider-icon bg-yellow-dark my-4 mx-4"><i class="fas fa-crown font-17 color-yellow-dark bg-white"></i>
       </div>
       <h4 class="mb-3 font-16">カテゴリー 部門</h4>
-      <%= render 'ranking', rank_items: @category_ranking %>
+      <%= render 'ranking', rank_items: @user.category_ranking %>
       <div class="divider-icon bg-yellow-dark my-4 mx-4"><i class="fas fa-crown font-17 color-yellow-dark bg-white"></i>
       </div>
       <h4 class="mb-3 font-16">手放した理由 部門</h4>
-      <%= render 'ranking', rank_items: @reason_ranking %>
+      <%= render 'ranking', rank_items: @user.reason_ranking %>
       <div class="divider-icon bg-yellow-dark my-4 mx-4"><i class="fas fa-crown font-17 color-yellow-dark bg-white"></i>
       </div>
       <h4 class="mb-3 font-16">手放した方法 部門</h4>
-      <%= render 'ranking', rank_items: @way_ranking %>
+      <%= render 'ranking', rank_items: @user.way_ranking %>
     </div>
   </div>
 <% end %>

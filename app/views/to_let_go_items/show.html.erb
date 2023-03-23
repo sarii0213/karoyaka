@@ -17,8 +17,8 @@
         <p class="mb-4">（ 詳細 ）<br><%= @to_let_go_item.reason.description %></p>
         <span class="font-600"><i class="fas fa-info-circle"></i> 手放す方法のヒント</span>
         <ol>
-          <% @way_ids.each do |way_id| %>
-            <li><%= LettingGoWay.find(way_id).name %></li>
+          <% @ways.each do |way| %>
+            <li><%= way.name %></li>
           <% end %>
         </ol>
         <%= link_to '手放す！', new_done_letting_go_item_path(item_id: @to_let_go_item.id),

@@ -48,4 +48,16 @@ class User < ApplicationRecord
   def favorite?(quote)
     favorite_quotes.include?(quote)
   end
+
+  def category_ranking
+    done_letting_go_items.joins(:category).group('categories.name').order(count_all: :desc).limit(3).count
+  end
+
+  def reason_ranking
+    done_letting_go_items.joins(:reason).group('reasons.name').order(count_all: :desc).limit(3).count
+  end
+
+  def way_ranking
+    done_letting_go_items.joins(:letting_go_way).group('letting_go_ways.name').order(count_all: :desc).limit(3).count
+  end
 end
