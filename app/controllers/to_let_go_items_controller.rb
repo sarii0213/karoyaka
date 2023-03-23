@@ -19,7 +19,7 @@ class ToLetGoItemsController < ApplicationController
 
   def show
     @to_let_go_item = current_user.to_let_go_items.find(params[:id])
-    optimal_ways_with_category_reason(@to_let_go_item.category_id, @to_let_go_item.reason_id)
+    @ways = LettingGoWay.optimal(@to_let_go_item.category_id, @to_let_go_item.reason_id)
   rescue ActiveRecord::RecordNotFound
     redirect_to action: :index
   end
