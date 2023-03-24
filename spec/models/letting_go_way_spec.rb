@@ -29,9 +29,9 @@ RSpec.describe LettingGoWay do
     end
   end
 
-  describe '::optimal' do
+  describe '::category_reason_optimal' do
     it '該当のカテゴリー・理由における最適な手放す方法が格納されること' do
-      expect(described_class.optimal(category_id: 1, reason_id: 1)).to match([LettingGoWay.find(1), LettingGoWay.find(2), LettingGoWay.find(3)])
+      expect(described_class.category_reason_optimal(1, 1)).to match([LettingGoWay.find(1), LettingGoWay.find(2), LettingGoWay.find(3)])
     end
   end
 
@@ -44,6 +44,24 @@ RSpec.describe LettingGoWay do
   describe '::reason_optimal' do
     it '該当の理由における最適な手放す方法が格納されること' do
       expect(described_class.reason_optimal(1)).to match([LettingGoWay.find(1), LettingGoWay.find(2), LettingGoWay.find(3)])
+    end
+  end
+
+  describe '::optimal' do
+    context 'カテゴリーと理由が両方選択されている場合' do
+      it '該当のカテゴリー・理由における最適な手放す方法が格納されること' do
+        expect(described_class.optimal(category_id: 1, reason_id: 1)).to match([LettingGoWay.find(1), LettingGoWay.find(2), LettingGoWay.find(3)])
+      end
+    end
+    context 'カテゴリーのみ選択されている場合' do
+      it '該当のカテゴリーにおける最適な手放す方法が格納されること' do
+        expect(described_class.optimal(category_id: 1)).to match([LettingGoWay.find(1), LettingGoWay.find(3), LettingGoWay.find(4)])
+      end
+    end
+    context '理由のみ選択されている場合' do
+      it '該当の理由における最適な手放す方法が格納されること' do
+        expect(described_class.optimal(reason_id: 1)).to match([LettingGoWay.find(1), LettingGoWay.find(2), LettingGoWay.find(3)])
+      end
     end
   end
 end
