@@ -31,7 +31,7 @@ RSpec.describe LettingGoWay do
 
   describe '::optimal' do
     it '該当のカテゴリー・理由における最適な手放す方法が格納されること' do
-      expect(described_class.optimal(1, 1)).to match([LettingGoWay.find(1), LettingGoWay.find(2), LettingGoWay.find(3)])
+      expect(described_class.optimal(category_id: 1, reason_id: 1)).to match([LettingGoWay.find(1), LettingGoWay.find(2), LettingGoWay.find(3)])
     end
   end
 
