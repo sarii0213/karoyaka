@@ -29,9 +29,9 @@
 FactoryBot.define do
   factory :to_let_go_item do
     type { 'ToLetGoItem' }
-    category
+    category_id { [1, 2, 3].sample }
     name { [Faker::Lorem.word, nil].sample }
-    reason
+    reason_id { [1, 2, 3].sample }
     user
   end
 end
