@@ -28,16 +28,20 @@ class LettingGoWay < ApplicationRecord
     elsif category_id.nil?
       LettingGoWay.reason_optimal(reason_id)
     else
-      category_scores = CategoryWayOptimality.scores(category_id)
-      reason_scores = ReasonWayOptimality.scores(reason_id)
-      scores = [category_scores, reason_scores].transpose.map { |ary| ary.inject(:*) }
-      way_ids = []
-      3.times do |_|
-        way_ids.push(scores.index(scores.max) + 1)
-        scores[scores.index(scores.max)] = 0
-      end
-      where(id: way_ids)
+      LettingGoWay.category_reason_optimal(category_id, reason_id)
     end
+  end
+
+  def self.category_reason_optimal(category_id, reason_id)
+    category_scores = CategoryWayOptimality.scores(category_id)
+    reason_scores = ReasonWayOptimality.scores(reason_id)
+    scores = [category_scores, reason_scores].transpose.map { |ary| ary.inject(:*) }
+    way_ids = []
+    3.times do |_|
+      way_ids.push(scores.index(scores.max) + 1)
+      scores[scores.index(scores.max)] = 0
+    end
+    where(id: way_ids)
   end
 
   def self.category_optimal(category_id)
