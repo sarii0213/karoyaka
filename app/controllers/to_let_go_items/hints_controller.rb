@@ -1,18 +1,10 @@
 module ToLetGoItems
   class HintsController < ApplicationController
-    # rubocop:disable Metrics/AbcSize
     def show
-      @ways = if params[:category_id] && params[:reason_id]
-                LettingGoWay.optimal(params[:category_id], params[:reason_id])
-              elsif params[:category_id]
-                LettingGoWay.category_optimal(params[:category_id])
-              else
-                LettingGoWay.reason_optimal(params[:reason_id])
-              end
+      @ways = LettingGoWay.optimal(category_id: params[:category_id], reason_id: params[:reason_id])
       respond_to do |format|
         format.turbo_stream
       end
     end
-    # rubocop:enable Metrics/AbcSize
   end
 end
