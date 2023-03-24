@@ -29,10 +29,10 @@
 FactoryBot.define do
   factory :done_letting_go_item do
     type { 'DoneLettingGoItem' }
-    category
-    letting_go_way
+    category_id { [1, 2, 3].sample }
+    letting_go_way_id { [1, 2, 3].sample }
     name { [Faker::Lorem.word, nil].sample }
-    reason
+    reason_id { [1, 2, 3].sample }
     user
   end
 end
