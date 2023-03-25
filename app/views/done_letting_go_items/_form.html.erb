@@ -1,13 +1,9 @@
 <%= form_with model: done_letting_go_item do |f| %>
   <%= render 'shared/error_messages', object: done_letting_go_item %>
 
-  <% if @to_let_go_item %>
+  <% if @to_let_go_item || done_letting_go_item.persisted? %>
     <div class="text-center mb-1">
-      <%= image_tag @to_let_go_item.decorate.img(:lg), size: '200x200', class: 'rounded-m bg-gray-light attached-image' %>
-    </div>
-  <% elsif done_letting_go_item.persisted? %>
-    <div class="text-center mb-1">
-      <%= image_tag done_letting_go_item.decorate.img(:lg), size: '200x200', class: 'rounded-m bg-gray-light attached-image' %>
+      <%= image_tag @to_let_go_item&.decorate&.img(:lg) || done_letting_go_item&.decorate&.img(:lg), size: '200x200', class: 'rounded-m bg-gray-light attached-image' %>
     </div>
   <% end %>
   <div class="list-group upload-file-data disabled my-4">
@@ -28,21 +24,15 @@
   <% end %>
   <div class="input-style no-borders no-icon mb-4">
     <%= f.label :category_id, class: 'color-highlight' %>
-    <% if @to_let_go_item %>
-      <%= f.collection_select :category_id, Category.selectable, :id, :name, selected: @to_let_go_item.category_id, prompt: 'カテゴリーを選択する' %>
-    <% else %>
-      <%= f.collection_select :category_id, Category.selectable, :id, :name, { prompt: 'カテゴリーを選択する' }, { class: 'form-control' } %>
-    <% end %>
+    <%= f.collection_select :category_id, Category.selectable, :id, :name,
+                            { selected: @to_let_go_item&.category_id || done_letting_go_item&.category_id, prompt: 'カテゴリーを選択する' },
+                            { class: 'form-control' } %>
     <span><i class="fa fa-chevron-down"></i></span>
     <em></em>
   </div>
 
   <div class="input-style no-borders no-icon mb-4">
-    <% if @to_let_go_item %>
-      <%= f.text_field :name, class: 'form-control', placeholder: 'モノの名前', value: @to_let_go_item.name %>
-    <% else %>
-      <%= f.text_field :name, class: 'form-control', placeholder: 'モノの名前' %>
-    <% end %>
+    <%= f.text_field :name, class: 'form-control', placeholder: 'モノの名前', value: @to_let_go_item&.name || done_letting_go_item&.name %>
     <%= f.label :name, class: 'color-highlight' %>
   </div>
 
@@ -53,15 +43,12 @@
   <% end %>
   <div class="input-style no-borders no-icon mb-4">
     <%= f.label :reason_id, class: 'color-highlight' %>
-    <% if @to_let_go_item %>
-      <%= f.collection_select :reason_id, Reason.selectable, :id, :name, { selected: @to_let_go_item.reason_id, prompt: '手放す理由を選択する'}, { class: 'form-control' } %>
-    <% else %>
-      <%= f.collection_select :reason_id, Reason.selectable, :id, :name, { prompt: '手放す理由を選択する'}, { class: 'form-control' } %>
-    <% end %>
+    <%= f.collection_select :reason_id, Reason.selectable, :id, :name,
+                            { selected: @to_let_go_item&.reason_id || done_letting_go_item&.reason_id, prompt: '手放す理由を選択する' },
+                            { class: 'form-control' } %>
     <span><i class="fa fa-chevron-down"></i></span>
     <em></em>
   </div>
-
 
   <% if done_letting_go_item.persisted? && !done_letting_go_item.letting_go_way.selectable? %>
     <span class="color-red-dark">『<%= done_letting_go_item.letting_go_way.name %>』以外の方法を選んでください。</span>
