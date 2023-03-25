@@ -10,6 +10,7 @@
     <div class="list-group upload-file-data disabled my-4">
       <%= image_tag 'dummy-100X100.png', { id: 'image-data', class: 'align-self-center rounded-m bg-gray-light', width: 200, height: 200 } %>
     </div>
+
     <div class="file-data pb-4">
       <%= f.label :image, class: 'bg-highlight shadow-s rounded-s btn btn-l btn-full' do %>
         <p class="color-white font-600"><i class="fas fa-camera"></i> アップロード</p>
@@ -17,11 +18,9 @@
       <%= f.file_field :image, accept: 'image/*', capture: 'environment', class: 'upload-file' %>
     </div>
 
-
     <% if to_let_go_item.persisted? && !to_let_go_item.category.selectable? %>
       <span class="color-red-dark">『<%= to_let_go_item.category.name %>』以外のカテゴリーを選んでください。</span>
     <% end %>
-
     <div class="input-style no-borders no-icon mb-4">
       <%= f.label :category_id, class: 'color-highlight' %>
       <%= f.collection_select :category_id, Category.selectable, :id, :name,
@@ -32,7 +31,6 @@
       <span><i class="fa fa-chevron-down"></i></span>
       <em></em>
     </div>
-
 
     <div class="input-style no-borders no-icon mb-4">
       <%= f.text_field :name, class: 'form-control', placeholder: 'モノの名前' %>
