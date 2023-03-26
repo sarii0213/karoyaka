@@ -17,6 +17,7 @@
         <p class="mb-4">（ 詳細 ）<br><%= @done_letting_go_item.reason.description %></p>
         <span class="badge color-white bg-highlight-dark"><%= @done_letting_go_item.letting_go_way.name %></span><br>
         <p class="mb-4">（ 詳細 ）<br><%= @done_letting_go_item.letting_go_way.description %></p>
+        <span class="d-block text-end color-gray-dark font-11"><%= @done_letting_go_item.decorate.date %></span>
       </div>
       <div class="ms-1 text-end">
         <%= link_to edit_done_letting_go_item_path(@done_letting_go_item), class: 'color-brown-dark edit-link' do %>

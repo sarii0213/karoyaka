@@ -11,21 +11,22 @@
     <%= '手放したいものを登録してください。' if @to_let_go_items.blank? %>
     <% @to_let_go_items.each_with_index do |to_let_go_item, index| %>
       <%= link_to to_let_go_item_path(to_let_go_item), class: 'text-reset' do %>
-        <div class="d-flex mb-3">
-          <div class="ms-auto">
+        <div class="d-flex mb-3 justify-content-between">
+          <div>
             <%= image_tag to_let_go_item.decorate.img(:thumb), size: '90x90', class: 'rounded-m bg-gray-light' %>
           </div>
-          <div class="w-100 px-2">
+          <div class="flex-grow-1 px-3">
             <h5><%= to_let_go_item.decorate.item_name %></h5>
             <span class="badge color-white bg-teal-dark"><%= to_let_go_item.category.name %></span>
             <span class="badge color-white bg-blue-light"><%= to_let_go_item.reason.name %></span><br>
+            <span class="d-block text-end color-gray-dark font-11"><%= to_let_go_item.decorate.date %></span>
             <%= link_to '手放す！', new_done_letting_go_item_path(item_id: to_let_go_item.id),
                         class: 'btn btn-border btn-s btn-full font-700 border-green-dark color-green-dark bg-theme mt-2' %>
           </div>
-          <div class="my-auto text-end">
+          <div class="my-auto">
             <%= link_to edit_to_let_go_item_path(to_let_go_item), class: 'text-reset edit-link' do %>
               <i class="fas fa-edit"></i>
-            <% end %>
+            <% end %><br>
             <%= link_to to_let_go_item_path(to_let_go_item),
                         data: { turbo_method: :delete, turbo_confirm: '削除しますか？' }, class: 'text-reset delete-link' do %>
               <i class="far fa-times-circle mt-5"></i>
