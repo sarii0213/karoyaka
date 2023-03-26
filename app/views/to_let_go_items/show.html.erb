@@ -21,8 +21,9 @@
             <li><%= way.name %></li>
           <% end %>
         </ol>
+        <span class="d-block text-end color-gray-dark font-11"><%= @to_let_go_item.decorate.date %></span>
         <%= link_to '手放す！', new_done_letting_go_item_path(item_id: @to_let_go_item.id),
-                    class: 'btn btn-border btn-s btn-full font-700 border-green-dark color-green-dark bg-theme mt-4' %>
+                    class: 'btn btn-border btn-s btn-full font-700 border-green-dark color-green-dark bg-theme mt-3' %>
       </div>
       <div class="text-end">
         <%= link_to edit_to_let_go_item_path(@to_let_go_item), class: 'color-brown-dark edit-link' do %>
