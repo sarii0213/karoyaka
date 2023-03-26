@@ -18,4 +18,8 @@ class ItemDecorator < Draper::Decorator
   def item_name
     name.presence || category.name
   end
+
+  def date
+    created_at.strftime('%Y/%m/%d')
+  end
 end
